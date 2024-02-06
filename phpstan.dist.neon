@@ -1,0 +1,11 @@
+parameters:
+    level: 6
+    paths:
+        - lib
+        - tests
+    excludePaths:
+        - tests/CliTestCase/testLoadtasksLoadsDoctrineStyleTasksFromTheSpecifiedDirectory/should-be-ignored.php
+        - tests/tmp/*
+
+includes:
+    - phpstan-baseline.php
