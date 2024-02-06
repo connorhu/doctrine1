@@ -15,8 +15,11 @@ $config->setRules([
     '@Symfony' => true,
     '@PHP70Migration' => true,
     '@PHP70Migration:risky' => true,
-    'declare_strict_types' => false,
     '@PHP71Migration' => true,
+    '@PHP74Migration' => true,
+    'heredoc_indentation' => false,
+    'declare_strict_types' => false,
+    'void_return' => false,
     'array_syntax' => [
         'syntax' => 'short',
     ],
