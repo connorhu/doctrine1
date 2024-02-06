@@ -209,12 +209,12 @@ class UnitTestCase
 
     public function getLastRunsFails()
     {
-        return isset(self::$_lastRunsPassesAndFails['fails']) ? self::$_lastRunsPassesAndFails['fails'] : [];
+        return self::$_lastRunsPassesAndFails['fails'] ?? [];
     }
 
     public function getLastRunsPass()
     {
-        return isset(self::$_lastRunsPassesAndFails['passes']) ? self::$_lastRunsPassesAndFails['passes'] : [];
+        return self::$_lastRunsPassesAndFails['passes'] ?? [];
     }
 
     public function getNewFails()

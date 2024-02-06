@@ -101,7 +101,7 @@ class Doctrine_Import_Schema_TestCase extends Doctrine_UnitTestCase
     protected function _verifyMultiDirectionalRelationship($class, $relationAlias, $relation)
     {
         $foreignClass = $relation['class'];
-        $foreignAlias = isset($relation['foreignAlias']) ? $relation['foreignAlias'] : $class;
+        $foreignAlias = $relation['foreignAlias'] ?? $class;
 
         $foreignClassRelations = $this->schema[$foreignClass]['relations'];
 

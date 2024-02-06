@@ -188,7 +188,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
 
         $this->_table = $connection->getTable($this->_table);
 
-        $keyColumn = isset($array['keyColumn']) ? $array['keyColumn'] : null;
+        $keyColumn = $array['keyColumn'] ?? null;
         if (null === $keyColumn) {
             $keyColumn = $this->_table->getBoundQueryPart('indexBy');
         }

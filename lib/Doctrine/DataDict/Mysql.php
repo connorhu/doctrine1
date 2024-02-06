@@ -436,7 +436,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 break;
             default:
                 $type[] = $field['type'];
-                $length = isset($field['length']) ? $field['length'] : null;
+                $length = $field['length'] ?? null;
         }
 
         $length = (0 == (int) $length) ? null : (int) $length;
