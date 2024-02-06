@@ -14,6 +14,8 @@ $config->setRules([
     '@PhpCsFixer' => true,
     '@Symfony' => true,
     '@PHP70Migration' => true,
+    '@PHP70Migration:risky' => true,
+    'declare_strict_types' => false,
     'array_syntax' => [
         'syntax' => 'short',
     ],
