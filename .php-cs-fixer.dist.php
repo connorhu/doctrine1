@@ -16,6 +16,7 @@ $config->setRules([
     '@PHP70Migration' => true,
     '@PHP70Migration:risky' => true,
     'declare_strict_types' => false,
+    '@PHP71Migration' => true,
     'array_syntax' => [
         'syntax' => 'short',
     ],
