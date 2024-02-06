@@ -20,38 +20,43 @@
  */
 
 /**
- * Doctrine_Search_TestCase
+ * Doctrine_Search_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Search_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
         $this->tables = array('SearchTest');
-        
+
         parent::prepareTables();
     }
+
     public function prepareData()
-    { }
+    {
+    }
 
     public function testBuildingOfSearchRecordDefinition()
     {
         $e = new SearchTest();
-        
+
         $this->assertTrue($e->SearchTestIndex instanceof Doctrine_Collection);
-        
+
         $rel = $e->getTable()->getRelation('SearchTestIndex');
 
         $this->assertIdentical($rel->getLocal(), 'id');
         $this->assertIdentical($rel->getForeign(), 'id');
     }
+
     public function testSavingEntriesUpdatesIndex()
     {
         $e = new SearchTest();
@@ -74,7 +79,8 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $results = Doctrine_Core::getTable('SearchTest')->search('orm');
         $this->assertEqual($results[0]['id'], 1);
         $query = Doctrine_Query::create()
-            ->from('SearchTest s');
+            ->from('SearchTest s')
+        ;
         $query = Doctrine_Core::getTable('SearchTest')->search('orm', $query);
         $this->assertEqual($query->getSqlQuery(), 'SELECT s.id AS s__id, s.title AS s__title, s.content AS s__content FROM search_test s WHERE (s.id IN (SELECT id FROM search_test_index WHERE keyword = ? GROUP BY id))');
         $results = $query->fetchArray();
@@ -86,9 +92,10 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->select('t.title')
-          ->from('SearchTest t')
-          ->innerJoin('t.SearchTestIndex i')
-          ->where('i.keyword = ?');
+            ->from('SearchTest t')
+            ->innerJoin('t.SearchTestIndex i')
+            ->where('i.keyword = ?')
+        ;
 
         $array = $q->execute(array('orm'), Doctrine_Core::HYDRATE_ARRAY);
 
@@ -97,23 +104,25 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->select('t.title')
-          ->from('SearchTest t')
-          ->innerJoin('t.SearchTestIndex i')
-          ->where('i.keyword = ?');
+            ->from('SearchTest t')
+            ->innerJoin('t.SearchTestIndex i')
+            ->where('i.keyword = ?')
+        ;
 
         $array = $q->execute(array('007'), Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual($array[0]['title'], '007');
     }
-    
+
     public function testUsingWordRange()
     {
         $q = new Doctrine_Query();
 
         $q->select('t.title, i.*')
-          ->from('SearchTest t')
-          ->innerJoin('t.SearchTestIndex i')
-          ->where('i.keyword = ? OR i.keyword = ?');
+            ->from('SearchTest t')
+            ->innerJoin('t.SearchTestIndex i')
+            ->where('i.keyword = ? OR i.keyword = ?')
+        ;
 
         $array = $q->execute(array('orm', 'framework'), Doctrine_Core::HYDRATE_ARRAY);
 
@@ -125,9 +134,10 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->select('t.title')
-          ->from('SearchTest t')
-          ->innerJoin('t.SearchTestIndex i')
-          ->where('i.keyword = ?');
+            ->from('SearchTest t')
+            ->innerJoin('t.SearchTestIndex i')
+            ->where('i.keyword = ?')
+        ;
 
         $array = $q->execute(array('was'), Doctrine_Core::HYDRATE_ARRAY);
 
@@ -139,9 +149,10 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->select('t.title')
-          ->from('SearchTest t')
-          ->innerJoin('t.SearchTestIndex i')
-          ->where('i.keyword = ?');
+            ->from('SearchTest t')
+            ->innerJoin('t.SearchTestIndex i')
+            ->where('i.keyword = ?')
+        ;
 
         $array = $q->execute(array('someunknownword'), Doctrine_Core::HYDRATE_ARRAY);
 
@@ -158,13 +169,14 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $e->content = 'Some searchable content';
 
         $e->save();
-        
+
         $coll = Doctrine_Query::create()
-                ->from('SearchTestIndex s')
-                ->orderby('s.id DESC')
-                ->limit(1)
-                ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-                ->fetchOne();
+            ->from('SearchTestIndex s')
+            ->orderby('s.id DESC')
+            ->limit(1)
+            ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
+            ->fetchOne()
+        ;
 
         $this->assertEqual($coll['id'], 3);
         $this->assertEqual($coll['keyword'], null);
@@ -176,25 +188,24 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
     {
         $e = new SearchTest();
         $e->batchUpdateIndex();
-        
+
         $coll = Doctrine_Query::create()
-                ->from('SearchTestIndex s')
-                ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-                ->execute();
+            ->from('SearchTestIndex s')
+            ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
+            ->execute()
+        ;
 
         $coll = $this->conn->fetchAll('SELECT * FROM search_test_index');
-        
-
     }
 
     public function testThrowExceptionIfInvalidTable()
     {
-       try {
-           $oQuery = new Doctrine_Search_Query(new Doctrine_Query());
-           $this->fail('Should throw exception');
-       } catch(Doctrine_Search_Exception $exception) {
-           $this->assertEqual($exception->getMessage(), 'Invalid argument type. Expected instance of Doctrine_Table.');
-       }
+        try {
+            $oQuery = new Doctrine_Search_Query(new Doctrine_Query());
+            $this->fail('Should throw exception');
+        } catch (Doctrine_Search_Exception $exception) {
+            $this->assertEqual($exception->getMessage(), 'Invalid argument type. Expected instance of Doctrine_Table.');
+        }
     }
 
     public function testGenerateSearchQueryForWeightedSearch()
@@ -213,7 +224,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($words[2], 'ca');
         $this->assertEqual($words[4], 'enormement');
     }
-    
+
     public function testUtf8AnalyzerWorks()
     {
         $analyzer = new Doctrine_Search_Analyzer_Utf8(array('encoding' => 'utf-8'));
@@ -223,7 +234,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($words[2], 'ça');
         $this->assertEqual($words[4], 'énormément');
     }
- 
+
     public function testUtf8AnalyzerKnowsToHandleOtherEncodingsWorks()
     {
         $analyzer = new Doctrine_Search_Analyzer_Utf8();

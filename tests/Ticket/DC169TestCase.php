@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_DC169_TestCase
+ * Doctrine_Ticket_DC169_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_DC169_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC169_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -74,10 +76,10 @@ class Ticket_DC169_User extends Doctrine_Record
     public function setUp()
     {
         $this->actAs('Timestampable');
-        
+
         $this->hasOne('Ticket_DC169_Profile as Profile', array(
             'local' => 'id',
-            'foreign' => 'user_id'
+            'foreign' => 'user_id',
         ));
     }
 }
@@ -94,7 +96,7 @@ class Ticket_DC169_Profile extends Doctrine_Record
     {
         $this->hasOne('Ticket_DC169_User as User', array(
             'local' => 'user_id',
-            'foreign' => 'id'
+            'foreign' => 'id',
         ));
     }
 }

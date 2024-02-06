@@ -1,4 +1,5 @@
 <?php
+
 class FooBarRecord extends Doctrine_Record
 {
     public function setTableDefinition()

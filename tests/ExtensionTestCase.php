@@ -20,15 +20,17 @@
  */
 
 /**
- * Doctrine_Extension_TestCase
+ * Doctrine_Extension_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
 class Doctrine_Extension_TestCase extends Doctrine_UnitTestCase
 {
@@ -38,7 +40,8 @@ class Doctrine_Extension_TestCase extends Doctrine_UnitTestCase
         spl_autoload_register(array('Doctrine_Core', 'extensionsAutoload'));
 
         Doctrine_Manager::getInstance()
-            ->registerExtension('TestExtension');
+            ->registerExtension('TestExtension')
+        ;
 
         $this->tables[] = 'ExtensionBehaviorTest';
         parent::prepareTables();
@@ -64,6 +67,11 @@ class Doctrine_Extension_TestCase extends Doctrine_UnitTestCase
     }
 }
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class ExtensionBehaviorTest extends Doctrine_Record
 {
     public function setTableDefinition()

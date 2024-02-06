@@ -20,23 +20,24 @@
  */
 
 /**
- * Doctrine_Hook_TestCase
+ * Doctrine_Hook_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase
 {
-
-    public function testWordLikeParserSupportsHyphens() 
+    public function testWordLikeParserSupportsHyphens()
     {
         $parser = new Doctrine_Hook_WordLike();
-        
+
         $parser->parse('u', 'name', "'some guy' OR zYne");
 
         $this->assertEqual($parser->getCondition(), '(u.name LIKE ? OR u.name LIKE ?)');
@@ -82,7 +83,7 @@ class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase
         $hook->hookOrderBy($a['orderby']);
         $this->assertEqual($hook->getQuery()->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name FROM entity e LEFT JOIN phonenumber p ON e.id = p.entity_id WHERE (e.type = 0) ORDER BY e.name ASC, e.id DESC');
 
-        $users =  $hook->getQuery()->execute();
+        $users = $hook->getQuery()->execute();
     }
 
     public function testHookWhereAcceptsArrays()
@@ -90,7 +91,7 @@ class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase
         $hook = new Doctrine_Hook('SELECT u.name FROM User u LEFT JOIN u.Phonenumber p');
 
         $a['where'] = array('u.name' => 'Jack Daniels',
-                            'u.loginname' => 'TheMan');
+            'u.loginname' => 'TheMan');
 
         $hook->hookWhere($a['where']);
         $this->assertEqual($hook->getQuery()->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name FROM entity e LEFT JOIN phonenumber p ON e.id = p.entity_id WHERE (e.name LIKE ? OR e.name LIKE ?) AND e.loginname LIKE ? AND (e.type = 0)');
@@ -168,5 +169,4 @@ class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($parser->getCondition(), '((m.year > ? AND m.year < ?) OR m.year = ?)');
         $this->assertEqual($parser->getParams(), array('1998', '2000', '2001'));
     }
-
 }

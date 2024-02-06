@@ -20,49 +20,52 @@
  */
 
 /**
- * Doctrine_Hydrate_FetchMode_TestCase
+ * Doctrine_Hydrate_FetchMode_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Hydrate_FetchMode_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Hydrate_FetchMode_TestCase extends Doctrine_UnitTestCase
 {
-
     public function testFetchArraySupportsOneToManyRelations()
     {
         $q = new Doctrine_Query();
 
         $q->select('u.*, p.*')->from('User u')->innerJoin('u.Phonenumber p')->where("u.name = 'zYne'");
-        
+
         $users = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertTrue(is_array($users));
 
         $this->assertEqual(count($users), 1);
     }
+
     public function testFetchArraySupportsOneToManyRelations2()
     {
         $q = new Doctrine_Query();
 
         $q->select('u.*, p.*')->from('User u')->innerJoin('u.Phonenumber p');
-        
+
         $users = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertTrue(is_array($users));
 
         $this->assertEqual(count($users), 8);
     }
+
     public function testFetchArraySupportsOneToManyRelations3()
     {
         $q = new Doctrine_Query();
 
         $q->select('u.*, p.*')->from('User u')->innerJoin('u.Phonenumber p')->where("u.name = 'Jean Reno'");
-        
+
         $users = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertTrue(is_array($users));
@@ -70,23 +73,25 @@ class Doctrine_Hydrate_FetchMode_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(count($users), 1);
         $this->assertEqual(count($users[0]['Phonenumber']), 3);
     }
+
     public function testFetchArraySupportsOneToOneRelations()
     {
         $q = new Doctrine_Query();
 
         $q->select('u.*, e.*')->from('User u')->innerJoin('u.Email e');
-        
+
         $users = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual(count($users), 8);
         $this->assertEqual($users[0]['Email']['address'], 'zYne@example.com');
     }
+
     public function testFetchArraySupportsOneToOneRelations2()
     {
         $q = new Doctrine_Query();
 
         $q->select('u.*, e.*')->from('User u')->innerJoin('u.Email e')->where("u.name = 'zYne'");
-        
+
         $users = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual(count($users), 1);
@@ -105,7 +110,7 @@ class Doctrine_Hydrate_FetchMode_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($users[0]['Email']['address'], 'zYne@example.com');
         $this->assertTrue($users[0] instanceof User);
-        $this->assertTrue($users instanceof Doctrine_Collection);  
+        $this->assertTrue($users instanceof Doctrine_Collection);
         $this->assertEqual($users[0]->state(), Doctrine_Record::STATE_CLEAN);
         $this->assertEqual($users[0]->id, 4);
 
@@ -144,30 +149,29 @@ class Doctrine_Hydrate_FetchMode_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($users[0] instanceof User);
         $this->assertEqual($users[0]->state(), Doctrine_Record::STATE_CLEAN);
 
-
         $this->assertEqual($this->conn->count(), $count + 1);
     }
 
     public function testFetchArrayNull()
     {
         $u = new User();
-        $u->name = "fetch_array_test";
+        $u->name = 'fetch_array_test';
         $u->created = null;
         $u->save();
-  
+
         $q = new Doctrine_Query();
         $q->select('u.*')->from('User u')->where('u.id = ?');
         $users = $q->execute(array($u->id), Doctrine_Core::HYDRATE_ARRAY);
         $this->assertEqual($users[0]['created'], null);
     }
-    
+
     public function testHydrateNone()
     {
         $u = new User();
-        $u->name = "fetch_array_test";
+        $u->name = 'fetch_array_test';
         $u->created = null;
         $u->save();
-  
+
         $q = new Doctrine_Query();
         $q->select('COUNT(u.id) num')->from('User u')->where('u.id = ?');
         $res = $q->execute(array($u->id), Doctrine_Core::HYDRATE_NONE);

@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_1208_TestCase
+ * Doctrine_Ticket_1208_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_1208_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1208_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -49,7 +51,8 @@ class Doctrine_Ticket_1208_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         $q = Doctrine_Query::create()
-            ->from('Ticket_1208_User u');
+            ->from('Ticket_1208_User u')
+        ;
         $user = $q->fetchOne(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertTrue(isset($user['pre_hydrate']));

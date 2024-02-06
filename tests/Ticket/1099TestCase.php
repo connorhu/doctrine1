@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class Doctrine_Ticket_1099_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
@@ -24,9 +30,10 @@ class Doctrine_Ticket_1099_TestCase extends Doctrine_UnitTestCase
     public function testCAINestedSet()
     {
         $child = Doctrine_Query::create()
-           ->from('T1099_Page p')
-           ->where('p.type = \'subpage\'')
-           ->fetchOne();
+            ->from('T1099_Page p')
+            ->where('p.type = \'subpage\'')
+            ->fetchOne()
+        ;
 
         $this->assertEqual('T1099_SubPage', get_class($child));
         $this->assertNotEqual(false, $child->getNode()->getParent());
@@ -46,7 +53,7 @@ class T1099_Page extends Doctrine_Record
     {
         $this->actAs('Doctrine_Template_NestedSet');
         $this->setSubclasses(array(
-        'T1099_SubPage' => array('type' => 'subpage')
+            'T1099_SubPage' => array('type' => 'subpage'),
         ));
         parent::setUp();
     }

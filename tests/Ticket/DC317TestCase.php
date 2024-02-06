@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_DC317_TestCase
+ * Doctrine_Ticket_DC317_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_DC317_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC317_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -46,7 +48,7 @@ class Doctrine_Ticket_DC317_TestCase extends Doctrine_UnitTestCase
         $page->save();
 
         $tree = Doctrine_Core::getTable('Ticket_DC317_Page')->getTree();
-        $tree->createRoot( $page );
+        $tree->createRoot($page);
 
         $this->assertEqual($page->topic, 'my-topic');
 
@@ -60,15 +62,15 @@ class Ticket_DC317_Page extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('topic', 'string', 32, array(
-             'type' => 'string',
-             'notnull' => true,
-             'length' => '32',
-             ));
+            'type' => 'string',
+            'notnull' => true,
+            'length' => '32',
+        ));
         $this->hasColumn('title', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => true,
-             'length' => '255',
-             ));
+            'type' => 'string',
+            'notnull' => true,
+            'length' => '255',
+        ));
 
         $this->option('type', 'InnoDB');
         $this->option('collate', 'utf8_unicode_ci');
@@ -78,9 +80,9 @@ class Ticket_DC317_Page extends Doctrine_Record
     public function setUp()
     {
         $nestedset0 = new Doctrine_Template_NestedSet(array(
-             'hasManyRoots' => true,
-             'rootColumnName' => 'topic',
-             ));
+            'hasManyRoots' => true,
+            'rootColumnName' => 'topic',
+        ));
         $this->actAs($nestedset0);
     }
 }

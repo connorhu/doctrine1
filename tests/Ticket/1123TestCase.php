@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_1123_TestCase
+ * Doctrine_Ticket_1123_TestCase.
  *
- * @package     Doctrine
  * @author      Jfung
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_1123_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1123_TestCase extends Doctrine_UnitTestCase
 {
     public function testInit()
     {
@@ -58,10 +60,10 @@ class Ticket_1123_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1123_User as Friend', array('local'    => 'user1',
-                                                           'foreign'  => 'user2',
-                                                           'refClass' => 'Ticket_1123_UserReference',
-                                                           'equal'    => true));
+        $this->hasMany('Ticket_1123_User as Friend', array('local' => 'user1',
+            'foreign' => 'user2',
+            'refClass' => 'Ticket_1123_UserReference',
+            'equal' => true));
     }
 }
 

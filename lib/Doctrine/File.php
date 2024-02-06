@@ -20,15 +20,11 @@
  */
 
 /**
- * Doctrine_File
+ * Doctrine_File.
  *
- * @package     Doctrine
- * @subpackage  File
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @version     $Revision$
- * @link        www.doctrine-project.org
- * @since       1.0
+ *
+ * @see        www.doctrine-project.org
  */
 class Doctrine_File extends Doctrine_Record
 {
@@ -40,16 +36,17 @@ class Doctrine_File extends Doctrine_Record
     public function setUp()
     {
         $this->actAs('Searchable', array('className' => 'Doctrine_File_Index',
-                                         'fields' => array('url', 'content')));
-        
+            'fields' => array('url', 'content')));
+
         $this->index('url', array('fields' => array('url')));
     }
 
     public function get($name, $load = true)
     {
-        if ($name === 'content') {
+        if ('content' === $name) {
             return file_get_contents(parent::get('url'));
         }
+
         return parent::get($name, $load);
     }
 }

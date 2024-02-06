@@ -20,15 +20,11 @@
  */
 
 /**
- * Doctrine_Search_Analyzer
+ * Doctrine_Search_Analyzer.
  *
- * @package     Doctrine
- * @subpackage  Search
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @version     $Revision$
- * @link        www.doctrine-project.org
- * @since       1.0
+ *
+ * @see        www.doctrine-project.org
  */
 class Doctrine_Search_Analyzer implements Doctrine_Search_Analyzer_Interface
 {

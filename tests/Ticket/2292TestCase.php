@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_2292_TestCase
+ * Doctrine_Ticket_2292_TestCase.
  *
- * @package     Doctrine
  * @author      Miloslav Kmeť <miloslav.kmet@gmail.com>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -39,16 +41,16 @@ class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'mkContent';
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
     }
-    
+
     public function testOwningSideRelationToArray()
     {
         $article = new mkArticle();
-        
-        $this->assertEqual($article->content->toArray(false), array('id'=>null, 'body'=>null));
+
+        $this->assertEqual($article->content->toArray(false), array('id' => null, 'body' => null));
     }
 }
 
@@ -60,12 +62,12 @@ class mkArticle extends Doctrine_Record
         $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'autoincrement' => true, 'primary' => true, 'length' => 4));
         $this->hasColumn('title', 'string', 200);
     }
-    
+
     public function setup()
     {
-        $this->hasOne('mkContent as content', array('local'=>'id', 
-                                                    'foreign'=>'id',
-                                                    'owningSide' => false));
+        $this->hasOne('mkContent as content', array('local' => 'id',
+            'foreign' => 'id',
+            'owningSide' => false));
     }
 }
 
@@ -77,12 +79,11 @@ class mkContent extends Doctrine_Record
         $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'autoincrement' => false, 'primary' => true, 'length' => 4));
         $this->hasColumn('body', 'string');
     }
-    
+
     public function setup()
     {
-        $this->hasOne('mkArticle as article', array('local'=>'id', 
-                                                    'foreign'=>'id',
-                                                    'owningSide' => true));
+        $this->hasOne('mkArticle as article', array('local' => 'id',
+            'foreign' => 'id',
+            'owningSide' => true));
     }
 }
-

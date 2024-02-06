@@ -20,23 +20,25 @@
  */
 
 /**
- * Doctrine_Migration_Diff_TestCase
+ * Doctrine_Migration_Diff_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Migration_Diff_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Migration_Diff_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
-        $from = dirname(__FILE__) . '/Diff/schema/from.yml';
-        $to = dirname(__FILE__) . '/Diff/schema/to.yml';
-        $migrationsPath = dirname(__FILE__) . '/Diff/migrations';
+        $from = dirname(__FILE__).'/Diff/schema/from.yml';
+        $to = dirname(__FILE__).'/Diff/schema/to.yml';
+        $migrationsPath = dirname(__FILE__).'/Diff/migrations';
         Doctrine_Lib::makeDirectories($migrationsPath);
 
         $diff = new Doctrine_Migration_Diff($from, $to, $migrationsPath);
@@ -56,11 +58,11 @@ class Doctrine_Migration_Diff_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($changes['dropped_indexes']['user']['is_active'], array('fields' => array('is_active')));
         $diff->generateMigrationClasses();
 
-        $files = glob($migrationsPath . '/*.php');
+        $files = glob($migrationsPath.'/*.php');
         $this->assertEqual(count($files), 2);
         $this->assertTrue(strpos($files[0], '_version1.php'));
         $this->assertTrue(strpos($files[1], '_version2.php'));
-        
+
         $code1 = file_get_contents($files[0]);
         $this->assertTrue(strpos($code1, 'this->dropTable'));
         $this->assertTrue(strpos($code1, 'this->createTable'));

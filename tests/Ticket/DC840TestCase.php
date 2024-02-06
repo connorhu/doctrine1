@@ -20,20 +20,22 @@
  */
 
 /**
- * Doctrine_Ticket_DC840_TestCase
+ * Doctrine_Ticket_DC840_TestCase.
  *
- * @package     Doctrine
  * @author      Enrico Stahn <mail@enricostahn.com>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase
 {
     private $sqlStackCounter = 0;
-  
+
     public function prepareTables()
     {
         $this->tables[] = 'Ticket_DC840_Model';
@@ -59,7 +61,7 @@ class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase
             ->andWhere('modified_at >= ?', '2010-01-01')
         ;
         $q->execute();
-         
+
         $expected = "SELECT [t].[id] AS [t__id] FROM [ticket__d_c840__model] [t] WHERE ([t].[password] = 'abc' AND [t].[modified_at] > '2010-01-01' AND [t].[modified_at] < '2010-01-01' AND [t].[modified_at] <> '2010-01-01' AND [t].[modified_at] <= '2010-01-01' AND [t].[modified_at] >= '2010-01-01')";
         $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 

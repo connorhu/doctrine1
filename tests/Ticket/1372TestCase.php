@@ -20,29 +20,30 @@
  */
 
 /**
- * Doctrine_Ticket_1372_TestCase
+ * Doctrine_Ticket_1372_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_1372_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1372_TestCase extends Doctrine_UnitTestCase
 {
     /* Test array of SQL queries to ensure uniqueness of queries */
     public function testExportSql()
     {
         $drivers = array('mysql',
-                         'sqlite',
-                         'pgsql',
-                         'oracle',
-                         'mssql');
+            'sqlite',
+            'pgsql',
+            'oracle',
+            'mssql');
 
-        foreach ($drivers as $driver)
-        {
+        foreach ($drivers as $driver) {
             $dbh = new Doctrine_Adapter_Mock($driver);
 
             $conn = Doctrine_Manager::getInstance()->connection($dbh, $driver);

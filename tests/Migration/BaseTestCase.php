@@ -20,15 +20,17 @@
  */
 
 /**
- * Doctrine_Migration_Base_TestCase
- * 
- * @package     Doctrine
+ * Doctrine_Migration_Base_TestCase.
+ *
  * @author      Dan Bettles <danbettles@yahoo.co.uk>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
 class Doctrine_Migration_Base_TestCase extends UnitTestCase
 {

@@ -20,21 +20,23 @@
  */
 
 /**
- * Doctrine_Ticket_1280_TestCase
+ * Doctrine_Ticket_1280_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
 class Doctrine_Ticket_1280_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        //$this->tables = array();
+        // $this->tables = array();
         $this->tables[] = 'Ticket_1280_User';
         $this->tables[] = 'Ticket_1280_Group';
         parent::prepareTables();
@@ -52,11 +54,11 @@ class Doctrine_Ticket_1280_TestCase extends Doctrine_UnitTestCase
         $user->save();
 
         $this->assertEqual($user->group_id, $group->id);
-        
+
         try {
             $user->Group = null;
             $user->save();
-            
+
             $this->assertEqual($user->group_id, null);
 
             $this->pass();
@@ -71,7 +73,7 @@ class Ticket_1280_User extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('group_id', 'integer', 20, array(
-            'notnull' => false, 'default' => null
+            'notnull' => false, 'default' => null,
         ));
         $this->hasColumn('name', 'string', 255);
     }
@@ -80,11 +82,10 @@ class Ticket_1280_User extends Doctrine_Record
     {
         $this->hasOne('Ticket_1280_Group as Group', array(
             'local' => 'group_id',
-            'foreign' => 'id'
+            'foreign' => 'id',
         ));
     }
 }
-
 
 class Ticket_1280_Group extends Doctrine_Record
 {
@@ -97,7 +98,7 @@ class Ticket_1280_Group extends Doctrine_Record
     {
         $this->hasMany('Ticket_1280_User as Users', array(
             'local' => 'id',
-            'foreign' => 'group_id'
+            'foreign' => 'group_id',
         ));
     }
 }

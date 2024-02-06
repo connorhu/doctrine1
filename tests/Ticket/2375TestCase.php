@@ -20,27 +20,29 @@
  */
 
 /**
- * Doctrine_Ticket_2375_TestCase
+ * Doctrine_Ticket_2375_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
 class Doctrine_Ticket_2375_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
-        $models1Dir = dirname(__FILE__) . '/2375/models1';
-        $models2Dir = dirname(__FILE__) . '/2375/models2';
+        $models1Dir = dirname(__FILE__).'/2375/models1';
+        $models2Dir = dirname(__FILE__).'/2375/models2';
 
         // try loading a couple initial models
 
         $models1 = Doctrine_Core::loadModels($models1Dir);
-        //$models2 = Doctrine_Core::loadModels($models2Dir);
+        // $models2 = Doctrine_Core::loadModels($models2Dir);
 
         // make sure two models were loaded
         $this->assertEqual(2, count($models1));
@@ -53,8 +55,8 @@ class Doctrine_Ticket_2375_TestCase extends Doctrine_UnitTestCase
         $loadedModels = Doctrine_Core::getLoadedModelFiles();
 
         // make sure the paths are correct
-        $this->assertEqual($loadedModels['Ticket_2375_Model1'], $models1Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model1.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model2'], $models1Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model2.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model1'], $models1Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model1.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model2'], $models1Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model2.php');
 
         // try loading a few more models
 
@@ -70,12 +72,12 @@ class Doctrine_Ticket_2375_TestCase extends Doctrine_UnitTestCase
         $loadedModels = Doctrine_Core::getLoadedModelFiles();
 
         // make sure the paths are correct
-        $this->assertEqual($loadedModels['Ticket_2375_Model1'], $models1Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model1.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model2'], $models1Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model2.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model3'], $models2Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model3.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model4'], $models2Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model4.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model5'], $models2Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model5.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model6'], $models2Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model5.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model1'], $models1Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model1.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model2'], $models1Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model2.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model3'], $models2Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model3.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model4'], $models2Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model4.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model5'], $models2Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model5.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model6'], $models2Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model5.php');
 
         // try loading the first models again
 
@@ -89,11 +91,11 @@ class Doctrine_Ticket_2375_TestCase extends Doctrine_UnitTestCase
         $loadedModels = Doctrine_Core::getLoadedModelFiles();
 
         // make sure the paths are correct
-        $this->assertEqual($loadedModels['Ticket_2375_Model1'], $models1Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model1.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model2'], $models1Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model2.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model3'], $models2Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model3.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model4'], $models2Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model4.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model5'], $models2Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model5.php');
-        $this->assertEqual($loadedModels['Ticket_2375_Model6'], $models2Dir . DIRECTORY_SEPARATOR . 'Ticket_2375_Model5.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model1'], $models1Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model1.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model2'], $models1Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model2.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model3'], $models2Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model3.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model4'], $models2Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model4.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model5'], $models2Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model5.php');
+        $this->assertEqual($loadedModels['Ticket_2375_Model6'], $models2Dir.DIRECTORY_SEPARATOR.'Ticket_2375_Model5.php');
     }
 }

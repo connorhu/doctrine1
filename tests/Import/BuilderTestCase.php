@@ -20,21 +20,23 @@
  */
 
 /**
- * Doctrine_Import_Builder_TestCase
+ * Doctrine_Import_Builder_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Import_Builder_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Import_Builder_TestCase extends Doctrine_UnitTestCase
 {
     public function testInheritanceGeneration()
     {
-        $path = dirname(__FILE__) . '/import_builder_test';
+        $path = dirname(__FILE__).'/import_builder_test';
 
         $import = new Doctrine_Import_Schema();
         $import->setOption('generateTableClasses', true);
@@ -55,10 +57,10 @@ class Doctrine_Import_Builder_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($schemaTestInheritanceParent->isSubclassOf('PackageSchemaTestInheritanceParent'));
         $this->assertTrue($schemaTestInheritanceChild1->isSubclassOf('BaseSchemaTestInheritanceChild1'));
         $this->assertTrue($schemaTestInheritanceChild2->isSubclassOf('BaseSchemaTestInheritanceChild2'));
-        
+
         $this->assertTrue($schemaTestInheritanceChild1->isSubclassOf('SchemaTestInheritanceParent'));
         $this->assertTrue($schemaTestInheritanceChild1->isSubclassOf('BaseSchemaTestInheritanceParent'));
-        
+
         $this->assertTrue($schemaTestInheritanceChild2->isSubclassOf('SchemaTestInheritanceParent'));
         $this->assertTrue($schemaTestInheritanceChild2->isSubclassOf('BaseSchemaTestInheritanceParent'));
         $this->assertTrue($schemaTestInheritanceChild2->isSubclassOf('SchemaTestInheritanceChild1'));
@@ -74,22 +76,22 @@ class Doctrine_Import_Builder_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($schemaTestInheritanceChild2Table->isSubclassOf('SchemaTestInheritanceChild1Table'));
         $this->assertTrue($schemaTestInheritanceChild2Table->isSubclassOf('PackageSchemaTestInheritanceChild1Table'));
 
-        # Simple Inheritance
+        // Simple Inheritance
         $schemaTestSimpleInheritanceParent = new ReflectionClass('SchemaTestSimpleInheritanceParent');
         $schemaTestSimpleInheritanceChild = new ReflectionClass('SchemaTestSimpleInheritanceChild');
 
         $this->assertTrue($schemaTestSimpleInheritanceParent->hasMethod('setTableDefinition'));
         $this->assertTrue($schemaTestSimpleInheritanceChild->isSubclassOf('SchemaTestSimpleInheritanceParent'));
 
-        # Class Table Inheritance
+        // Class Table Inheritance
         $schemaTestClassTableInheritanceParent = new ReflectionClass('SchemaTestClassTableInheritanceParent');
         $schemaTestClassTableInheritanceChild = new ReflectionClass('SchemaTestClassTableInheritanceChild');
 
-        # Concrete Inheritance
+        // Concrete Inheritance
         $schemaTestConcreteInheritanceParent = new ReflectionClass('SchemaTestConcreteInheritanceParent');
         $schemaTestConcreteInheritanceChild = new ReflectionClass('SchemaTestConcreteInheritanceChild');
 
-        # Column Aggregation Inheritance
+        // Column Aggregation Inheritance
         $schemaTestColumnAggregationInheritanceParent = new ReflectionClass('SchemaTestColumnAggregationInheritanceParent');
         $schemaTestColumnAggregationInheritanceChild = new ReflectionClass('SchemaTestColumnAggregationInheritanceChild');
 

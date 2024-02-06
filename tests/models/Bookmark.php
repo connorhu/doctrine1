@@ -1,4 +1,5 @@
 <?php
+
 class Bookmark extends Doctrine_Record
 {
     public function setTableDefinition()

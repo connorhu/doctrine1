@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_DC302_TestCase
+ * Doctrine_Ticket_DC302_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,52 +42,54 @@ class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_DC302_UserRole';
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
         $role1 = new Ticket_DC302_Role();
         $role1->name = 'admin'; // id: 1
         $role1->save();
-        
+
         $role2 = new Ticket_DC302_Role();
         $role2->name = 'publisher'; // id: 2
         $role2->save();
-        
+
         $role3 = new Ticket_DC302_Role();
         $role3->name = 'reviewer'; // id: 3
         $role3->save();
-        
+
         $role4 = new Ticket_DC302_Role();
         $role4->name = 'mod'; // id: 4
         $role4->save();
-        
+
         // reviewer inherits from admin, mod, publisher - in that order
         $role3->Parents[] = $role1;
         $role3->Parents[] = $role4;
         $role3->Parents[] = $role2;
         $role3->save();
-        
+
         // update positions
         $query = Doctrine_Query::create()
             ->update('Ticket_DC302_RoleReference')
             ->set('position', '?', 0)
             ->where('id_role_child = ?', 3)
             ->andWhere('id_role_parent = ?', 1)
-            ->execute();
+            ->execute()
+        ;
         $query = Doctrine_Query::create()
             ->update('Ticket_DC302_RoleReference')
             ->set('position', '?', 1)
             ->where('id_role_child = ?', 3)
             ->andWhere('id_role_parent = ?', 4)
-            ->execute();
+            ->execute()
+        ;
         $query = Doctrine_Query::create()
             ->update('Ticket_DC302_RoleReference')
             ->set('position', '?', 2)
             ->where('id_role_child = ?', 3)
             ->andWhere('id_role_parent = ?', 2)
-            ->execute();
-            
-            
+            ->execute()
+        ;
+
         $user = new Ticket_DC302_User();
         $user->username = 'test';
         $user->password = 'test';
@@ -97,23 +101,25 @@ class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase
             ->set('position', '?', 0)
             ->where('id_user = ?', 1)
             ->andWhere('id_role = ?', 4)
-            ->execute();
+            ->execute()
+        ;
         $query = Doctrine_Query::create()
             ->update('Ticket_DC302_UserRole')
             ->set('position', '?', 1)
             ->where('id_user = ?', 1)
             ->andWhere('id_role = ?', 2)
-            ->execute();
+            ->execute()
+        ;
     }
-    
+
     public function testTest()
     {
         $profiler = new Doctrine_Connection_Profiler();
         $this->conn->addListener($profiler);
 
-		$role = Doctrine_Core::getTable('Ticket_DC302_Role')->find(3);
-		$parents = $role->Parents->toArray();
-        
+        $role = Doctrine_Core::getTable('Ticket_DC302_Role')->find(3);
+        $parents = $role->Parents->toArray();
+
         $this->assertEqual($parents[1]['Ticket_DC302_RoleReference'][0]['position'], 1);
 
         $events = $profiler->getAll();
@@ -128,7 +134,7 @@ class Ticket_DC302_Role extends Doctrine_Record
     {
         $this->hasColumn('name', 'string', 64);
     }
-    
+
     public function setUp()
     {
         $this->hasMany('Ticket_DC302_User as Users', array('local' => 'id_role', 'foreign' => 'id_user', 'refClass' => 'Ticket_DC302_UserRole'));
@@ -145,7 +151,7 @@ class Ticket_DC302_RoleReference extends Doctrine_Record
         $this->hasColumn('id_role_child', 'integer', null, array('primary' => true));
         $this->hasColumn('position', 'integer', null, array('notnull' => true, 'default' => 0));
     }
-    
+
     public function setUp()
     {
         $this->hasOne('Ticket_DC302_Role as Parent', array('local' => 'id_role_parent', 'foreign' => 'id', 'onDelete' => 'CASCADE'));
@@ -160,7 +166,7 @@ class Ticket_DC302_User extends Doctrine_Record
         $this->hasColumn('username', 'string', 64, array('notnull' => true));
         $this->hasColumn('password', 'string', 128, array('notnull' => true));
     }
-    
+
     public function setUp()
     {
         $this->hasMany('Ticket_DC302_Role as Roles', array('local' => 'id_user', 'foreign' => 'id_role', 'refClass' => 'Ticket_DC302_UserRole', 'orderBy' => 'position'));
@@ -175,7 +181,7 @@ class Ticket_DC302_UserRole extends Doctrine_Record
         $this->hasColumn('id_role', 'integer', null, array('primary' => true));
         $this->hasColumn('position', 'integer', null, array('notnull' => true, 'default' => 0));
     }
-    
+
     public function setUp()
     {
         $this->hasOne('Ticket_DC302_User as User', array('local' => 'id_user', 'foreign' => 'id', 'onDelete' => 'CASCADE'));

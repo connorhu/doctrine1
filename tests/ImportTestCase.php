@@ -20,22 +20,27 @@
  */
 
 /**
- * Doctrine_Import_TestCase
+ * Doctrine_Import_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Import_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Import_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareTables() 
-    { }
-    public function prepareData() 
-    { }
+    public function prepareTables()
+    {
+    }
+
+    public function prepareData()
+    {
+    }
 
     public function testImport()
     {

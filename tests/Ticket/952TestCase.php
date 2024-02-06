@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_952_TestCase
+ * Doctrine_Ticket_952_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_952_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_952_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -52,8 +54,9 @@ class Doctrine_Ticket_952_TestCase extends Doctrine_UnitTestCase
         Doctrine_Manager::connection()->setListener($profiler);
 
         $q = Doctrine_Query::create()
-                ->from('Ticket_952_Parent p')
-                ->leftJoin('p.Children c');
+            ->from('Ticket_952_Parent p')
+            ->leftJoin('p.Children c')
+        ;
         $parents = $q->execute();
         $this->assertEqual($parents[0]['Children'][0]['Parent']->name, 'Parent'); // Invoked additional queries
         $this->assertEqual($profiler->count(), 1);

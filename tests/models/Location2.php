@@ -1,4 +1,5 @@
 <?php
+
 class Location2 extends Doctrine_Record
 {
     public function setTableDefinition()

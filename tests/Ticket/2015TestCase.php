@@ -20,46 +20,48 @@
  */
 
 /**
- * Doctrine_Ticket_2015_TestCase
+ * Doctrine_Ticket_2015_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_2015_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2015_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
     {
         $deer = new mkAnimal();
         $deer->title = 'Cervus Elaphus';
         $deer->save();
-        
+
         $beech = new mkPlant();
         $beech->title = 'Fagus sylvatica';
         $beech->save();
     }
-    
+
     public function testColumnAggregation()
     {
         $animal = Doctrine_Core::getTable('mkNode')->findOneById(1);
         $this->assertTrue($animal instanceof mkAnimal);
-        
+
         $plant = Doctrine_Core::getTable('mkOrganism')->findOneById(2);
         $this->assertTrue($plant instanceof mkPlant);
     }
-    
+
     public function prepareTables()
     {
         $this->tables = array(
             'mkNode',
             'mkOrganism',
-            'mkAnimal'
+            'mkAnimal',
         );
-        
+
         parent::prepareTables();
     }
 }
@@ -73,19 +75,19 @@ class mkNode extends Doctrine_Record
         $this->hasColumn('title', 'string', 255);
         $this->hasColumn('type', 'string', 50);
         $this->hasColumn('sub_type', 'string', 50);
-        
+
         $this->setSubclasses(array(
             'mkOrganism' => array(
-                'type' => 'organism'
+                'type' => 'organism',
             ),
             'mkAnimal' => array(
-                'type'     => 'organism',
-                'sub_type' => 'animal'
+                'type' => 'organism',
+                'sub_type' => 'animal',
             ),
             'mkPlant' => array(
-                'type'     => 'organism',
-                'sub_type' => 'plant'
-            )
+                'type' => 'organism',
+                'sub_type' => 'plant',
+            ),
         ));
     }
 }

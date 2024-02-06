@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class Doctrine_Ticket_1935_TestCase extends Doctrine_UnitTestCase
 {
     public function init()
@@ -12,7 +17,7 @@ class Doctrine_Ticket_1935_TestCase extends Doctrine_UnitTestCase
         $this->prepareData();
     }
 
-    public function run(DoctrineTest_Reporter $reporter = null, $filter = null)
+    public function run(?DoctrineTest_Reporter $reporter = null, $filter = null)
     {
         parent::run($reporter, $filter);
         $this->manager->closeConnection($this->connection);
@@ -32,17 +37,14 @@ class Doctrine_Ticket_1935_TestCase extends Doctrine_UnitTestCase
     {
         $this->connection->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
 
-        try
-        {
+        try {
             $q = Doctrine_Query::create()->select('COUNT(a.id) as num_records')
                 ->from('Ticket_1935_Article a')
                 ->having('num_records > 1')
-                ;
-            //$results = $q->execute();
+            ;
+            // $results = $q->execute();
             $this->assertEqual($q->getSqlQuery(), 'SELECT COUNT(`t`.`id`) AS `t__0` FROM `ticket_1935_article` `t` HAVING `t__0` > 1');
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
 

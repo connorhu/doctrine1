@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_DC95_TestCase
+ * Doctrine_Ticket_DC95_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase
 {
     public function testClassDoesNotExistBeforeImport()
     {
@@ -42,7 +44,7 @@ class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase
 
     public function testClassExistsAfterImport()
     {
-        Doctrine_Core::setModelsDirectory(dirname(__FILE__) . '/DC95/models');
+        Doctrine_Core::setModelsDirectory(dirname(__FILE__).'/DC95/models');
 
         $import = new Doctrine_Import_Schema();
         $import->setOptions(array(
@@ -50,10 +52,10 @@ class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase
             'baseClassesDirectory' => null,
             'baseClassPrefix' => 'Base_',
             'classPrefix' => 'DC95_',
-            'classPrefixFiles' => true
+            'classPrefixFiles' => true,
         ));
-        $modelsPath = dirname(__FILE__) . '/DC95/models';
-        $import->importSchema(dirname(__FILE__) . '/DC95/schema.yml', 'yml', $modelsPath);
+        $modelsPath = dirname(__FILE__).'/DC95/models';
+        $import->importSchema(dirname(__FILE__).'/DC95/schema.yml', 'yml', $modelsPath);
 
         /*
         $this->assertTrue(file_exists($modelsPath . '/DC95/Base/Article.php'));
@@ -63,6 +65,6 @@ class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase
         */
 
         Doctrine_Core::setModelsDirectory(null);
-        Doctrine_Lib::removeDirectories(dirname(__FILE__) . '/DC95/models');
+        Doctrine_Lib::removeDirectories(dirname(__FILE__).'/DC95/models');
     }
 }

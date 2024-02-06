@@ -20,18 +20,20 @@
  */
 
 /**
- * Doctrine_Ticket_1015_TestCase
+ * Doctrine_Ticket_1015_TestCase.
  *
- * @package     Doctrine
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_1991_TestCase extends Doctrine_UnitTestCase {
-
-    public function prepareTables() {
+class Doctrine_Ticket_1991_TestCase extends Doctrine_UnitTestCase
+{
+    public function prepareTables()
+    {
         $this->tables = array();
         $this->tables[] = 'NewTag';
 
@@ -43,24 +45,22 @@ class Doctrine_Ticket_1991_TestCase extends Doctrine_UnitTestCase {
         $tag = new NewTag();
         $tag->name = 'name';
         $tag->save();
-        
+
         $tag = new NewTag();
         $tag->name = 'foobar';
-        $tag->save();        
+        $tag->save();
     }
-
 
     public function testHydratation()
     {
         $q = new Doctrine_Query();
-        $q->select('t.name')->from('NewTag t INDEXBY t.name');        
+        $q->select('t.name')->from('NewTag t INDEXBY t.name');
         try {
             $results = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
     }
-
 }
 
 class NewTag extends Doctrine_Record

@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_1706_TestCase
+ * Doctrine_Ticket_1706_TestCase.
  *
- * @package     Doctrine
  * @author      David Abdemoulaie <doctrine@hobodave.com>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
 {
     public function testCachedResultsAreSpecificToDsn()
     {
@@ -61,12 +63,13 @@ class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
         $user = new Ticket_1706_User();
         $user->name = 'Bob';
         $user->save();
-        
+
         $manager->setCurrentConnection('conn_1');
         $u1 = Doctrine_Query::create()
             ->from('Ticket_1706_User u')
             ->useResultCache()
-            ->execute();
+            ->execute()
+        ;
 
         $this->assertEqual(1, count($u1));
         $this->assertEqual('Allen', $u1[0]->name);
@@ -75,7 +78,8 @@ class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
         $u2 = Doctrine_Query::create()
             ->from('Ticket_1706_User u')
             ->useResultCache()
-            ->execute();
+            ->execute()
+        ;
 
         $this->assertEqual(1, count($u2));
         $this->assertEqual('Bob', $u2[0]->name);

@@ -20,15 +20,17 @@
  */
 
 /**
- * Ticket_2334_TestMSSQLUnsignedInt
+ * Ticket_2334_TestMSSQLUnsignedInt.
  *
- * @package         Doctrine
  * @author          Daniel Cousineau <dcousineau@gmail.com>
- * @license         http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category        Object Relational Mapping
- * @link            www.doctrine-project.org
- * @since           1.0
- * @version         $Revision$
+ *
+ * @see            www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
 class Doctrine_Ticket_2334_TestCase extends Doctrine_UnitTestCase
 {
@@ -37,6 +39,7 @@ class Doctrine_Ticket_2334_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_2334_TestMSSQLUnsignedInt';
         parent::prepareTables();
     }
+
     public function testMSSQLUnsignedInt()
     {
         $dbh = new Doctrine_Adapter_Mock('mssql');
@@ -47,21 +50,20 @@ class Doctrine_Ticket_2334_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($sql, 'CREATE TABLE test_string_length (id INT NOT NULL identity, test_int BIGINT NULL, PRIMARY KEY([id]))');
 
-        unset($conn);
-        unset($dbh);
+        unset($conn, $dbh);
     }
 }
 
 class Ticket_2334_TestMSSQLUnsignedInt extends Doctrine_Record
 {
-        public function setTableDefinition()
-        {
-                $this->setTableName('test_string_length');
-                $this->hasColumn('test_int', 'int', null, array('unsigned' => true));
-        }
+    public function setTableDefinition()
+    {
+        $this->setTableName('test_string_length');
+        $this->hasColumn('test_int', 'int', null, array('unsigned' => true));
+    }
 
-        public function setUp()
-        {
-            parent::setUp();
-        }
+    public function setUp()
+    {
+        parent::setUp();
+    }
 }

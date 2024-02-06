@@ -20,22 +20,24 @@
  */
 
 /**
- * Doctrine_Relation_OrderBy_TestCase
+ * Doctrine_Relation_OrderBy_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Relation_OrderBy_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Relation_OrderBy_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
         $this->profiler = new Doctrine_Connection_Profiler();
-    	$this->conn->addListener($this->profiler);
+        $this->conn->addListener($this->profiler);
 
         $this->tables[] = 'OrderByTest_Article';
         $this->tables[] = 'OrderByTest_Friend';
@@ -57,7 +59,8 @@ class Doctrine_Relation_OrderBy_TestCase extends Doctrine_UnitTestCase
             ->leftJoin('u.Groups g')
             ->leftJoin('u.Friends f')
             ->leftJoin('u.ChildrenUsers cu')
-            ->leftJoin('u.ParentUser pu');
+            ->leftJoin('u.ParentUser pu')
+        ;
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT o.id AS o__id FROM order_by_test__user o LEFT JOIN order_by_test__article o2 ON o.id = o2.user_id LEFT JOIN order_by_test__user_group o4 ON (o.id = o4.user_id) LEFT JOIN order_by_test__group o3 ON o3.id = o4.group_id LEFT JOIN order_by_test__friend o6 ON (o.id = o6.user_id1 OR o.id = o6.user_id2) LEFT JOIN order_by_test__user o5 ON (o5.id = o6.user_id2 OR o5.id = o6.user_id1) AND o5.id != o.id LEFT JOIN order_by_test__user o7 ON o.id = o7.parent_user_id LEFT JOIN order_by_test__user o8 ON o.parent_user_id = o8.id ORDER BY o2.title ASC, o3.name ASC, o4.name ASC, o5.login ASC, o6.login ASC, o7.login ASC, o8.id ASC');
     }
@@ -103,7 +106,8 @@ class Doctrine_Relation_OrderBy_TestCase extends Doctrine_UnitTestCase
         $q = Doctrine_Core::getTable('OrderByTest_Category')
             ->createQuery('c')
             ->select('c.id, p.id')
-            ->leftJoin('c.Posts p');
+            ->leftJoin('c.Posts p')
+        ;
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT o.id AS o__id, o2.id AS o2__id FROM order_by_test__category o LEFT JOIN order_by_test__blog_post o2 ON o.id = o2.category_id ORDER BY o.name ASC, o2.title ASC, o2.is_first DESC');
 
@@ -122,7 +126,8 @@ class Doctrine_Relation_OrderBy_TestCase extends Doctrine_UnitTestCase
             ->createQuery('c')
             ->select('c.id, p.id')
             ->leftJoin('c.Posts p')
-            ->orderBy('p.title ASC');
+            ->orderBy('p.title ASC')
+        ;
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT o.id AS o__id, o2.id AS o2__id FROM order_by_test__category o LEFT JOIN order_by_test__blog_post o2 ON o.id = o2.category_id ORDER BY o2.title ASC, o.name ASC, o2.is_first DESC');
     }
@@ -131,7 +136,8 @@ class Doctrine_Relation_OrderBy_TestCase extends Doctrine_UnitTestCase
     {
         $q = Doctrine_Core::getTable('OrderByTest_WeirdSort')
             ->createQuery('w')
-            ->select('w.id');
+            ->select('w.id')
+        ;
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT o.id AS o__id FROM order_by_test__weird_sort o ORDER BY RAND()');
     }
@@ -149,8 +155,8 @@ class OrderByTest_Article extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('OrderByTest_User as User', array(
-             'local' => 'user_id',
-             'foreign' => 'id'));
+            'local' => 'user_id',
+            'foreign' => 'id'));
     }
 }
 
@@ -159,11 +165,11 @@ class OrderByTest_Friend extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('user_id1', 'integer', null, array(
-             'primary' => true,
-             ));
+            'primary' => true,
+        ));
         $this->hasColumn('user_id2', 'integer', null, array(
-             'primary' => true,
-             ));
+            'primary' => true,
+        ));
     }
 }
 
@@ -172,17 +178,17 @@ class OrderByTest_Group extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 255, array(
-             'type' => 'string',
-             'length' => '255',
-             ));
+            'type' => 'string',
+            'length' => '255',
+        ));
     }
 
     public function setUp()
     {
         $this->hasMany('OrderByTest_User as User', array(
-             'refClass' => 'OrderByTest_UserGroup',
-             'local' => 'group_id',
-             'foreign' => 'user_id'));
+            'refClass' => 'OrderByTest_UserGroup',
+            'local' => 'group_id',
+            'foreign' => 'user_id'));
     }
 }
 
@@ -198,22 +204,22 @@ class OrderByTest_User extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('OrderByTest_Article as Articles', array(
-             'local' => 'id',
-             'foreign' => 'user_id',
-             'orderBy' => 'title ASC'));
+            'local' => 'id',
+            'foreign' => 'user_id',
+            'orderBy' => 'title ASC'));
 
         $this->hasMany('OrderByTest_Group as Groups', array(
-             'refClass' => 'OrderByTest_UserGroup',
-             'local' => 'user_id',
-             'foreign' => 'group_id',
-             'orderBy' => 'name ASC'));
+            'refClass' => 'OrderByTest_UserGroup',
+            'local' => 'user_id',
+            'foreign' => 'group_id',
+            'orderBy' => 'name ASC'));
 
         $this->hasMany('OrderByTest_User as Friends', array(
-             'refClass' => 'OrderByTest_Friend',
-             'local' => 'user_id1',
-             'foreign' => 'user_id2',
-             'equal' => true,
-             'orderBy' => 'username ASC'));
+            'refClass' => 'OrderByTest_Friend',
+            'local' => 'user_id1',
+            'foreign' => 'user_id2',
+            'equal' => true,
+            'orderBy' => 'username ASC'));
 
         $this->hasOne('OrderByTest_User as ParentUser', array(
             'local' => 'parent_user_id',
@@ -232,14 +238,13 @@ class OrderByTest_UserGroup extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('user_id', 'integer', null, array(
-             'primary' => true,
-             ));
+            'primary' => true,
+        ));
         $this->hasColumn('group_id', 'integer', null, array(
-             'primary' => true,
-             ));
+            'primary' => true,
+        ));
     }
 }
-
 
 class OrderByTest_Category extends Doctrine_Record
 {
@@ -254,7 +259,7 @@ class OrderByTest_Category extends Doctrine_Record
     {
         $this->hasMany('OrderByTest_BlogPost as Posts', array(
             'local' => 'id',
-            'foreign' => 'category_id'
+            'foreign' => 'category_id',
         ));
     }
 }
@@ -274,7 +279,7 @@ class OrderByTest_BlogPost extends Doctrine_Record
     {
         $this->hasOne('OrderByTest_Category', array(
             'local' => 'category_id',
-            'foreign' => 'id'
+            'foreign' => 'id',
         ));
     }
 }

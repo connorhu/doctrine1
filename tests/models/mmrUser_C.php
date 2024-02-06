@@ -1,12 +1,12 @@
 <?php
-class mmrUser_C extends Doctrine_Record 
-{
-    public function setUp() 
-    {
-        $this->hasMany('mmrGroup_C as Group', array('local' => 'user_id', 
-                                                    'foreign' => 'group_id',
-                                                    'refClass' => 'mmrGroupUser_C'));
 
+class mmrUser_C extends Doctrine_Record
+{
+    public function setUp()
+    {
+        $this->hasMany('mmrGroup_C as Group', array('local' => 'user_id',
+            'foreign' => 'group_id',
+            'refClass' => 'mmrGroupUser_C'));
     }
 
     public function setTableDefinition()
@@ -16,4 +16,3 @@ class mmrUser_C extends Doctrine_Record
         $this->hasColumn('name', 'string', 30);
     }
 }
-

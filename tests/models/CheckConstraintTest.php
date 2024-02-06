@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class CheckConstraintTest extends Doctrine_Record
 {
     public function setTableDefinition()

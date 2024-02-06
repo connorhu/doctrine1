@@ -20,17 +20,19 @@
  */
 
 /**
- * Doctrine_Ticket_DC187_TestCase
+ * Doctrine_Ticket_DC187_TestCase.
  *
- * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @category    Object Relational Mapping
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_DC187_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC187_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -85,7 +87,7 @@ class Ticket_DC187_User extends Doctrine_Record
 
         $this->unique(
             array('username', 'email'),
-            array('where' => "deleted_at IS NULL"),
+            array('where' => 'deleted_at IS NULL'),
             false
         );
     }

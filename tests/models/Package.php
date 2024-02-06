@@ -1,6 +1,9 @@
 <?php
-class Package extends Doctrine_Record {
-    public function setTableDefinition() {
+
+class Package extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('description', 'string', 255);
     }
 

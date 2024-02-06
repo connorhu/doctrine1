@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class Doctrine_Ticket_gh110_TestCase extends Doctrine_UnitTestCase
 {
     public function testAddActAsColumnsToDocBlock()
@@ -19,7 +24,7 @@ class Doctrine_Ticket_gh110_TestCase extends Doctrine_UnitTestCase
                         'name' => 'created_at',
                         'type' => 'my_custom_type',
                         'length' => '',
-                    )
+                    ),
                 ),
                 'actAs' => array(
                     'SoftDelete' => array(),
@@ -27,27 +32,31 @@ class Doctrine_Ticket_gh110_TestCase extends Doctrine_UnitTestCase
                         'updated' => array(
                             'disabled' => true,
                         ),
-                        'unknown_column' => array()
+                        'unknown_column' => array(),
                     ),
                     'UnknownActAs' => array(),
                     // This template brings an already defined column
                     'gh110_Template' => array(),
                     'gh110_Invalid_Template' => array(),
                     'gh110_Abstract_Template' => array(),
-                )
+                ),
             )
         );
 
         // Can be used to update the snapshot.
-        //file_put_contents(dirname(__FILE__) . '/gh110/Ticket_gh110_TestRecord.snapshot', $class);
-        $this->assertEqual($class, file_get_contents(dirname(__FILE__) . '/gh110/Ticket_gh110_TestRecord.snapshot'));
+        // file_put_contents(dirname(__FILE__) . '/gh110/Ticket_gh110_TestRecord.snapshot', $class);
+        $this->assertEqual($class, file_get_contents(dirname(__FILE__).'/gh110/Ticket_gh110_TestRecord.snapshot'));
     }
 }
 
-abstract class gh110_Abstract_Template {}
+abstract class gh110_Abstract_Template
+{
+}
 
 /** This is just a simple class without the required getOptions()-Method */
-class gh110_Invalid_Template {}
+class gh110_Invalid_Template
+{
+}
 
 class Doctrine_Template_gh110_Template extends Doctrine_Template
 {
@@ -59,21 +68,19 @@ class Doctrine_Template_gh110_Template extends Doctrine_Template
             'format' => 'Y-m-d H:i:s',
             'disabled' => false,
             'expression' => false,
-            'options' => array('notnull' => true)
-        )
+            'options' => array('notnull' => true),
+        ),
     );
 
     /**
-     * Set table definition for Timestampable behavior
-     *
-     * @return void
+     * Set table definition for Timestampable behavior.
      */
     public function setTableDefinition()
     {
-        if ( ! $this->_options['created']['disabled']) {
+        if (!$this->_options['created']['disabled']) {
             $name = $this->_options['created']['name'];
             if ($this->_options['created']['alias']) {
-                $name .= ' as ' . $this->_options['created']['alias'];
+                $name .= ' as '.$this->_options['created']['alias'];
             }
             $this->hasColumn($name, $this->_options['created']['type'], null, $this->_options['created']['options']);
         }

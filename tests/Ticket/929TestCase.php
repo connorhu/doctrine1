@@ -20,29 +20,32 @@
  */
 
 /**
- * Doctrine_Ticket_929_TestCase
+ * Doctrine_Ticket_929_TestCase.
  *
- * @package     Doctrine
  * @author      David Stendardi <david.stendardi@adenclassifieds.com>
+ *
  * @category    Hydration
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision$
+ *
+ * @see        www.doctrine-project.org
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class Doctrine_Ticket_929_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_929_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
-    {	   
-        $oPerson = new T929_Person;
+    {
+        $oPerson = new T929_Person();
         $oPerson->name = 'Jonathan';
         $oPerson->Country->code = 'us';
         $oPerson->Country->Translation['fr']->name = 'Etats Unis';
-        $oPerson->Country->Translation['en']->name = 'United states';         
+        $oPerson->Country->Translation['en']->name = 'United states';
         $oPerson->save();
 
         parent::prepareData();
     }
- 
+
     public function prepareTables()
     {
         $this->tables = array();
@@ -53,10 +56,10 @@ class Doctrine_Ticket_929_TestCase extends Doctrine_UnitTestCase
 
         parent::prepareTables();
     }
-  
+
     public function testTicket()
     {
-        try { 
+        try {
             $q = new Doctrine_Query();
             $r = $q
                 ->from('T929_Person P')
@@ -66,9 +69,10 @@ class Doctrine_Ticket_929_TestCase extends Doctrine_UnitTestCase
                 ->leftJoin('J.Category C')
                 ->leftJoin('C.Translation T2 WITH T2.lang = ?', 'fr')
                 ->where('P.name = ?', 'Jonathan')
-                ->fetchOne();
+                ->fetchOne()
+            ;
         } catch (Exception $e) {
-            $this->fail($e->getMessage());        
+            $this->fail($e->getMessage());
         }
     }
 }
@@ -89,13 +93,13 @@ class T929_Person extends Doctrine_Record
         $this->hasOne('T929_Country as Country', array(
             'local' => 'country_id',
             'foreign' => 'id',
-            'onDelete' => 'CASCADE'
+            'onDelete' => 'CASCADE',
         ));
 
         $this->hasMany('T929_JobPosition as JobPositions', array(
             'local' => 'id',
             'foreign' => 'person_id',
-            'onDelete' => 'CASCADE'
+            'onDelete' => 'CASCADE',
         ));
     }
 }
@@ -116,7 +120,7 @@ class T929_Country extends Doctrine_Record
         $this->hasMany('T929_Person as Persons', array(
             'local' => 'id',
             'foreign' => 'country_id',
-            'onDelete' => 'CASCADE'
+            'onDelete' => 'CASCADE',
         ));
 
         $this->actAs('I18n', array('fields' => array('name')));
@@ -140,13 +144,13 @@ class T929_JobPosition extends Doctrine_Record
         $this->hasOne('T929_Person as Person', array(
             'local' => 'person_id',
             'foreign' => 'id',
-            'onDelete' => 'CASCADE'
+            'onDelete' => 'CASCADE',
         ));
 
         $this->hasOne('T929_JobCategory as Category', array(
             'local' => 'job_category_id',
             'foreign' => 'id',
-            'onDelete' => 'CASCADE'
+            'onDelete' => 'CASCADE',
         ));
     }
 }
@@ -167,7 +171,7 @@ class T929_JobCategory extends Doctrine_Record
         $this->hasMany('T929_JobPosition as Positions', array(
             'local' => 'id',
             'foreign' => 'job_category_id',
-            'onDelete' => 'CASCADE'
+            'onDelete' => 'CASCADE',
         ));
 
         $this->actAs('I18n', array('fields' => array('name')));
