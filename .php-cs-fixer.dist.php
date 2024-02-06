@@ -14,7 +14,7 @@ $config->setRules(array(
     '@PhpCsFixer' => true,
     '@Symfony' => true,
     'array_syntax' => array(
-        'syntax' => 'long',
+        'syntax' => 'short',
     ),
     'method_argument_space' => array(
         'on_multiline' => 'ensure_fully_multiline',
