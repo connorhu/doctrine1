@@ -117,12 +117,12 @@ class Ticket_DC828_Model extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('model_id as id', 'integer', null, array(
+        $this->hasColumn('model_id as id', 'integer', null, [
             'type' => 'integer',
             'unsigned' => false,
             'primary' => true,
             'autoincrement' => true,
-        ));
+        ]);
         $this->hasColumn('username', 'string', 255);
         $this->hasColumn('password', 'string', 255);
     }

@@ -48,7 +48,7 @@ abstract class Doctrine_Relation implements ArrayAccess
     /**
      * @var array @see __construct()
      */
-    protected $definition = array('alias' => true,
+    protected $definition = ['alias' => true,
         'foreign' => true,
         'local' => true,
         'class' => true,
@@ -63,12 +63,12 @@ abstract class Doctrine_Relation implements ArrayAccess
         'deferrable' => null,
         'constraint' => null,
         'equal' => false,
-        'cascade' => array(), // application-level cascades
+        'cascade' => [], // application-level cascades
         'owningSide' => false, // whether this is the owning side
         'refClassRelationAlias' => null,
         'foreignKeyName' => null,
         'orderBy' => null,
-    );
+    ];
 
     protected $_isRefClass;
 
@@ -123,7 +123,7 @@ abstract class Doctrine_Relation implements ArrayAccess
      */
     public function __construct(array $definition)
     {
-        $def = array();
+        $def = [];
         foreach ($this->definition as $key => $val) {
             if (!isset($definition[$key]) && $val) {
                 throw new Doctrine_Exception($key.' is required!');

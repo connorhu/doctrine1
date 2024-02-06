@@ -10,7 +10,7 @@ class Doctrine_Ticket_1713_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('Parent1713', 'Child1713A');
+        $this->tables = ['Parent1713', 'Child1713A'];
         parent::prepareTables();
     }
 
@@ -36,17 +36,17 @@ class Parent1713 extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('mytable');
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 4, [
             'primary' => true,
             'autoincrement' => true,
             'notnull' => true,
-        ));
+        ]);
 
-        $this->hasColumn('title', 'string', 255, array());
-        $this->hasColumn('PHP_TYPE as phpType', 'integer', 11, array());
+        $this->hasColumn('title', 'string', 255, []);
+        $this->hasColumn('PHP_TYPE as phpType', 'integer', 11, []);
 
         $this->setSubclasses(
-            array('Child1713A' => array('phpType' => 1))
+            ['Child1713A' => ['phpType' => 1]]
         );
     }
 

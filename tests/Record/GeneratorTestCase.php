@@ -38,7 +38,7 @@ class Doctrine_Record_Generator_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::connection('sqlite::memory:', 'test_tmp_conn', false);
         Doctrine_Manager::getInstance()->bindComponent('I18nGeneratorComponentBinding', 'test_tmp_conn');
-        Doctrine_Core::createTablesFromArray(array('I18nGeneratorComponentBinding'));
+        Doctrine_Core::createTablesFromArray(['I18nGeneratorComponentBinding']);
 
         try {
             $i = new I18nGeneratorComponentBinding();
@@ -69,6 +69,6 @@ class I18nGeneratorComponentBinding extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('I18n', array('fields' => array('title')));
+        $this->actAs('I18n', ['fields' => ['title']]);
     }
 }

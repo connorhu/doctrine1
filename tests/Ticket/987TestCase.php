@@ -75,9 +75,9 @@ class Ticket_987_Person extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('person');
-        $this->hasColumn('id', 'integer', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
-        $this->hasColumn('gender', 'integer', 1, array('notblank' => true, 'primary' => false, 'notnull' => true, 'autoincrement' => false));
-        $this->hasColumn('firstname', 'string', 30, array('notblank' => true, 'primary' => false, 'notnull' => true, 'autoincrement' => false));
-        $this->hasColumn('lastname', 'string', 30, array('notblank' => true, 'primary' => false, 'notnull' => true, 'autoincrement' => false));
+        $this->hasColumn('id', 'integer', 11, ['primary' => true, 'notnull' => true, 'autoincrement' => true]);
+        $this->hasColumn('gender', 'integer', 1, ['notblank' => true, 'primary' => false, 'notnull' => true, 'autoincrement' => false]);
+        $this->hasColumn('firstname', 'string', 30, ['notblank' => true, 'primary' => false, 'notnull' => true, 'autoincrement' => false]);
+        $this->hasColumn('lastname', 'string', 30, ['notblank' => true, 'primary' => false, 'notnull' => true, 'autoincrement' => false]);
     }
 }

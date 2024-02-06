@@ -117,7 +117,7 @@ class Doctrine_Record_Synchronize_TestCase extends Doctrine_UnitTestCase
     {
         $user = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
         $userArray = $user->toArray(true);
-        $userArray['Phonenumber'][] = array('phonenumber' => '333 238');
+        $userArray['Phonenumber'][] = ['phonenumber' => '333 238'];
 
         $user->synchronizeWithArray($userArray);
 

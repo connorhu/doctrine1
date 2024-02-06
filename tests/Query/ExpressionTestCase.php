@@ -129,7 +129,7 @@ class Doctrine_Query_Expression_TestCase extends Doctrine_UnitTestCase
 
         $query->select("l.*, i18n.*, GeoDistKM(l.lat, l.lon, {$lat}, {$lon}) distance")
             ->from('Location l, l.LocationI18n i18n')
-            ->where('l.id <> ? AND i18n.culture = ?', array(1, 'en'))
+            ->where('l.id <> ? AND i18n.culture = ?', [1, 'en'])
             ->having("distance < {$radius}")
             ->orderby('distance ASC')
             ->groupby('l.id')

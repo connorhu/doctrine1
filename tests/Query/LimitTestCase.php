@@ -63,7 +63,7 @@ class Doctrine_Query_Limit_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
         $q->from('Photo')->where('Photo.Tag.id = ?')->orderby('Photo.id DESC')->limit(100);
 
-        $photos = $q->execute(array(1));
+        $photos = $q->execute([1]);
         $this->assertEqual($photos->count(), 3);
         $this->assertEqual(
             $q->getSqlQuery(),
@@ -187,7 +187,7 @@ class Doctrine_Query_Limit_TestCase extends Doctrine_UnitTestCase
     {
         $q = new Doctrine_Query();
         $q->select('u.id, p.id')->from('User u LEFT JOIN u.Phonenumber p');
-        $q->where('u.name = ?', array('zYne'));
+        $q->where('u.name = ?', ['zYne']);
         $q->limit(5);
         $users = $q->execute();
 
@@ -206,7 +206,7 @@ class Doctrine_Query_Limit_TestCase extends Doctrine_UnitTestCase
         $q->where('u.name LIKE ? OR u.name LIKE ?');
         $q->limit(5);
 
-        $users = $q->execute(array('%zYne%', '%Arnold%'));
+        $users = $q->execute(['%zYne%', '%Arnold%']);
         $this->assertEqual($users->count(), 2);
 
         $count = $this->conn->count();
@@ -226,7 +226,7 @@ class Doctrine_Query_Limit_TestCase extends Doctrine_UnitTestCase
     {
         $q = new Doctrine_Query();
         $q->from('User.Phonenumber');
-        $q->where('User.name = ?', array('zYne'));
+        $q->where('User.name = ?', ['zYne']);
         $q->limit(5);
 
         $users = $q->execute();
@@ -279,14 +279,14 @@ class Doctrine_Query_Limit_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
         $q->from('User')->where('User.Group.id = ?')->orderby('User.id ASC')->limit(5);
 
-        $users = $q->execute(array($user->Group[1]->id));
+        $users = $q->execute([$user->Group[1]->id]);
 
         $this->assertEqual($users->count(), 3);
 
         $this->connection->clear();
         $q = new Doctrine_Query();
         $q->from('User')->where('User.Group.id = ?')->orderby('User.id DESC');
-        $users = $q->execute(array($user->Group[1]->id));
+        $users = $q->execute([$user->Group[1]->id]);
 
         $this->assertEqual($users->count(), 3);
     }
@@ -298,7 +298,7 @@ class Doctrine_Query_Limit_TestCase extends Doctrine_UnitTestCase
         $this->connection->clear();
         $q = new Doctrine_Query();
         $q->from('User')->where('User.Group.name = ?')->orderby('User.id DESC')->limit(5);
-        $users = $q->execute(array('Tough guys inc.'));
+        $users = $q->execute(['Tough guys inc.']);
 
         $this->assertEqual($users->count(), 3);
 
@@ -331,7 +331,7 @@ class Doctrine_Query_Limit_TestCase extends Doctrine_UnitTestCase
         $q->where('u.name = ?');
         $q->limit(5);
 
-        $users = $q->execute(array('zYne'));
+        $users = $q->execute(['zYne']);
         $this->assertEqual(1, $users->count());
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT DISTINCT e.id AS e__id FROM entity e LEFT JOIN phonenumber p ON e.id = p.entity_id WHERE (e.name = ? AND (e.type = 0)) LIMIT 5');

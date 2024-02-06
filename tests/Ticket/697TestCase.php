@@ -18,7 +18,7 @@ class Doctrine_Ticket_697_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('T697_Person', 'T697_User');
+        $this->tables = ['T697_Person', 'T697_User'];
         parent::prepareTables();
     }
 

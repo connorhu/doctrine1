@@ -36,7 +36,7 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Forum_Category';
         $this->tables[] = 'Forum_Entry';
         $this->tables[] = 'Forum_Board';

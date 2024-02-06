@@ -36,7 +36,7 @@ class Doctrine_Ticket_1622_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Ticket_1622_User';
         $this->tables[] = 'Ticket_1622_UserReference';
         parent::prepareTables();
@@ -77,7 +77,7 @@ class Ticket_1622_User extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array('primary' => true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', null, ['primary' => true, 'autoincrement' => true]);
         $this->hasColumn('name', 'string', 30);
     }
 
@@ -85,20 +85,20 @@ class Ticket_1622_User extends Doctrine_Record
     {
         $this->hasMany(
             'Ticket_1622_User as parents',
-            array('local' => 'parent_id',
+            ['local' => 'parent_id',
                 'refClass' => 'Ticket_1622_UserReference',
                 'foreign' => 'child_id',
                 'refClassRelationAlias' => 'childrenLinks',
-            )
+            ]
         );
 
         $this->hasMany(
             'Ticket_1622_User as children',
-            array('local' => 'child_id',
+            ['local' => 'child_id',
                 'foreign' => 'parent_id',
                 'refClass' => 'Ticket_1622_UserReference',
                 'refClassRelationAlias' => 'parentLinks',
-            )
+            ]
         );
     }
 }
@@ -107,7 +107,7 @@ class Ticket_1622_UserReference extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('parent_id', 'integer', null, array('primary' => true));
-        $this->hasColumn('child_id', 'integer', null, array('primary' => true));
+        $this->hasColumn('parent_id', 'integer', null, ['primary' => true]);
+        $this->hasColumn('child_id', 'integer', null, ['primary' => true]);
     }
 }

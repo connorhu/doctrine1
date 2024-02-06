@@ -52,7 +52,7 @@ class Doctrine_Ticket_574_TestCase extends Doctrine_UnitTestCase
      */
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Author';
         $this->tables[] = 'Book';
 

@@ -59,13 +59,13 @@ class Ticket_DC56_Location extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('Geographical', array(
-            'latitude' => array(
+        $this->actAs('Geographical', [
+            'latitude' => [
                 'name' => 'lat',
-            ),
-            'longitude' => array(
+            ],
+            'longitude' => [
                 'name' => 'long',
-            ),
-        ));
+            ],
+        ]);
     }
 }

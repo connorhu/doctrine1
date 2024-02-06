@@ -55,14 +55,14 @@ class Ticket_1703_Content extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'autoincrement' => true, 'primary' => true, 'length' => '4'));
-        $this->hasColumn('content', 'string', null, array('type' => 'string'));
+        $this->hasColumn('id', 'integer', 4, ['type' => 'integer', 'autoincrement' => true, 'primary' => true, 'length' => '4']);
+        $this->hasColumn('content', 'string', null, ['type' => 'string']);
     }
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1703_Revision as revision', array('local' => 'id',
-            'foreign' => 'content_id'));
+        $this->hasMany('Ticket_1703_Revision as revision', ['local' => 'id',
+            'foreign' => 'content_id']);
     }
 }
 
@@ -70,19 +70,19 @@ class Ticket_1703_Revision extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('revision', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'default' => 1, 'length' => '4', 'primary' => true));
-        $this->hasColumn('user_name', 'string', 255, array('type' => 'string', 'notnull' => true, 'length' => '255'));
-        $this->hasColumn('comment', 'string', 255, array('type' => 'string', 'length' => '255'));
-        $this->hasColumn('content_id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'length' => '4'));
+        $this->hasColumn('revision', 'integer', 4, ['type' => 'integer', 'notnull' => true, 'default' => 1, 'length' => '4', 'primary' => true]);
+        $this->hasColumn('user_name', 'string', 255, ['type' => 'string', 'notnull' => true, 'length' => '255']);
+        $this->hasColumn('comment', 'string', 255, ['type' => 'string', 'length' => '255']);
+        $this->hasColumn('content_id', 'integer', 4, ['type' => 'integer', 'primary' => true, 'length' => '4']);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1703_Content as contentStorage', array('local' => 'content_id',
+        $this->hasOne('Ticket_1703_Content as contentStorage', ['local' => 'content_id',
             'foreign' => 'id',
-            'onDelete' => 'CASCADE'));
+            'onDelete' => 'CASCADE']);
 
-        $timestampable0 = new Doctrine_Template_Timestampable(array('update' => array('disabled' => true)));
+        $timestampable0 = new Doctrine_Template_Timestampable(['update' => ['disabled' => true]]);
         $this->actAs($timestampable0);
     }
 }

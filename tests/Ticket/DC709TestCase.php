@@ -40,9 +40,9 @@ class Doctrine_Ticket_DC709_TestCase extends Doctrine_UnitTestCase
 
         $conn = Doctrine_Manager::getInstance()->connection($dbh, 'mysql', false);
 
-        $sql = $conn->export->createTableSql('mytable', array(
-            'name' => array('type' => 'string', 'length' => 255, 'comment' => "This comment isn't breaking"),
-        ));
+        $sql = $conn->export->createTableSql('mytable', [
+            'name' => ['type' => 'string', 'length' => 255, 'comment' => "This comment isn't breaking"],
+        ]);
 
         $this->assertEqual($sql[0], "CREATE TABLE mytable (name VARCHAR(255) COMMENT 'This comment isn''t breaking') ENGINE = INNODB");
     }

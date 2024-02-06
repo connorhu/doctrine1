@@ -36,7 +36,7 @@ class Doctrine_Ticket_1652_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Ticket_1652_User';
         parent::prepareTables();
     }
@@ -87,7 +87,7 @@ class Ticket_1652_User extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array('primary' => true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', null, ['primary' => true, 'autoincrement' => true]);
         $this->hasColumn('name', 'string', 30);
     }
 

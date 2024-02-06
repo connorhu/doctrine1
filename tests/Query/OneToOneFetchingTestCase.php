@@ -111,7 +111,7 @@ class Doctrine_Query_OneToOneFetching_TestCase extends Doctrine_UnitTestCase
                 ->leftJoin('b.lastEntry le')
                 ->leftJoin('le.author a')
                 ->leftJoin('a.visibleRank vr')
-                ->execute(array(), Doctrine_Core::HYDRATE_ARRAY)
+                ->execute([], Doctrine_Core::HYDRATE_ARRAY)
             ;
 
             // --> currently quits here with a fatal error! <--
@@ -153,7 +153,7 @@ class Doctrine_Query_OneToOneFetching_TestCase extends Doctrine_UnitTestCase
     public function testOneToOneArrayFetchingWithEmptyRelations()
     {
         // temporarily remove the relation to fake a non-existant one
-        $board = $this->connection->query('FROM QueryTest_Board b WHERE b.name = ?', array('Testboard'))->getFirst();
+        $board = $this->connection->query('FROM QueryTest_Board b WHERE b.name = ?', ['Testboard'])->getFirst();
         $lastEntryId = $board->lastEntryId;
         $board->lastEntryId = 0;
         $board->save();
@@ -166,7 +166,7 @@ class Doctrine_Query_OneToOneFetching_TestCase extends Doctrine_UnitTestCase
                 ->leftJoin('b.lastEntry le')
                 ->leftJoin('le.author a')
                 ->leftJoin('a.visibleRank vr')
-                ->execute(array(), Doctrine_Core::HYDRATE_ARRAY)
+                ->execute([], Doctrine_Core::HYDRATE_ARRAY)
             ;
 
             // check boards/categories
@@ -228,7 +228,7 @@ class Doctrine_Query_OneToOneFetching_TestCase extends Doctrine_UnitTestCase
     public function testOneToOneRecordFetchingWithEmptyRelations()
     {
         // temporarily remove the relation to fake a non-existant one
-        $board = $this->connection->query('FROM QueryTest_Board b WHERE b.name = ?', array('Testboard'))->getFirst();
+        $board = $this->connection->query('FROM QueryTest_Board b WHERE b.name = ?', ['Testboard'])->getFirst();
         $lastEntryId = $board->lastEntryId;
         $board->lastEntryId = null;
         $board->lastEntry = null;

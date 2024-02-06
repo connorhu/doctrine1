@@ -53,7 +53,7 @@ class Doctrine_Record_SerializeUnserialize_TestCase extends Doctrine_UnitTestCas
         $object->integertest = 13;
         $object->floattest = 0.13;
         $object->stringtest = 'string';
-        $object->arraytest = array(1, 2, 3);
+        $object->arraytest = [1, 2, 3];
         $object->objecttest = new TestObject(13);
         $object->enumtest = 'java';
         $object->blobtest = 'blobtest';

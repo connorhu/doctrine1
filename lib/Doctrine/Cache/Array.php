@@ -32,7 +32,7 @@ class Doctrine_Cache_Array extends Doctrine_Cache_Driver
     /**
      * @var array an array of cached data
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Fetch a cache record from this cache driver instance.

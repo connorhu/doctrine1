@@ -124,7 +124,7 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      */
     public function getIndexFieldDeclarationList(array $fields)
     {
-        $declFields = array();
+        $declFields = [];
 
         foreach ($fields as $fieldName => $field) {
             $fieldString = $this->conn->quoteIdentifier($fieldName);
@@ -176,7 +176,7 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      *                        );
      * @param array  $options An associative array of table options:
      */
-    public function createTableSql($name, array $fields, array $options = array())
+    public function createTableSql($name, array $fields, array $options = [])
     {
         if (!$name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
@@ -198,7 +198,7 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
 
         if (!$autoinc && isset($options['primary']) && !empty($options['primary'])) {
             $keyColumns = array_values($options['primary']);
-            $keyColumns = array_map(array($this->conn, 'quoteIdentifier'), $keyColumns);
+            $keyColumns = array_map([$this->conn, 'quoteIdentifier'], $keyColumns);
             $queryFields .= ', PRIMARY KEY('.implode(', ', $keyColumns).')';
         }
 
@@ -273,7 +273,7 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      *                         );
      * @return bool
      */
-    public function createSequence($seqName, $start = 1, array $options = array())
+    public function createSequence($seqName, $start = 1, array $options = [])
     {
         $sequenceName = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($seqName), true);
         $seqcolName = $this->conn->quoteIdentifier($this->conn->getAttribute(Doctrine_Core::ATTR_SEQCOL_NAME), true);
@@ -350,7 +350,7 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
             }
         }
 
-        $rename = array();
+        $rename = [];
         if (!empty($changes['rename']) && is_array($changes['rename'])) {
             foreach ($changes['rename'] as $fieldName => $field) {
                 $rename[$field['name']] = $fieldName;

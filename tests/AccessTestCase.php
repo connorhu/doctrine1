@@ -40,7 +40,7 @@ class Doctrine_Access_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('Entity', 'User');
+        $this->tables = ['Entity', 'User'];
         parent::prepareTables();
     }
 

@@ -60,7 +60,7 @@ class Doctrine_Ticket_1326_TestCase extends Doctrine_UnitTestCase
         $this->createTestData();
         $this->assertEqual(Doctrine_Query::create()->from('User')->count(), 2);
 
-        $nbDeleted = Doctrine_Query::create()->delete()->from('User')->where('loginname = ?', array('foo2'))->execute();
+        $nbDeleted = Doctrine_Query::create()->delete()->from('User')->where('loginname = ?', ['foo2'])->execute();
         $this->assertEqual($nbDeleted, 1);
     }
 }

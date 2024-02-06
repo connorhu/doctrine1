@@ -51,18 +51,18 @@ class Doctrine_ColumnAggregationInheritance_TestCase extends Doctrine_UnitTestCa
     public function testQueriedClassReturnedIfNoSubclassMatch()
     {
         $q = new Doctrine_Query();
-        $entityOther = $q->from('Entity')->where('id = ?')->execute(array($this->otherEntity->id))->getFirst();
+        $entityOther = $q->from('Entity')->where('id = ?')->execute([$this->otherEntity->id])->getFirst();
         $this->assertTrue($entityOther instanceof Entity);
     }
 
     public function testSubclassReturnedIfInheritanceMatches()
     {
         $q = new Doctrine_Query();
-        $group = $q->from('Entity')->where('id=?')->execute(array(1))->getFirst();
+        $group = $q->from('Entity')->where('id=?')->execute([1])->getFirst();
         $this->assertTrue($group instanceof Group);
 
         $q = new Doctrine_Query();
-        $user = $q->from('Entity')->where('id=?')->execute(array(5))->getFirst();
+        $user = $q->from('Entity')->where('id=?')->execute([5])->getFirst();
         $this->assertTrue($user instanceof User);
     }
 

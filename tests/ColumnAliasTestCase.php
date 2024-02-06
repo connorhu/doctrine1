@@ -58,7 +58,7 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('ColumnAliasTest', 'Book');
+        $this->tables = ['ColumnAliasTest', 'Book'];
 
         parent::prepareTables();
     }
@@ -125,7 +125,7 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
             ->where('c.anotherField = ?')
         ;
 
-        $coll = $q->execute(array('KoQ'));
+        $coll = $q->execute(['KoQ']);
 
         $this->assertEqual($coll[0]->alias1, 'one');
         $this->assertEqual($coll[0]->alias2, 456);

@@ -69,12 +69,12 @@ class Ticket_Ayoub_Sura extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('Ticket_Ayoub_Sura');
-        $this->hasColumn('id', 'integer', null, array('type' => 'integer', 'primary' => true, 'autoincrement' => true));
-        $this->hasColumn('name', 'string', 255, array('type' => 'string', 'length' => '255'));
-        $this->hasColumn('revelation_order', 'integer', null, array('type' => 'integer'));
-        $this->hasColumn('is_mekka', 'boolean', null, array('type' => 'boolean'));
-        $this->hasColumn('ayat_number', 'integer', null, array('type' => 'integer'));
-        $this->hasColumn('place_id', 'integer', null, array('type' => 'integer'));
+        $this->hasColumn('id', 'integer', null, ['type' => 'integer', 'primary' => true, 'autoincrement' => true]);
+        $this->hasColumn('name', 'string', 255, ['type' => 'string', 'length' => '255']);
+        $this->hasColumn('revelation_order', 'integer', null, ['type' => 'integer']);
+        $this->hasColumn('is_mekka', 'boolean', null, ['type' => 'boolean']);
+        $this->hasColumn('ayat_number', 'integer', null, ['type' => 'integer']);
+        $this->hasColumn('place_id', 'integer', null, ['type' => 'integer']);
 
         $this->option('collate', 'utf8_unicode_ci');
         $this->option('charset', 'utf8');
@@ -82,10 +82,10 @@ class Ticket_Ayoub_Sura extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_Ayoub_Place', array('local' => 'place_id',
-            'foreign' => 'id'));
+        $this->hasOne('Ticket_Ayoub_Place', ['local' => 'place_id',
+            'foreign' => 'id']);
 
-        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'name'), 'length' => '20'));
+        $i18n0 = new Doctrine_Template_I18n(['fields' => [0 => 'name'], 'length' => '20']);
         $this->actAs($i18n0);
     }
 }
@@ -95,8 +95,8 @@ class Ticket_Ayoub_Place extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('Ticket_Ayoub_Place');
-        $this->hasColumn('id', 'integer', null, array('type' => 'integer', 'primary' => true, 'autoincrement' => true));
-        $this->hasColumn('name', 'string', 255, array('type' => 'string', 'length' => '255'));
+        $this->hasColumn('id', 'integer', null, ['type' => 'integer', 'primary' => true, 'autoincrement' => true]);
+        $this->hasColumn('name', 'string', 255, ['type' => 'string', 'length' => '255']);
 
         $this->option('collate', 'utf8_unicode_ci');
         $this->option('charset', 'utf8');
@@ -104,10 +104,10 @@ class Ticket_Ayoub_Place extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_Ayoub_Sura', array('local' => 'id',
-            'foreign' => 'place_id'));
+        $this->hasMany('Ticket_Ayoub_Sura', ['local' => 'id',
+            'foreign' => 'place_id']);
 
-        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'name'), 'length' => '20'));
+        $i18n0 = new Doctrine_Template_I18n(['fields' => [0 => 'name'], 'length' => '20']);
         $this->actAs($i18n0);
     }
 }

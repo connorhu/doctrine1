@@ -60,7 +60,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $itemTable = Doctrine_Core::getTable('SluggableItem2');
         $this->assertTrue($index = $itemTable->getIndex('my_item2_sluggable'));
         $this->assertEqual($index['type'], 'unique');
-        $this->assertEqual($index['fields'], array('slug'));
+        $this->assertEqual($index['fields'], ['slug']);
     }
 
     public function testSluggableUniqueSlugOnUpdate()
@@ -128,7 +128,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $itemTable = Doctrine_Core::getTable('SluggableItem5');
         $this->assertTrue($index = $itemTable->getIndex('my_item5_sluggable'));
         $this->assertEqual($index['type'], 'unique');
-        $this->assertEqual($index['fields'], array('slug', 'user_id'));
+        $this->assertEqual($index['fields'], ['slug', 'user_id']);
     }
 
     public function testSluggableWithUniqueByOptionAndNullValue()
@@ -281,7 +281,7 @@ class SluggableItem extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('unique' => true));
+        $this->actAs('Sluggable', ['unique' => true]);
     }
 
     public function __toString()
@@ -302,7 +302,7 @@ class SluggableItem1 extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('unique' => true));
+        $this->actAs('Sluggable', ['unique' => true]);
     }
 
     public function __toString()
@@ -328,8 +328,8 @@ class SluggableItem2 extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('unique' => true,
-            'fields' => array('name')));
+        $this->actAs('Sluggable', ['unique' => true,
+            'fields' => ['name']]);
     }
 }
 
@@ -345,8 +345,8 @@ class SluggableItem3 extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('unique' => false,
-            'fields' => array('name')));
+        $this->actAs('Sluggable', ['unique' => false,
+            'fields' => ['name']]);
     }
 }
 
@@ -363,8 +363,8 @@ class SluggableItem4 extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('unique' => true,
-            'fields' => array('name', 'ref')));
+        $this->actAs('Sluggable', ['unique' => true,
+            'fields' => ['name', 'ref']]);
     }
 }
 
@@ -381,10 +381,10 @@ class SluggableItem5 extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('fields' => array('name'),
-            'uniqueBy' => array('user_id'),
+        $this->actAs('Sluggable', ['fields' => ['name'],
+            'uniqueBy' => ['user_id'],
             'unique' => true,
-        ));
+        ]);
     }
 }
 
@@ -395,7 +395,7 @@ class SluggableItem6 extends Doctrine_Record
     {
         $this->setTableName('my_item6');
         // Make sure this works the same with a column that is not named id
-        $this->hasColumn('iid', 'integer', null, array('primary' => true, 'autoincrement' => true));
+        $this->hasColumn('iid', 'integer', null, ['primary' => true, 'autoincrement' => true]);
         $this->hasColumn('name', 'string', 50);
         $this->hasColumn('user_id', 'string', 50);
         $this->hasColumn('account_id', 'string', 50);
@@ -404,10 +404,10 @@ class SluggableItem6 extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('fields' => array('name'),
-            'uniqueBy' => array('user_id', 'account_id'),
+        $this->actAs('Sluggable', ['fields' => ['name'],
+            'uniqueBy' => ['user_id', 'account_id'],
             'unique' => true,
-        ));
+        ]);
     }
 }
 
@@ -423,9 +423,9 @@ class SluggableItem7 extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('fields' => array('name'),
+        $this->actAs('Sluggable', ['fields' => ['name'],
             'uniqueIndex' => false,
-            'unique' => true));
+            'unique' => true]);
     }
 }
 
@@ -441,9 +441,9 @@ class SluggableItem8 extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('unique' => true,
-            'fields' => array('name'),
-            'canUpdate' => true));
+        $this->actAs('Sluggable', ['unique' => true,
+            'fields' => ['name'],
+            'canUpdate' => true]);
     }
 }
 
@@ -461,9 +461,9 @@ class SluggableItem9 extends Doctrine_Record
         parent::setUp();
 
         $this->actAs('SoftDelete');
-        $this->actAs('Sluggable', array('unique' => true,
+        $this->actAs('Sluggable', ['unique' => true,
             'uniqueIndex' => true,
-            'fields' => array('name')));
+            'fields' => ['name']]);
     }
 }
 
@@ -476,17 +476,17 @@ abstract class SluggableItem10Abstract extends Doctrine_Record
         $this->setTableName('my_item10');
         $this->hasColumn('name', 'string', 50);
         $this->hasColumn('type', 'integer', 1);
-        $this->setSubclasses(array('SluggableItem11' => array('type' => 0), 'SluggableItem12' => array('type' => 1)));
+        $this->setSubclasses(['SluggableItem11' => ['type' => 0], 'SluggableItem12' => ['type' => 1]]);
     }
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->actAs('Sluggable', array('unique' => true,
+        $this->actAs('Sluggable', ['unique' => true,
             'uniqueIndex' => true,
-            'fields' => array('name'),
-        ));
+            'fields' => ['name'],
+        ]);
     }
 }
 
@@ -540,18 +540,18 @@ class SluggableItem15 extends Doctrine_Record
         $this->setTableName('my_item15');
         $this->hasColumn('name', 'string', 50);
         $this->hasColumn('type', 'integer', 1);
-        $this->setSubclasses(array('SluggableItem16' => array('type' => 0), 'SluggableItem17' => array('type' => 1)));
+        $this->setSubclasses(['SluggableItem16' => ['type' => 0], 'SluggableItem17' => ['type' => 1]]);
     }
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->actAs('Sluggable', array('unique' => true,
+        $this->actAs('Sluggable', ['unique' => true,
             'uniqueIndex' => true,
-            'uniqueBy' => array('type'),
-            'fields' => array('name'),
-        ));
+            'uniqueBy' => ['type'],
+            'fields' => ['name'],
+        ]);
     }
 }
 

@@ -61,7 +61,7 @@ class Doctrine_SoftDeleteBC_TestCase extends Doctrine_UnitTestCase
 
         $q = Doctrine_Query::create()
             ->from('SoftDeleteBCTest s')
-            ->where('s.name = ?', array('test'))
+            ->where('s.name = ?', ['test'])
         ;
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT s.name AS s__name, s.something AS s__something, s.deleted AS s__deleted FROM soft_delete_bc_test s WHERE (s.name = ? AND (s.deleted = 0))');
@@ -90,9 +90,9 @@ class Doctrine_SoftDeleteBC_TestCase extends Doctrine_UnitTestCase
             ->addWhere('s.something = ?')
         ;
 
-        $results = $q->execute(array('test1', 'test2'));
+        $results = $q->execute(['test1', 'test2']);
         $this->assertEqual($q->getSqlQuery(), 'SELECT s.name AS s__name, s.something AS s__something, s.deleted AS s__deleted FROM soft_delete_bc_test s WHERE (s.name = ? AND s.something = ? AND (s.deleted = 0))');
-        $this->assertEqual($q->getFlattenedParams(array('test1', 'test2')), array('test1', 'test2'));
+        $this->assertEqual($q->getFlattenedParams(['test1', 'test2']), ['test1', 'test2']);
         $this->assertEqual($results->count(), 1);
 
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, false);

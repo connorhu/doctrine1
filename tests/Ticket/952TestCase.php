@@ -72,7 +72,7 @@ class Ticket_952_Parent extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_952_Child as Children', array('local' => 'id', 'foreign' => 'parent_id'));
+        $this->hasMany('Ticket_952_Child as Children', ['local' => 'id', 'foreign' => 'parent_id']);
     }
 }
 
@@ -86,6 +86,6 @@ class Ticket_952_Child extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_952_Parent as Parent', array('local' => 'parent_id', 'foreign' => 'id'));
+        $this->hasOne('Ticket_952_Parent as Parent', ['local' => 'parent_id', 'foreign' => 'id']);
     }
 }

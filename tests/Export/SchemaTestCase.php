@@ -34,7 +34,7 @@
  */
 class Doctrine_Export_Schema_TestCase extends Doctrine_UnitTestCase
 {
-    public $tables = array('Entity',
+    public $tables = ['Entity',
         'EntityReference',
         'EntityAddress',
         'Email',
@@ -53,7 +53,7 @@ class Doctrine_Export_Schema_TestCase extends Doctrine_UnitTestCase
         'Resource',
         'Assignment',
         'ResourceType',
-        'ResourceReference');
+        'ResourceReference'];
 
     public function testYmlExport()
     {

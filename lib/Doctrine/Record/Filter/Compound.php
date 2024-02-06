@@ -31,7 +31,7 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
     /**
      * @var string[]
      */
-    protected $_aliases = array();
+    protected $_aliases = [];
 
     /**
      * @param string[] $aliases A list of relation name

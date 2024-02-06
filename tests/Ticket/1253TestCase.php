@@ -73,12 +73,12 @@ class Ticket_1253_User extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('name', 'string');
-        $this->hasColumn('type_name', 'enum', 9, array('values' => array('one', 'two')));
+        $this->hasColumn('type_name', 'enum', 9, ['values' => ['one', 'two']]);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1253_UserType as Type', array('local' => 'type_name', 'foreign' => 'name'));
+        $this->hasOne('Ticket_1253_UserType as Type', ['local' => 'type_name', 'foreign' => 'name']);
     }
 }
 
@@ -91,6 +91,6 @@ class Ticket_1253_UserType extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1253_User as User', array('local' => 'name', 'foreign' => 'type_name', 'owningSide' => true));
+        $this->hasMany('Ticket_1253_User as User', ['local' => 'name', 'foreign' => 'type_name', 'owningSide' => true]);
     }
 }

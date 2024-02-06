@@ -42,7 +42,7 @@ class Doctrine_AuditLog_TestCase extends Doctrine_UnitTestCase
     {
         $this->profiler = new Doctrine_Connection_Profiler();
         $this->conn->addListener($this->profiler);
-        $this->tables = array('VersioningTest', 'VersioningTestVersion', 'VersioningTest2');
+        $this->tables = ['VersioningTest', 'VersioningTestVersion', 'VersioningTest2'];
 
         parent::prepareTables();
     }

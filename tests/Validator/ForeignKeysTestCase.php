@@ -9,7 +9,7 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('TestPerson', 'TestAddress');
+        $this->tables = ['TestPerson', 'TestAddress'];
 
         parent::prepareTables();
     }
@@ -42,7 +42,7 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
     public function testSynchronizedForeignKeyIsValidIfLocalRelationIsSet()
     {
         $person = new TestPerson();
-        $person->synchronizeWithArray(array('Addresses' => array(array())));
+        $person->synchronizeWithArray(['Addresses' => [[]]]);
 
         $address = $person->Addresses[0];
         $table = $address->getTable();
@@ -54,7 +54,7 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
     public function testSynchronizedForeignKeyIsValidIfForeignRelationIsSet()
     {
         $address = new TestAddress();
-        $address->synchronizeWithArray(array('Person' => array()));
+        $address->synchronizeWithArray(['Person' => []]);
 
         $table = $address->getTable();
         $errors = $table->validateField('person_id', $address->person_id, $address);
@@ -66,7 +66,7 @@ class TestPerson extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', null, ['primary' => true, 'notnull' => true, 'autoincrement' => true]);
         $this->hasColumn('first_name', 'string');
         $this->hasColumn('last_name', 'string');
         $this->hasColumn('favorite_color_id', 'integer');
@@ -74,7 +74,7 @@ class TestPerson extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('TestAddress as Addresses', array('local' => 'id', 'foreign' => 'person_id'));
+        $this->hasMany('TestAddress as Addresses', ['local' => 'id', 'foreign' => 'person_id']);
     }
 }
 
@@ -82,8 +82,8 @@ class TestAddress extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
-        $this->hasColumn('person_id', 'integer', null, array('notnull' => true));
+        $this->hasColumn('id', 'integer', null, ['primary' => true, 'notnull' => true, 'autoincrement' => true]);
+        $this->hasColumn('person_id', 'integer', null, ['notnull' => true]);
         $this->hasColumn('street', 'string');
         $this->hasColumn('city', 'string');
         $this->hasColumn('state', 'string');
@@ -92,6 +92,6 @@ class TestAddress extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('TestPerson as Person', array('local' => 'person_id', 'foreign' => 'id'));
+        $this->hasOne('TestPerson as Person', ['local' => 'person_id', 'foreign' => 'id']);
     }
 }

@@ -40,7 +40,7 @@ class Doctrine_Relation_Nest_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('NestTest', 'NestReference', 'Entity', 'EntityReference');
+        $this->tables = ['NestTest', 'NestReference', 'Entity', 'EntityReference'];
 
         parent::prepareTables();
     }

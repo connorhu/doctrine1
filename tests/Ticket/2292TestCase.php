@@ -36,7 +36,7 @@ class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'mkArticle';
         $this->tables[] = 'mkContent';
         parent::prepareTables();
@@ -50,7 +50,7 @@ class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase
     {
         $article = new mkArticle();
 
-        $this->assertEqual($article->content->toArray(false), array('id' => null, 'body' => null));
+        $this->assertEqual($article->content->toArray(false), ['id' => null, 'body' => null]);
     }
 }
 
@@ -59,15 +59,15 @@ class mkArticle extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('mk_article');
-        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'autoincrement' => true, 'primary' => true, 'length' => 4));
+        $this->hasColumn('id', 'integer', 4, ['type' => 'integer', 'autoincrement' => true, 'primary' => true, 'length' => 4]);
         $this->hasColumn('title', 'string', 200);
     }
 
     public function setup()
     {
-        $this->hasOne('mkContent as content', array('local' => 'id',
+        $this->hasOne('mkContent as content', ['local' => 'id',
             'foreign' => 'id',
-            'owningSide' => false));
+            'owningSide' => false]);
     }
 }
 
@@ -76,14 +76,14 @@ class mkContent extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('mk_content');
-        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'autoincrement' => false, 'primary' => true, 'length' => 4));
+        $this->hasColumn('id', 'integer', 4, ['type' => 'integer', 'autoincrement' => false, 'primary' => true, 'length' => 4]);
         $this->hasColumn('body', 'string');
     }
 
     public function setup()
     {
-        $this->hasOne('mkArticle as article', array('local' => 'id',
+        $this->hasOne('mkArticle as article', ['local' => 'id',
             'foreign' => 'id',
-            'owningSide' => true));
+            'owningSide' => true]);
     }
 }

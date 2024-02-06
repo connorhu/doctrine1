@@ -154,9 +154,9 @@ class OrderByTest_Article extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('OrderByTest_User as User', array(
+        $this->hasOne('OrderByTest_User as User', [
             'local' => 'user_id',
-            'foreign' => 'id'));
+            'foreign' => 'id']);
     }
 }
 
@@ -164,12 +164,12 @@ class OrderByTest_Friend extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('user_id1', 'integer', null, array(
+        $this->hasColumn('user_id1', 'integer', null, [
             'primary' => true,
-        ));
-        $this->hasColumn('user_id2', 'integer', null, array(
+        ]);
+        $this->hasColumn('user_id2', 'integer', null, [
             'primary' => true,
-        ));
+        ]);
     }
 }
 
@@ -177,18 +177,18 @@ class OrderByTest_Group extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('name', 'string', 255, array(
+        $this->hasColumn('name', 'string', 255, [
             'type' => 'string',
             'length' => '255',
-        ));
+        ]);
     }
 
     public function setUp()
     {
-        $this->hasMany('OrderByTest_User as User', array(
+        $this->hasMany('OrderByTest_User as User', [
             'refClass' => 'OrderByTest_UserGroup',
             'local' => 'group_id',
-            'foreign' => 'user_id'));
+            'foreign' => 'user_id']);
     }
 }
 
@@ -203,33 +203,33 @@ class OrderByTest_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('OrderByTest_Article as Articles', array(
+        $this->hasMany('OrderByTest_Article as Articles', [
             'local' => 'id',
             'foreign' => 'user_id',
-            'orderBy' => 'title ASC'));
+            'orderBy' => 'title ASC']);
 
-        $this->hasMany('OrderByTest_Group as Groups', array(
+        $this->hasMany('OrderByTest_Group as Groups', [
             'refClass' => 'OrderByTest_UserGroup',
             'local' => 'user_id',
             'foreign' => 'group_id',
-            'orderBy' => 'name ASC'));
+            'orderBy' => 'name ASC']);
 
-        $this->hasMany('OrderByTest_User as Friends', array(
+        $this->hasMany('OrderByTest_User as Friends', [
             'refClass' => 'OrderByTest_Friend',
             'local' => 'user_id1',
             'foreign' => 'user_id2',
             'equal' => true,
-            'orderBy' => 'username ASC'));
+            'orderBy' => 'username ASC']);
 
-        $this->hasOne('OrderByTest_User as ParentUser', array(
+        $this->hasOne('OrderByTest_User as ParentUser', [
             'local' => 'parent_user_id',
             'foreign' => 'id',
-            'orderBy' => 'id ASC'));
+            'orderBy' => 'id ASC']);
 
-        $this->hasMany('OrderByTest_User as ChildrenUsers', array(
+        $this->hasMany('OrderByTest_User as ChildrenUsers', [
             'local' => 'id',
             'foreign' => 'parent_user_id',
-            'orderBy' => 'username ASC'));
+            'orderBy' => 'username ASC']);
     }
 }
 
@@ -237,12 +237,12 @@ class OrderByTest_UserGroup extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('user_id', 'integer', null, array(
+        $this->hasColumn('user_id', 'integer', null, [
             'primary' => true,
-        ));
-        $this->hasColumn('group_id', 'integer', null, array(
+        ]);
+        $this->hasColumn('group_id', 'integer', null, [
             'primary' => true,
-        ));
+        ]);
     }
 }
 
@@ -257,10 +257,10 @@ class OrderByTest_Category extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('OrderByTest_BlogPost as Posts', array(
+        $this->hasMany('OrderByTest_BlogPost as Posts', [
             'local' => 'id',
             'foreign' => 'category_id',
-        ));
+        ]);
     }
 }
 
@@ -277,10 +277,10 @@ class OrderByTest_BlogPost extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('OrderByTest_Category', array(
+        $this->hasOne('OrderByTest_Category', [
             'local' => 'category_id',
             'foreign' => 'id',
-        ));
+        ]);
     }
 }
 

@@ -67,6 +67,6 @@ class Ticket_1244_Test extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('test', 'integer', 4, array('range' => array(5, 10)));
+        $this->hasColumn('test', 'integer', 4, ['range' => [5, 10]]);
     }
 }

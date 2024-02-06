@@ -221,7 +221,7 @@ END;
             $query = new Doctrine_Query();
             $query->from('ImportNestedSet');
 
-            $i = $query->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+            $i = $query->execute([], Doctrine_Core::HYDRATE_ARRAY);
 
             $this->assertEqual($i[0]['name'], 'Root');
             $this->assertEqual($i[0]['lft'], 1);
@@ -296,7 +296,7 @@ END;
                 ->orderBy('insmt.root_id ASC, insmt.lft ASC')
             ;
 
-            $i = $query->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+            $i = $query->execute([], Doctrine_Core::HYDRATE_ARRAY);
 
             $this->assertEqual($i[0]['name'], 'Item 1');
             $this->assertEqual($i[0]['lft'], 1);
@@ -580,10 +580,10 @@ class ImportNestedSetMultipleTree extends Doctrine_Record
     {
         $this->actAs(
             'NestedSet',
-            array(
+            [
                 'hasManyRoots' => true,
                 'rootColumnName' => 'root_id',
-            )
+            ]
         );
     }
 }
@@ -599,7 +599,7 @@ class I18nNumberLang extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('I18n', array('fields' => array('title', 'body'), 'type' => 'integer', 'length' => 4));
+        $this->actAs('I18n', ['fields' => ['title', 'body'], 'type' => 'integer', 'length' => 4]);
     }
 }
 
@@ -613,6 +613,6 @@ class I18nTestImport extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('I18n', array('fields' => array('name', 'title')));
+        $this->actAs('I18n', ['fields' => ['name', 'title']]);
     }
 }

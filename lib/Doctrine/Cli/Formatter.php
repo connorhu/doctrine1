@@ -58,7 +58,7 @@ class Doctrine_Cli_Formatter
      * @param  stream A stream (default to STDOUT)
      * @return string The formatted text
      */
-    public function format($text = '', $parameters = array(), $stream = STDOUT)
+    public function format($text = '', $parameters = [], $stream = STDOUT)
     {
         return $text;
     }

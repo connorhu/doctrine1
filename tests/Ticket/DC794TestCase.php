@@ -54,12 +54,12 @@ class Ticket_DC794_Model extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array(
+        $this->hasColumn('id', 'integer', null, [
             'type' => 'integer',
             'unsigned' => false,
             'primary' => true,
             'autoincrement' => true,
-        ));
+        ]);
         $this->hasColumn('idOrigenOportunidadCliente', 'string', 255);
         $this->hasColumn('Username', 'string', 255);
         $this->hasColumn('password', 'string', 255);

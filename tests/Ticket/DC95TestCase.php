@@ -47,13 +47,13 @@ class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase
         Doctrine_Core::setModelsDirectory(dirname(__FILE__).'/DC95/models');
 
         $import = new Doctrine_Import_Schema();
-        $import->setOptions(array(
+        $import->setOptions([
             'pearStyle' => true,
             'baseClassesDirectory' => null,
             'baseClassPrefix' => 'Base_',
             'classPrefix' => 'DC95_',
             'classPrefixFiles' => true,
-        ));
+        ]);
         $modelsPath = dirname(__FILE__).'/DC95/models';
         $import->importSchema(dirname(__FILE__).'/DC95/schema.yml', 'yml', $modelsPath);
 

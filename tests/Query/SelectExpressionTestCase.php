@@ -41,7 +41,7 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('User');
+        $this->tables = ['User'];
         parent::prepareTables();
     }
 

@@ -42,7 +42,7 @@ class Doctrine_Hydrate_Driver_TestCase extends Doctrine_UnitTestCase
 
         $result = Doctrine_Core::getTable('User')
             ->createQuery('u')
-            ->execute(array(), 'MyHydrator')
+            ->execute([], 'MyHydrator')
         ;
 
         $this->assertEqual($result, 'MY_HYDRATOR');
@@ -57,7 +57,7 @@ class Doctrine_Hydrate_Driver_TestCase extends Doctrine_UnitTestCase
 
         $result = Doctrine_Core::getTable('User')
             ->createQuery('u')
-            ->execute(array(), 'MyHydrator')
+            ->execute([], 'MyHydrator')
         ;
 
         $this->assertEqual($result, 'MY_HYDRATOR');
@@ -65,9 +65,9 @@ class Doctrine_Hydrate_Driver_TestCase extends Doctrine_UnitTestCase
 
     public function testCustomHydratorConstructor()
     {
-        $queryComponents = array('queryComponents');
-        $tableAliases = array('tableAliases');
-        $hydrationMode = array('hydrationMode');
+        $queryComponents = ['queryComponents'];
+        $tableAliases = ['tableAliases'];
+        $hydrationMode = ['hydrationMode'];
 
         $hydrator = new MyHydrator($queryComponents, $tableAliases, $hydrationMode);
 
@@ -86,7 +86,7 @@ class Doctrine_Hydrate_Driver_TestCase extends Doctrine_UnitTestCase
         try {
             Doctrine_Core::getTable('User')
                 ->createQuery('u')
-                ->execute(array(), 'MyHydrator')
+                ->execute([], 'MyHydrator')
             ;
 
             $this->fail('Expected exception not thrown: Doctrine_Hydrator_Exception');

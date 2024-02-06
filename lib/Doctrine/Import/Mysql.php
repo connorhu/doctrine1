@@ -27,14 +27,14 @@
  */
 class Doctrine_Import_Mysql extends Doctrine_Import
 {
-    protected $sql = array(
+    protected $sql = [
         'listDatabases' => 'SHOW DATABASES',
         'listTableFields' => 'DESCRIBE %s',
         'listSequences' => 'SHOW TABLES',
         'listTables' => 'SHOW TABLES',
         'listUsers' => 'SELECT DISTINCT USER FROM USER',
         'listViews' => "SHOW FULL TABLES %s WHERE Table_type = 'VIEW'",
-    );
+    ];
 
     /**
      * lists all database sequences.
@@ -50,7 +50,7 @@ class Doctrine_Import_Mysql extends Doctrine_Import
         }
         $tableNames = $this->conn->fetchColumn($query);
 
-        return array_map(array($this->conn->formatter, 'fixSequenceName'), $tableNames);
+        return array_map([$this->conn->formatter, 'fixSequenceName'], $tableNames);
     }
 
     /**
@@ -77,7 +77,7 @@ class Doctrine_Import_Mysql extends Doctrine_Import
         $query = 'SHOW INDEX FROM '.$table;
         $indexes = $this->conn->fetchAssoc($query);
 
-        $result = array();
+        $result = [];
         foreach ($indexes as $indexData) {
             if (!$indexData[$nonUnique]) {
                 if ('PRIMARY' !== $indexData[$keyName]) {
@@ -114,14 +114,14 @@ class Doctrine_Import_Mysql extends Doctrine_Import
      */
     public function listTableRelations($tableName)
     {
-        $relations = array();
+        $relations = [];
         $sql = "SELECT column_name, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME FROM information_schema.key_column_usage WHERE table_name = '".$tableName."' AND table_schema = '".$this->conn->getDatabaseName()."' and REFERENCED_COLUMN_NAME is not NULL";
         $results = $this->conn->fetchAssoc($sql);
         foreach ($results as $result) {
             $result = array_change_key_case($result, CASE_LOWER);
-            $relations[] = array('table' => $result['referenced_table_name'],
+            $relations[] = ['table' => $result['referenced_table_name'],
                 'local' => $result['column_name'],
-                'foreign' => $result['referenced_column_name']);
+                'foreign' => $result['referenced_column_name']];
         }
 
         return $relations;
@@ -138,17 +138,17 @@ class Doctrine_Import_Mysql extends Doctrine_Import
         $sql = 'DESCRIBE '.$this->conn->quoteIdentifier($table, true);
         $result = $this->conn->fetchAssoc($sql);
 
-        $description = array();
-        $columns = array();
+        $description = [];
+        $columns = [];
         foreach ($result as $key => $val) {
             $val = array_change_key_case($val, CASE_LOWER);
 
             $decl = $this->conn->dataDict->getPortableDeclaration($val);
 
-            $values = isset($decl['values']) ? $decl['values'] : array();
+            $values = isset($decl['values']) ? $decl['values'] : [];
             $val['default'] = 'CURRENT_TIMESTAMP' == $val['default'] ? null : $val['default'];
 
-            $description = array(
+            $description = [
                 'name' => $val['field'],
                 'type' => $decl['type'][0],
                 'alltypes' => $decl['type'],
@@ -161,7 +161,7 @@ class Doctrine_Import_Mysql extends Doctrine_Import
                 'default' => $val['default'],
                 'notnull' => (bool) ('YES' != $val['null']),
                 'autoincrement' => (bool) (false !== strpos($val['extra'], 'auto_increment')),
-            );
+            ];
             if (isset($decl['scale'])) {
                 $description['scale'] = $decl['scale'];
             }
@@ -195,7 +195,7 @@ class Doctrine_Import_Mysql extends Doctrine_Import
         $query = 'SHOW INDEX FROM '.$table;
         $indexes = $this->conn->fetchAssoc($query);
 
-        $result = array();
+        $result = [];
         foreach ($indexes as $indexData) {
             if ($indexData[$nonUnique] && ($index = $this->conn->formatter->fixIndexName($indexData[$keyName]))) {
                 $result[] = $index;

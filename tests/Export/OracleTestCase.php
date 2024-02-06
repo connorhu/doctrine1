@@ -60,8 +60,8 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     {
         $name = 'mytable';
 
-        $fields = array('id' => array('type' => 'integer'));
-        $options = array('type' => 'MYISAM');
+        $fields = ['id' => ['type' => 'integer']];
+        $options = ['type' => 'MYISAM'];
 
         $this->export->createTable($name, $fields);
 
@@ -73,11 +73,11 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     public function testCreateTableSupportsDefaultAttribute()
     {
         $name = 'mytable';
-        $fields = array('name' => array('type' => 'char', 'length' => 10, 'default' => 'def'),
-            'type' => array('type' => 'integer', 'length' => 3, 'default' => 12),
-        );
+        $fields = ['name' => ['type' => 'char', 'length' => 10, 'default' => 'def'],
+            'type' => ['type' => 'integer', 'length' => 3, 'default' => 12],
+        ];
 
-        $options = array('primary' => array('name', 'type'));
+        $options = ['primary' => ['name', 'type']];
         $this->export->createTable($name, $fields, $options);
 
         $this->assertEqual($this->adapter->pop(), 'COMMIT');
@@ -90,11 +90,11 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
         $this->conn->setParam('char_unit', 'CHAR');
         $this->conn->setParam('varchar2_max_length', 1000);
 
-        $fields = array(
-            'type' => array('type' => 'char', 'length' => 10, 'default' => 'admin'),
-            'name' => array('type' => 'string', 'length' => 1000),
-            'about' => array('type' => 'string', 'length' => 1001, 'default' => 'def'),
-        );
+        $fields = [
+            'type' => ['type' => 'char', 'length' => 10, 'default' => 'admin'],
+            'name' => ['type' => 'string', 'length' => 1000],
+            'about' => ['type' => 'string', 'length' => 1001, 'default' => 'def'],
+        ];
 
         $sql = $this->export->createTableSql('mytable', $fields);
         $this->assertEqual($sql[0], "CREATE TABLE mytable (type CHAR(10 CHAR) DEFAULT 'admin', name VARCHAR2(1000 CHAR), about CLOB DEFAULT 'def')");
@@ -106,10 +106,10 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     public function testCreateTableSupportsMultiplePks()
     {
         $name = 'mytable';
-        $fields = array('name' => array('type' => 'char', 'length' => 10),
-            'type' => array('type' => 'integer', 'length' => 3));
+        $fields = ['name' => ['type' => 'char', 'length' => 10],
+            'type' => ['type' => 'integer', 'length' => 3]];
 
-        $options = array('primary' => array('name', 'type'));
+        $options = ['primary' => ['name', 'type']];
         $this->export->createTable($name, $fields, $options);
 
         $this->assertEqual($this->adapter->pop(), 'COMMIT');
@@ -121,7 +121,7 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     {
         $name = 'mytable';
 
-        $fields = array('id' => array('type' => 'integer', 'autoincrement' => true));
+        $fields = ['id' => ['type' => 'integer', 'autoincrement' => true]];
 
         $this->export->createTable($name, $fields);
 
@@ -137,7 +137,7 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     {
         $name = 'mytable';
 
-        $fields = array('id' => array('type' => 'char', 'length' => 3));
+        $fields = ['id' => ['type' => 'char', 'length' => 3]];
 
         $this->export->createTable($name, $fields);
 
@@ -147,12 +147,12 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
 
     public function testCreateTableSupportsUniqueConstraint()
     {
-        $fields = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true),
-            'name' => array('type' => 'string', 'length' => 4),
-        );
+        $fields = ['id' => ['type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true],
+            'name' => ['type' => 'string', 'length' => 4],
+        ];
 
-        $options = array('primary' => array('id'),
-        );
+        $options = ['primary' => ['id'],
+        ];
 
         $sql = $this->export->createTableSql('sometable', $fields, $options);
 
@@ -161,26 +161,26 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
 
     public function testCreateTableSupportsIndexes()
     {
-        $fields = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true),
-            'name' => array('type' => 'string', 'length' => 4),
-        );
+        $fields = ['id' => ['type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true],
+            'name' => ['type' => 'string', 'length' => 4],
+        ];
 
-        $options = array('primary' => array('id'),
-            'indexes' => array('myindex' => array('fields' => array('id', 'name'))),
-        );
+        $options = ['primary' => ['id'],
+            'indexes' => ['myindex' => ['fields' => ['id', 'name']]],
+        ];
 
         $sql = $this->export->createTableSql('sometable', $fields, $options);
 
         $this->assertEqual($sql[0], 'CREATE TABLE sometable (id INTEGER UNIQUE, name VARCHAR2(4), PRIMARY KEY(id))');
         $this->assertEqual($sql[4], 'CREATE INDEX myindex ON sometable (id, name)');
 
-        $fields = array('id' => array('type' => 'integer', 'unisgned' => 1, 'autoincrement' => true),
-            'name' => array('type' => 'string', 'length' => 4),
-            'category' => array('type' => 'integer', 'length' => 2),
-        );
-        $options = array('primary' => array('id'),
-            'indexes' => array('category_index' => array('fields' => array('category')), 'unique_index' => array('type' => 'unique', 'fields' => array('id', 'name'))),
-        );
+        $fields = ['id' => ['type' => 'integer', 'unisgned' => 1, 'autoincrement' => true],
+            'name' => ['type' => 'string', 'length' => 4],
+            'category' => ['type' => 'integer', 'length' => 2],
+        ];
+        $options = ['primary' => ['id'],
+            'indexes' => ['category_index' => ['fields' => ['category']], 'unique_index' => ['type' => 'unique', 'fields' => ['id', 'name']]],
+        ];
         $sql = $this->export->createTableSql('sometable', $fields, $options);
         $this->assertEqual($sql[0], 'CREATE TABLE sometable (id INTEGER, name VARCHAR2(4), category NUMBER(5), PRIMARY KEY(id), CONSTRAINT unique_index UNIQUE (id, name))');
         $this->assertEqual($sql[4], 'CREATE INDEX category_index ON sometable (category)');
@@ -190,12 +190,12 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     {
         $this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
 
-        $fields = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true),
-            'name' => array('type' => 'string', 'length' => 4),
-        );
-        $options = array('primary' => array('id'),
-            'indexes' => array('myindex' => array('fields' => array('id', 'name'))),
-        );
+        $fields = ['id' => ['type' => 'integer', 'unsigned' => 1, 'autoincrement' => true],
+            'name' => ['type' => 'string', 'length' => 4],
+        ];
+        $options = ['primary' => ['id'],
+            'indexes' => ['myindex' => ['fields' => ['id', 'name']]],
+        ];
 
         $sql = $this->export->createTableSql('sometable', $fields, $options);
         $this->assertEqual($sql[0], 'CREATE TABLE "sometable" ("id" INTEGER, "name" VARCHAR2(4), PRIMARY KEY("id"))');

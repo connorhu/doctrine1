@@ -49,7 +49,7 @@ class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
         $manager->setCurrentConnection('conn_1');
         $this->assertEqual($conn1, Doctrine_Manager::connection());
 
-        Doctrine_Core::createTablesFromArray(array('Ticket_1706_User'));
+        Doctrine_Core::createTablesFromArray(['Ticket_1706_User']);
 
         $user = new Ticket_1706_User();
         $user->name = 'Allen';
@@ -58,7 +58,7 @@ class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
         $manager->setCurrentConnection('conn_2');
         $this->assertEqual($conn2, Doctrine_Manager::connection());
 
-        Doctrine_Core::createTablesFromArray(array('Ticket_1706_User'));
+        Doctrine_Core::createTablesFromArray(['Ticket_1706_User']);
 
         $user = new Ticket_1706_User();
         $user->name = 'Bob';

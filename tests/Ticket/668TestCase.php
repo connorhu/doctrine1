@@ -36,7 +36,7 @@ class Doctrine_Ticket_668_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'T668_User';
         parent::prepareTables();
     }
@@ -62,7 +62,7 @@ class T668_User extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('t668_user');
-        $this->hasColumn('id', 'integer', 3, array('autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true));
+        $this->hasColumn('id', 'integer', 3, ['autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true]);
         $this->hasColumn('name', 'string', 100);
     }
 }

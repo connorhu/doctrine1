@@ -81,6 +81,6 @@ class Ticket_2190_Article extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('Sluggable', array('indexName' => 'ticket_2190_slug_idx', 'fields' => array('body')));
+        $this->actAs('Sluggable', ['indexName' => 'ticket_2190_slug_idx', 'fields' => ['body']]);
     }
 }

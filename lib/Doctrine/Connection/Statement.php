@@ -147,7 +147,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      *                         from a stored procedure, you must explicitly set the length.
      * @return bool  returns TRUE on success or FALSE on failure
      */
-    public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = array())
+    public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = [])
     {
         if (null === $type) {
             return $this->_stmt->bindParam($column, $variable);
@@ -220,7 +220,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      *                       bound parameters in the SQL statement being executed
      * @return bool  returns TRUE on success or FALSE on failure
      */
-    public function execute($params = array())
+    public function execute($params = [])
     {
         try {
             $event = new Doctrine_Event($this, Doctrine_Event::STMT_EXECUTE, $this->getQuery(), $params);
@@ -385,7 +385,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      * @return mixed  an instance of the required class with property names that correspond
      *                to the column names or FALSE in case of an error
      */
-    public function fetchObject($className = 'stdClass', $args = array())
+    public function fetchObject($className = 'stdClass', $args = [])
     {
         return $this->_stmt->fetchObject($className, $args);
     }

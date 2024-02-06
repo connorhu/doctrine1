@@ -36,7 +36,7 @@ class Doctrine_BatchIterator_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('EntityAddress', 'Entity', 'User', 'Group', 'Address', 'Email', 'Phonenumber');
+        $this->tables = ['EntityAddress', 'Entity', 'User', 'Group', 'Address', 'Email', 'Phonenumber'];
         parent::prepareTables();
     }
 
@@ -69,7 +69,7 @@ class Doctrine_BatchIterator_TestCase extends Doctrine_UnitTestCase
         foreach ($user->Address as $address) {
             $a[] = $address->address;
         }
-        $this->assertEqual($a, array('street 1', 'street 2'));
+        $this->assertEqual($a, ['street 1', 'street 2']);
 
         $user->save();
 
@@ -79,11 +79,11 @@ class Doctrine_BatchIterator_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($user->Address[1]->address, 'street 2');
 
         $user = $user->getTable()->find($user->id);
-        $a = array();
+        $a = [];
         foreach ($user->Address as $address) {
             $a[] = $address->address;
         }
-        $this->assertEqual($a, array('street 1', 'street 2'));
+        $this->assertEqual($a, ['street 1', 'street 2']);
 
         $user = $graph->query('FROM User');
     }

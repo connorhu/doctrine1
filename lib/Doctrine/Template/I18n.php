@@ -31,7 +31,7 @@ class Doctrine_Template_I18n extends Doctrine_Template
     /**
      * __construct.
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         parent::__construct($options);
         $this->_plugin = new Doctrine_I18n($this->_options);

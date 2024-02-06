@@ -37,7 +37,7 @@ class Doctrine_Ticket_DC24_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('ticket_DC24_master', 'ticket_DC24_servant');
+        $this->tables = ['ticket_DC24_master', 'ticket_DC24_servant'];
         parent::prepareTables();
     } // end prepareTables();
 
@@ -73,7 +73,7 @@ class Doctrine_Ticket_DC24_TestCase extends Doctrine_UnitTestCase
                 ->select('m.*')
                 ->from('Ticket_DC24_Master m')
                 ->where('m.id = 1')
-                ->fetchOne(array(), Doctrine_Core::HYDRATE_ARRAY)
+                ->fetchOne([], Doctrine_Core::HYDRATE_ARRAY)
             ;
             $this->assertEqual($master2['servant_id'], 1);
         } catch (Exception $e) {
@@ -86,29 +86,29 @@ class Ticket_DC24_Master extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 4, [
             'type' => 'integer',
             'primary' => true,
             'autoincrement' => true,
             'length' => '4',
-        ));
-        $this->hasColumn('foo', 'integer', 4, array(
+        ]);
+        $this->hasColumn('foo', 'integer', 4, [
             'type' => 'integer',
             'notnull' => true,
             'length' => '4',
-        ));
-        $this->hasColumn('servant_id', 'integer', 4, array(
+        ]);
+        $this->hasColumn('servant_id', 'integer', 4, [
             'type' => 'integer',
             // 'notnull' => true,
             'length' => '4',
-        ));
+        ]);
     } // end setTableDefinition();
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC24_Servant', array(
+        $this->hasOne('Ticket_DC24_Servant', [
             'local' => 'servant_id',
-            'foreign' => 'id'));
+            'foreign' => 'id']);
     } // end setUp();
 } // end Ticket_DC24_Master;
 
@@ -116,23 +116,23 @@ class Ticket_DC24_Servant extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 4, [
             'type' => 'integer',
             'primary' => true,
             'autoincrement' => true,
             'length' => '4',
-        ));
-        $this->hasColumn('bar', 'integer', 4, array(
+        ]);
+        $this->hasColumn('bar', 'integer', 4, [
             'type' => 'integer',
             'notnull' => true,
             'length' => '4',
-        ));
+        ]);
     } // end setTableDefinition();
 
     public function setUp()
     {
-        $this->hasMany('Ticket_DC24_Master as Masters', array(
+        $this->hasMany('Ticket_DC24_Master as Masters', [
             'local' => 'id',
-            'foreign' => 'servant_id'));
+            'foreign' => 'servant_id']);
     } // end setUp();
 } // end Ticket_DC24_Servant;

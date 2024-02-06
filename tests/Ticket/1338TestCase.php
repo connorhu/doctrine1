@@ -42,7 +42,7 @@ class Doctrine_Ticket_1338_TestCase extends Doctrine_UnitTestCase
         $users = $q->execute();
 
         $array = $users->toKeyValueArray('id', 'name');
-        $this->assertEqual($array, array(
+        $this->assertEqual($array, [
             4 => 'zYne',
             5 => 'Arnold Schwarzenegger',
             6 => 'Michael Caine',
@@ -51,6 +51,6 @@ class Doctrine_Ticket_1338_TestCase extends Doctrine_UnitTestCase
             9 => 'Kurt Russell',
             10 => 'Jean Reno',
             11 => 'Edward Furlong',
-        ));
+        ]);
     }
 }

@@ -40,7 +40,7 @@ class Doctrine_Ticket_381_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('Book');
+        $this->tables = ['Book'];
         parent::prepareTables();
     }
 

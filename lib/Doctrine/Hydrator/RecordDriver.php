@@ -30,8 +30,8 @@
  */
 class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
 {
-    protected $_collections = array();
-    private $_initializedRelations = array();
+    protected $_collections = [];
+    private $_initializedRelations = [];
 
     public function getElementCollection($component)
     {
@@ -116,7 +116,7 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
             $coll->takeSnapshot();
         }
         $this->_initializedRelations = null;
-        $this->_collections = array();
+        $this->_collections = [];
         $this->_tables = null;
     }
 }

@@ -4,7 +4,7 @@ $_SERVER['DOCTRINE_DIR'] = realpath(dirname(__FILE__).'/../');
 
 require 'bootstrap.php';
 
-$excludeTickets = array(
+$excludeTickets = [
     '1830', // MySQL specific error
     '1876b',
     '1935',
@@ -12,7 +12,7 @@ $excludeTickets = array(
     '2292',
     '1783', // Known bug integer validation with numbers greater than PHP_INT_MAX.
     'DC521', // PostgreSQL specific error
-);
+];
 
 $test = new DoctrineTest();
 

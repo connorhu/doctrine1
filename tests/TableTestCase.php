@@ -67,14 +67,14 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
         $t->someColumn = 'abc';
         $t->someEnum = 'php';
         $t->someInt = 1;
-        $t->someArray = array();
+        $t->someArray = [];
         $obj = new stdClass();
         $t->someObject = $obj;
 
         $this->assertEqual($t->someColumn, 'abc');
         $this->assertEqual($t->someEnum, 'php');
         $this->assertEqual($t->someInt, 1);
-        $this->assertEqual($t->someArray, array());
+        $this->assertEqual($t->someArray, []);
         $this->assertEqual($t->someObject, $obj);
 
         $t->save();
@@ -82,7 +82,7 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($t->someColumn, 'abc');
         $this->assertEqual($t->someEnum, 'php');
         $this->assertEqual($t->someInt, 1);
-        $this->assertEqual($t->someArray, array());
+        $this->assertEqual($t->someArray, []);
         $this->assertEqual($t->someObject, $obj);
 
         $t->refresh();
@@ -90,7 +90,7 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($t->someColumn, 'abc');
         $this->assertEqual($t->someEnum, 'php');
         $this->assertEqual($t->someInt, 1);
-        $this->assertEqual($t->someArray, array());
+        $this->assertEqual($t->someArray, []);
         $this->assertEqual($t->someObject, $obj);
 
         $this->connection->clear();
@@ -100,7 +100,7 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($t->someColumn, 'abc');
         $this->assertEqual($t->someEnum, 'php');
         $this->assertEqual($t->someInt, 1);
-        $this->assertEqual($t->someArray, array());
+        $this->assertEqual($t->someArray, []);
         $this->assertEqual($t->someObject, $obj);
 
         $this->dbh->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
@@ -147,7 +147,7 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
 
     public function testGetData()
     {
-        $this->assertTrue(array() == $this->objTable->getData());
+        $this->assertTrue([] == $this->objTable->getData());
     }
 
     public function testSetSequenceName()

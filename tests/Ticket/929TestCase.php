@@ -48,7 +48,7 @@ class Doctrine_Ticket_929_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'T929_Person';
         $this->tables[] = 'T929_Country';
         $this->tables[] = 'T929_JobPosition';
@@ -90,17 +90,17 @@ class T929_Person extends Doctrine_Record
     {
         parent::setUp();
 
-        $this->hasOne('T929_Country as Country', array(
+        $this->hasOne('T929_Country as Country', [
             'local' => 'country_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
 
-        $this->hasMany('T929_JobPosition as JobPositions', array(
+        $this->hasMany('T929_JobPosition as JobPositions', [
             'local' => 'id',
             'foreign' => 'person_id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
     }
 }
 
@@ -117,13 +117,13 @@ class T929_Country extends Doctrine_Record
     {
         parent::setUp();
 
-        $this->hasMany('T929_Person as Persons', array(
+        $this->hasMany('T929_Person as Persons', [
             'local' => 'id',
             'foreign' => 'country_id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
 
-        $this->actAs('I18n', array('fields' => array('name')));
+        $this->actAs('I18n', ['fields' => ['name']]);
     }
 }
 
@@ -141,17 +141,17 @@ class T929_JobPosition extends Doctrine_Record
     {
         parent::setUp();
 
-        $this->hasOne('T929_Person as Person', array(
+        $this->hasOne('T929_Person as Person', [
             'local' => 'person_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
 
-        $this->hasOne('T929_JobCategory as Category', array(
+        $this->hasOne('T929_JobCategory as Category', [
             'local' => 'job_category_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
     }
 }
 
@@ -168,12 +168,12 @@ class T929_JobCategory extends Doctrine_Record
     {
         parent::setUp();
 
-        $this->hasMany('T929_JobPosition as Positions', array(
+        $this->hasMany('T929_JobPosition as Positions', [
             'local' => 'id',
             'foreign' => 'job_category_id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
 
-        $this->actAs('I18n', array('fields' => array('name')));
+        $this->actAs('I18n', ['fields' => ['name']]);
     }
 }

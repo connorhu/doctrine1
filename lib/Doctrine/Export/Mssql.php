@@ -46,7 +46,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
                      $this->conn->options['database_size'] : '';
         }
 
-        return $this->conn->standaloneQuery($query, array(), true);
+        return $this->conn->standaloneQuery($query, [], true);
     }
 
     /**
@@ -58,7 +58,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
     {
         $name = $this->conn->quoteIdentifier($name, true);
 
-        return $this->conn->standaloneQuery('DROP DATABASE '.$name, array(), true);
+        return $this->conn->standaloneQuery('DROP DATABASE '.$name, [], true);
     }
 
     /**
@@ -156,7 +156,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
             }
             $query .= 'DROP COLUMN ';
 
-            $dropped = array();
+            $dropped = [];
             foreach ($changes['remove'] as $fieldName => $field) {
                 $fieldName = $this->conn->quoteIdentifier($fieldName, true);
                 $dropped[] = $fieldName;
@@ -165,7 +165,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
             $query .= implode(', ', $dropped).' ';
         }
 
-        $rename = array();
+        $rename = [];
         if (!empty($changes['rename']) && is_array($changes['rename'])) {
             foreach ($changes['rename'] as $fieldName => $field) {
                 $rename[$field['name']] = $fieldName;
@@ -180,7 +180,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
 
             $query .= 'ALTER COLUMN ';
 
-            $altered = array();
+            $altered = [];
             foreach ($changes['change'] as $fieldName => $field) {
                 if (isset($rename[$fieldName])) {
                     $oldFieldName = $rename[$fieldName];
@@ -269,7 +269,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      *                         );
      * @return string
      */
-    public function createSequence($seqName, $start = 1, array $options = array())
+    public function createSequence($seqName, $start = 1, array $options = [])
     {
         $sequenceName = $this->conn->quoteIdentifier($this->conn->getSequenceName($seqName), true);
         $seqcolName = $this->conn->quoteIdentifier($this->conn->options['seqcol_name'], true);
@@ -332,7 +332,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      * @param  array  $options An associative array of table options:
      * @return string
      */
-    public function createTableSql($name, array $fields, array $options = array())
+    public function createTableSql($name, array $fields, array $options = [])
     {
         if (!$name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
@@ -362,7 +362,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
         $queryFields = $this->getFieldDeclarationList($fields);
 
         if (isset($options['primary']) && !empty($options['primary'])) {
-            $primaryKeys = array_map(array($this->conn, 'quoteIdentifier'), array_values($options['primary']));
+            $primaryKeys = array_map([$this->conn, 'quoteIdentifier'], array_values($options['primary']));
             $queryFields .= ', PRIMARY KEY('.implode(', ', $primaryKeys).')';
         }
 

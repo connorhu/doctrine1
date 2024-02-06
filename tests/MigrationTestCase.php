@@ -74,7 +74,7 @@ class Doctrine_Migration_TestCase extends Doctrine_UnitTestCase
         $this->assertFalse($this->conn->import->tableExists('migration_phonenumber'));
         $this->assertFalse($this->conn->import->tableExists('migration_user'));
         $this->assertFalse($this->conn->import->tableExists('migration_profile'));
-        $this->assertEqual(array(
+        $this->assertEqual([
             1 => 'AddPhonenumber',
             2 => 'AddUser',
             3 => 'AddProfile',
@@ -86,7 +86,7 @@ class Doctrine_Migration_TestCase extends Doctrine_UnitTestCase
             9 => 'Test9',
             10 => 'Test10',
             11 => 'Test11',
-        ), $migration->getMigrationClasses());
+        ], $migration->getMigrationClasses());
     }
 
     public function testMigrateClearsErrors()
@@ -114,13 +114,13 @@ class Doctrine_Migration_TestCase extends Doctrine_UnitTestCase
 
     public function testMigrationClassNameInflected()
     {
-        $tests = array('test-class-Name',
+        $tests = ['test-class-Name',
             'test_class_name',
             'test:class:name',
             'test(class)name',
             'test*class*name',
             'test class name',
-            'test&class&name');
+            'test&class&name'];
 
         $builder = new Doctrine_Migration_Builder();
 

@@ -87,7 +87,7 @@ class Ticket_1133_Foo extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1133_Bar as Bar', array('local' => 'bar_id', 'foreign' => 'id'));
+        $this->hasOne('Ticket_1133_Bar as Bar', ['local' => 'bar_id', 'foreign' => 'id']);
     }
 }
 

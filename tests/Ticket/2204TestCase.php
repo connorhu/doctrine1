@@ -59,6 +59,6 @@ class Ticket_2204_Model extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('test_decimal', 'decimal', 9, array('scale' => 6));
+        $this->hasColumn('test_decimal', 'decimal', 9, ['scale' => 6]);
     }
 }

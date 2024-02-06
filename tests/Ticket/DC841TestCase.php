@@ -69,7 +69,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Core::getTable('Ticket_DC841_Model')
             ->createQuery('t')
-            ->leftJoin('t.Ticket_DC841_Model WITH t.id = ?', array(30))
+            ->leftJoin('t.Ticket_DC841_Model WITH t.id = ?', [30])
             ->where('t.username = ?', 'foo')
             ->execute()
         ;
@@ -101,7 +101,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Core::getTable('Ticket_DC841_Model')
             ->createQuery('t')
-            ->whereIn('t.username', array('foo', 'bar'))
+            ->whereIn('t.username', ['foo', 'bar'])
             ->execute()
         ;
 
@@ -175,12 +175,12 @@ class Ticket_DC841_Model extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array(
+        $this->hasColumn('id', 'integer', null, [
             'type' => 'integer',
             'unsigned' => false,
             'primary' => true,
             'autoincrement' => true,
-        ));
+        ]);
         $this->hasColumn('username', 'string', 255);
         $this->hasColumn('password', 'string', 255);
         $this->hasColumn('foo', 'string', 255);
@@ -188,8 +188,8 @@ class Ticket_DC841_Model extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC841_Model', array(
+        $this->hasOne('Ticket_DC841_Model', [
             'local' => 'id',
-            'foreign' => 'id'));
+            'foreign' => 'id']);
     }
 }

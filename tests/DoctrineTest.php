@@ -220,7 +220,7 @@ class DoctrineTest
     public function parseOptions($array)
     {
         $currentName = '';
-        $options = array();
+        $options = [];
 
         foreach ($array as $name) {
             if (0 === strpos($name, '--')) {
@@ -228,7 +228,7 @@ class DoctrineTest
                 $currentName = $name;
 
                 if (!isset($options[$currentName])) {
-                    $options[$currentName] = array();
+                    $options[$currentName] = [];
                 }
             } else {
                 $values = $options[$currentName];

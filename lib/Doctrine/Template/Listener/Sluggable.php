@@ -33,7 +33,7 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
      *
      * @var string
      */
-    protected $_options = array();
+    protected $_options = [];
 
     /**
      * __construct.
@@ -110,7 +110,7 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
             return $this->getUniqueSlug($record, $value);
         }
 
-        return call_user_func_array($this->_options['builder'], array($value, $record));
+        return call_user_func_array($this->_options['builder'], [$value, $record]);
     }
 
     /**
@@ -128,7 +128,7 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
             return $this->getUniqueSlug($record, $value);
         }
 
-        return call_user_func_array($this->_options['builder'], array($value, $record));
+        return call_user_func_array($this->_options['builder'], [$value, $record]);
     }
 
     /**
@@ -157,11 +157,11 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
         }
 
         $name = $table->getFieldName($this->_options['name']);
-        $proposal = call_user_func_array($this->_options['builder'], array($slugFromFields, $record));
+        $proposal = call_user_func_array($this->_options['builder'], [$slugFromFields, $record]);
         $slug = $proposal;
 
         $whereString = 'r.'.$name.' LIKE ?';
-        $whereParams = array($proposal.'%');
+        $whereParams = [$proposal.'%'];
 
         if ($record->exists()) {
             $identifier = $record->identifier();
@@ -215,14 +215,14 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
         // Change indexby back
         $table->bindQueryPart('indexBy', $originalIndexBy);
 
-        $similarSlugs = array();
+        $similarSlugs = [];
         foreach ($similarSlugResult as $key => $value) {
             $similarSlugs[$key] = strtolower($value[$name]);
         }
 
         $i = 1;
         while (in_array(strtolower($slug), $similarSlugs)) {
-            $slug = call_user_func_array($this->_options['builder'], array($proposal.'-'.$i, $record));
+            $slug = call_user_func_array($this->_options['builder'], [$proposal.'-'.$i, $record]);
             ++$i;
         }
 

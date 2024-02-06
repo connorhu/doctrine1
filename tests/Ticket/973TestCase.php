@@ -36,7 +36,7 @@ class Doctrine_Ticket_973_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'T973_Day';
 
         parent::prepareTables();
@@ -62,7 +62,7 @@ class T973_Day extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('t973_days');
-        $this->hasColumn('id', 'integer', 3, array('autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true));
+        $this->hasColumn('id', 'integer', 3, ['autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true]);
         $this->hasColumn('number', 'integer');
     }
 }

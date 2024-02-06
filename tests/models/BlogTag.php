@@ -10,6 +10,6 @@ class BlogTag extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Blog', array('onDelete' => 'CASCADE'));
+        $this->hasOne('Blog', ['onDelete' => 'CASCADE']);
     }
 }

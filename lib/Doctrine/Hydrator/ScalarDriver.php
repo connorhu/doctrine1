@@ -33,8 +33,8 @@ class Doctrine_Hydrator_ScalarDriver extends Doctrine_Hydrator_Abstract
      */
     public function hydrateResultSet($stmt)
     {
-        $cache = array();
-        $result = array();
+        $cache = [];
+        $result = [];
 
         while ($data = $stmt->fetch(Doctrine_Core::FETCH_ASSOC)) {
             $result[] = $this->_gatherRowData($data, $cache);
@@ -45,7 +45,7 @@ class Doctrine_Hydrator_ScalarDriver extends Doctrine_Hydrator_Abstract
 
     protected function _gatherRowData($data, &$cache, $aliasPrefix = true)
     {
-        $rowData = array();
+        $rowData = [];
         foreach ($data as $key => $value) {
             // Parse each column name only once. Cache the results.
             if (!isset($cache[$key])) {

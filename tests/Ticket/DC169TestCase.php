@@ -77,10 +77,10 @@ class Ticket_DC169_User extends Doctrine_Record
     {
         $this->actAs('Timestampable');
 
-        $this->hasOne('Ticket_DC169_Profile as Profile', array(
+        $this->hasOne('Ticket_DC169_Profile as Profile', [
             'local' => 'id',
             'foreign' => 'user_id',
-        ));
+        ]);
     }
 }
 
@@ -94,9 +94,9 @@ class Ticket_DC169_Profile extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC169_User as User', array(
+        $this->hasOne('Ticket_DC169_User as User', [
             'local' => 'user_id',
             'foreign' => 'id',
-        ));
+        ]);
     }
 }

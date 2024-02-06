@@ -17,7 +17,7 @@ class Doctrine_Ticket_583_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('Entity');
+        $this->tables = ['Entity'];
         parent::prepareTables();
     }
 

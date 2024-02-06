@@ -11,36 +11,36 @@ class Doctrine_Ticket_gh110_TestCase extends Doctrine_UnitTestCase
     {
         $builder = new Doctrine_Import_Builder();
         $class = $builder->buildDefinition(
-            array(
+            [
                 'className' => 'Ticket_gh110_TestRecord',
                 'topLevelClassName' => 'Ticket_gh110_TestRecord',
                 'is_base_class' => true,
-                'columns' => array(
-                    'id' => array(
+                'columns' => [
+                    'id' => [
                         'type' => 'integer',
                         'length' => 4,
-                    ),
-                    'my_custom_created_at' => array(
+                    ],
+                    'my_custom_created_at' => [
                         'name' => 'created_at',
                         'type' => 'my_custom_type',
                         'length' => '',
-                    ),
-                ),
-                'actAs' => array(
-                    'SoftDelete' => array(),
-                    'Timestampable' => array(
-                        'updated' => array(
+                    ],
+                ],
+                'actAs' => [
+                    'SoftDelete' => [],
+                    'Timestampable' => [
+                        'updated' => [
                             'disabled' => true,
-                        ),
-                        'unknown_column' => array(),
-                    ),
-                    'UnknownActAs' => array(),
+                        ],
+                        'unknown_column' => [],
+                    ],
+                    'UnknownActAs' => [],
                     // This template brings an already defined column
-                    'gh110_Template' => array(),
-                    'gh110_Invalid_Template' => array(),
-                    'gh110_Abstract_Template' => array(),
-                ),
-            )
+                    'gh110_Template' => [],
+                    'gh110_Invalid_Template' => [],
+                    'gh110_Abstract_Template' => [],
+                ],
+            ]
         );
 
         // Can be used to update the snapshot.
@@ -60,17 +60,17 @@ class gh110_Invalid_Template
 
 class Doctrine_Template_gh110_Template extends Doctrine_Template
 {
-    protected $_options = array(
-        'created' => array(
+    protected $_options = [
+        'created' => [
             'name' => 'created_at',
             'alias' => null,
             'type' => 'timestamp',
             'format' => 'Y-m-d H:i:s',
             'disabled' => false,
             'expression' => false,
-            'options' => array('notnull' => true),
-        ),
-    );
+            'options' => ['notnull' => true],
+        ],
+    ];
 
     /**
      * Set table definition for Timestampable behavior.

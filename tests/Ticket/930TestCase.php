@@ -61,7 +61,7 @@ class Doctrine_Ticket_930_TestCase extends Doctrine_UnitTestCase
      */
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'T930_Person';
         $this->tables[] = 'T930_JobPosition';
         $this->tables[] = 'T930_JobCategory';
@@ -107,11 +107,11 @@ class T930_Person extends Doctrine_Record
     {
         parent::setUp();
 
-        $this->hasMany('T930_JobPosition as JobPositions', array(
+        $this->hasMany('T930_JobPosition as JobPositions', [
             'local' => 'id',
             'foreign' => 'person_id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
     }
 }
 
@@ -128,17 +128,17 @@ class T930_JobPosition extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('T930_Person as Person', array(
+        $this->hasOne('T930_Person as Person', [
             'local' => 'person_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
 
-        $this->hasOne('T930_JobCategory as Category', array(
+        $this->hasOne('T930_JobCategory as Category', [
             'local' => 'job_category_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
     }
 }
 
@@ -154,12 +154,12 @@ class T930_JobCategory extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('T930_JobPosition as Positions', array(
+        $this->hasMany('T930_JobPosition as Positions', [
             'local' => 'id',
             'foreign' => 'job_category_id',
             'onDelete' => 'CASCADE',
-        ));
+        ]);
 
-        $this->actAs('I18n', array('fields' => array('name')));
+        $this->actAs('I18n', ['fields' => ['name']]);
     }
 }

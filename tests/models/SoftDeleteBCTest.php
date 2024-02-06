@@ -11,12 +11,12 @@ class SoftDeleteBCTest extends Doctrine_Record
     {
         $this->setTableName('soft_delete_bc_test');
 
-        $this->hasColumn('name', 'string', null, array('primary' => true));
-        $this->hasColumn('something', 'string', '25', array('notnull' => true, 'unique' => true));
+        $this->hasColumn('name', 'string', null, ['primary' => true]);
+        $this->hasColumn('something', 'string', '25', ['notnull' => true, 'unique' => true]);
     }
 
     public function setUp()
     {
-        $this->actAs('SoftDelete', array('name' => 'deleted', 'type' => 'boolean'));
+        $this->actAs('SoftDelete', ['name' => 'deleted', 'type' => 'boolean']);
     }
 }

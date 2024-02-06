@@ -73,12 +73,12 @@ class Ticket_DC840_Model extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array(
+        $this->hasColumn('id', 'integer', null, [
             'type' => 'integer',
             'unsigned' => false,
             'primary' => true,
             'autoincrement' => true,
-        ));
+        ]);
         $this->hasColumn('modified_at', 'timestamp');
         $this->hasColumn('username', 'string', 255);
         $this->hasColumn('password', 'string', 255);

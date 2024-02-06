@@ -66,9 +66,9 @@ class Doctrine_Ticket_DC39_TestCase extends Doctrine_UnitTestCase
     {
         // link group (id 2) with users (id 1,2)
         $group = Doctrine_Core::getTable('Ticket_DC39_Group')->find(2);
-        $group->synchronizeWithArray(array(
-            'Users' => array(1, 2),
-        ));
+        $group->synchronizeWithArray([
+            'Users' => [1, 2],
+        ]);
         $group->save();
 
         // update the user-objects with real data from database
@@ -90,10 +90,10 @@ class Ticket_DC39_Group extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_DC39_User as Users', array(
+        $this->hasMany('Ticket_DC39_User as Users', [
             'local' => 'id',
             'foreign' => 'group_id',
-        ));
+        ]);
     }
 }
 
@@ -107,9 +107,9 @@ class Ticket_DC39_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC39_Group as Group', array(
+        $this->hasOne('Ticket_DC39_Group as Group', [
             'local' => 'group_id',
             'foreign' => 'id',
-        ));
+        ]);
     }
 }

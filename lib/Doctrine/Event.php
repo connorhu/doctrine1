@@ -110,7 +110,7 @@ class Doctrine_Event
     /**
      * @var array an array of options
      */
-    protected $_options = array();
+    protected $_options = [];
 
     /**
      * constructor.
@@ -120,7 +120,7 @@ class Doctrine_Event
      * @param int    $code  the event code
      * @param string $query the sql query associated with this event (if any)
      */
-    public function __construct($invoker, $code, $query = null, $params = array())
+    public function __construct($invoker, $code, $query = null, $params = [])
     {
         $this->_sequence = self::$_nextSequence++;
         $this->_invoker = $invoker;

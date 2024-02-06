@@ -67,17 +67,17 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      *
      * @todo What about a more verbose name? $invalidRecords?
      */
-    protected $invalid = array();
+    protected $invalid = [];
 
     /**
      * @var array an array containing all savepoints
      */
-    protected $savePoints = array();
+    protected $savePoints = [];
 
     /**
      * @var array an array of Doctrine_Collection objects that were affected during the Transaction
      */
-    protected $_collections = array();
+    protected $_collections = [];
 
     /**
      * addCollection
@@ -255,7 +255,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
                 if (!empty($this->invalid)) {
                     if (1 == $this->_internalNestingLevel) {
                         $tmp = $this->invalid;
-                        $this->invalid = array();
+                        $this->invalid = [];
                         throw new Doctrine_Validator_Exception($tmp);
                     }
                 }
@@ -264,7 +264,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
                     foreach ($this->_collections as $coll) {
                         $coll->takeSnapshot();
                     }
-                    $this->_collections = array();
+                    $this->_collections = [];
 
                     $event = new Doctrine_Event($this, Doctrine_Event::TX_COMMIT);
 

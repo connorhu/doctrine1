@@ -57,6 +57,6 @@ class Ticket_1071_TableName extends Doctrine_Record
     public function setUp()
     {
         $this->actAs('Timestampable');
-        $this->actAs('Versionable', array('tableName' => 'my_custom_table_name'));
+        $this->actAs('Versionable', ['tableName' => 'my_custom_table_name']);
     }
 }

@@ -44,7 +44,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
 
     protected $users;
     protected $valueHolder;
-    protected $tables = array();
+    protected $tables = [];
     protected $unitOfWork;
     protected $driverName = false;
     protected $generic = false;
@@ -66,7 +66,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
     /**
      * @var Doctrine_Connection[]
      */
-    private $additionalConnections = array();
+    private $additionalConnections = [];
 
     public function setUp()
     {
@@ -103,7 +103,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
 
         $this->tables = array_merge(
             $this->tables,
-            array('entity',
+            ['entity',
                 'entityReference',
                 'email',
                 'phonenumber',
@@ -119,7 +119,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
                 'resource',
                 'assignment',
                 'resourceType',
-                'resourceReference')
+                'resourceReference']
         );
 
         $class = get_class($this);
@@ -295,7 +295,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
         $dec = $this->getDeclaration($type);
 
         if (!is_array($type2)) {
-            $type2 = array($type2);
+            $type2 = [$type2];
         }
 
         $this->assertEqual($dec['type'], $type2);
@@ -303,7 +303,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
 
     public function getDeclaration($type)
     {
-        return $this->dataDict->getPortableDeclaration(array('type' => $type, 'name' => 'colname', 'length' => 1, 'fixed' => true));
+        return $this->dataDict->getPortableDeclaration(['type' => $type, 'name' => 'colname', 'length' => 1, 'fixed' => true]);
     }
 
     protected function openAdditionalConnection($adapter = null, $name = null)

@@ -42,28 +42,28 @@ class Doctrine_Ticket_2251_TestCase extends Doctrine_UnitTestCase
 
     public function testEmptyStringLengthSQLExport()
     {
-        $drivers = array(
+        $drivers = [
             'mysql',
             'sqlite',
             'pgsql',
             'oracle',
             'mssql',
-        );
+        ];
 
-        $expected = array(
+        $expected = [
             'mysql' => 'CREATE TABLE test_string_length (id BIGINT AUTO_INCREMENT, test_string TEXT, PRIMARY KEY(id)) ENGINE = INNODB',
             'sqlite' => 'CREATE TABLE test_string_length (id INTEGER PRIMARY KEY AUTOINCREMENT, test_string TEXT)',
             'pgsql' => 'CREATE TABLE test_string_length (id BIGSERIAL, test_string TEXT, PRIMARY KEY(id))',
             'oracle' => 'CREATE TABLE test_string_length (id NUMBER(20), test_string CLOB, PRIMARY KEY(id))',
             'mssql' => 'CREATE TABLE test_string_length (id INT NOT NULL identity, test_string TEXT NULL, PRIMARY KEY([id]))',
-        );
+        ];
 
         foreach ($drivers as $driver) {
             $dbh = new Doctrine_Adapter_Mock($driver);
 
             $conn = Doctrine_Manager::getInstance()->connection($dbh, $driver);
 
-            list($sql) = $conn->export->exportSortedClassesSql(array('Ticket_2251_TestStringLength'), false);
+            list($sql) = $conn->export->exportSortedClassesSql(['Ticket_2251_TestStringLength'], false);
 
             $this->assertEqual($sql, $expected[$driver]);
 

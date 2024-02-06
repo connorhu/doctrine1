@@ -42,7 +42,7 @@ class Doctrine_Ticket_642_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $this->conn->export->exportClasses(array('stDummyObj'));
+        $this->conn->export->exportClasses(['stDummyObj']);
         $queries = $this->dbh->getAll();
 
         // Default was not being defined, even if notnull was set
@@ -55,9 +55,9 @@ class stDummyObj extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('st_dummy_obj');
-        $this->hasColumn('startDate', 'timestamp', null, array(
+        $this->hasColumn('startDate', 'timestamp', null, [
             'notnull' => true,
             'default' => '0000-00-00 00:00:00',
-        ));
+        ]);
     }
 }

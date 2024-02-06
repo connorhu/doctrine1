@@ -74,6 +74,6 @@ class Model_Product extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('I18n', array('fields' => array('description')));
+        $this->actAs('I18n', ['fields' => ['description']]);
     }
 }

@@ -35,7 +35,7 @@ class Doctrine_Locator implements Countable, IteratorAggregate
     /**
      * @var array an array of bound resources
      */
-    protected $_resources = array();
+    protected $_resources = [];
 
     /**
      * @var string the default class prefix
@@ -45,7 +45,7 @@ class Doctrine_Locator implements Countable, IteratorAggregate
     /**
      * @var array a pool of this object's instances
      */
-    protected static $_instances = array();
+    protected static $_instances = [];
 
     /**
      * Constructor. Provide an array of resources to set initial contents.

@@ -45,7 +45,7 @@ abstract class Doctrine_Pager_Range
      *                                Default is a blank array
      * @param Doctrine_Pager $pager   Optional Doctrine_Pager object to be associated
      */
-    final public function __construct($options = array(), $pager = null)
+    final public function __construct($options = [], $pager = null)
     {
         $this->_setOptions($options);
 

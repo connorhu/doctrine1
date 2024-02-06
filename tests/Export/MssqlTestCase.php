@@ -44,56 +44,56 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
 
     public function testAlterTableName()
     {
-        $this->export->alterTable('user', array(
+        $this->export->alterTable('user', [
             'name' => 'userlist',
-        ));
+        ]);
 
         $this->assertEqual($this->adapter->pop(), "EXECUTE sp_RENAME '[user]', 'userlist';");
     }
 
     public function testAlterTableRename()
     {
-        $this->export->alterTable('user', array(
-            'rename' => array(
-                'sex' => array(
+        $this->export->alterTable('user', [
+            'rename' => [
+                'sex' => [
                     'name' => 'gender',
-                    'definition' => array(
+                    'definition' => [
                         'type' => 'text',
                         'length' => 1,
                         'default' => 'M',
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
 
         $this->assertEqual($this->adapter->pop(), "EXECUTE sp_RENAME '[user].[sex]', 'gender', 'COLUMN';");
     }
 
     public function testAlterTableRemove()
     {
-        $this->export->alterTable('user', array(
-            'remove' => array(
-                'file_limit' => array(),
-                'time_limit' => array(),
-            ),
-        ));
+        $this->export->alterTable('user', [
+            'remove' => [
+                'file_limit' => [],
+                'time_limit' => [],
+            ],
+        ]);
 
         $this->assertEqual($this->adapter->pop(), 'ALTER TABLE user DROP COLUMN file_limit, time_limit;');
     }
 
     public function testAlterTableChange()
     {
-        $this->export->alterTable('user', array(
-            'change' => array(
-                'name' => array(
+        $this->export->alterTable('user', [
+            'change' => [
+                'name' => [
                     'length' => '20',
-                    'definition' => array(
+                    'definition' => [
                         'type' => 'text',
                         'length' => '20',
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
 
         $this->assertEqual($this->adapter->pop(), 'ALTER TABLE user ALTER COLUMN name VARCHAR(20) NULL;');
     }
@@ -101,7 +101,7 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
     public function testAlterTableThrowsExceptionWithoutValidTableName()
     {
         try {
-            $this->export->alterTable(0, array(), array());
+            $this->export->alterTable(0, [], []);
 
             $this->fail();
         } catch (Doctrine_Export_Exception $e) {
@@ -111,24 +111,24 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
 
     public function testAlterTableMultipleColumnAlterationsRequireMultipleAlterTableQueries()
     {
-        $this->export->alterTable('user', array(
-            'change' => array(
-                'name' => array(
+        $this->export->alterTable('user', [
+            'change' => [
+                'name' => [
                     'length' => '20',
-                    'definition' => array(
+                    'definition' => [
                         'type' => 'text',
                         'length' => '20',
-                    ),
-                ),
-                'name2' => array(
+                    ],
+                ],
+                'name2' => [
                     'length' => '20',
-                    'definition' => array(
+                    'definition' => [
                         'type' => 'text',
                         'length' => '20',
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
 
         $this->assertEqual($this->adapter->pop(), 'ALTER TABLE user ALTER COLUMN name VARCHAR(20) NULL; ALTER TABLE user ALTER COLUMN name2 VARCHAR(20) NULL;');
     }
@@ -137,7 +137,7 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
     {
         $name = 'mytable';
 
-        $fields = array('id' => array('type' => 'integer', 'unsigned' => 1));
+        $fields = ['id' => ['type' => 'integer', 'unsigned' => 1]];
 
         $this->export->createTable($name, $fields);
 
@@ -147,10 +147,10 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
     public function testCreateTableSupportsMultiplePks()
     {
         $name = 'mytable';
-        $fields = array('name' => array('type' => 'char', 'length' => 10, 'notnull' => true),
-            'type' => array('type' => 'integer', 'length' => 3, 'notnull' => true));
+        $fields = ['name' => ['type' => 'char', 'length' => 10, 'notnull' => true],
+            'type' => ['type' => 'integer', 'length' => 3, 'notnull' => true]];
 
-        $options = array('primary' => array('name', 'type'));
+        $options = ['primary' => ['name', 'type']];
         $this->export->createTable($name, $fields, $options);
 
         $this->assertEqual($this->adapter->pop(), 'CREATE TABLE mytable (name CHAR(10) NOT NULL, type INT NOT NULL, PRIMARY KEY([name], [type]))');
@@ -160,8 +160,8 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
     {
         $name = 'mytable';
 
-        $fields = array('id' => array('type' => 'integer', 'notnull' => true, 'unsigned' => 1, 'autoincrement' => true));
-        $options = array('primary' => array('id'));
+        $fields = ['id' => ['type' => 'integer', 'notnull' => true, 'unsigned' => 1, 'autoincrement' => true]];
+        $options = ['primary' => ['id']];
 
         $this->export->createTable($name, $fields, $options);
 
@@ -172,13 +172,13 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
     {
         $name = 'mytable';
 
-        $fields = array('id' => array('type' => 'boolean', 'primary' => true, 'notnull' => true),
-            'foreignKey' => array('type' => 'integer'),
-        );
-        $options = array('foreignKeys' => array(array('local' => 'foreignKey',
+        $fields = ['id' => ['type' => 'boolean', 'primary' => true, 'notnull' => true],
+            'foreignKey' => ['type' => 'integer'],
+        ];
+        $options = ['foreignKeys' => [['local' => 'foreignKey',
             'foreign' => 'id',
-            'foreignTable' => 'sometable')),
-        );
+            'foreignTable' => 'sometable']],
+        ];
 
         $sql = $this->export->createTableSql($name, $fields, $options);
 
@@ -210,14 +210,14 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
 
     public function testCreateTableSupportsIndexesUsingSingleFieldString()
     {
-        $fields = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true, 'notnull' => true),
-            'name' => array('type' => 'string', 'length' => 4),
-        );
+        $fields = ['id' => ['type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true, 'notnull' => true],
+            'name' => ['type' => 'string', 'length' => 4],
+        ];
 
-        $options = array('primary' => array('id'),
-            'indexes' => array('myindex' => array(
-                'fields' => array('name'))),
-        );
+        $options = ['primary' => ['id'],
+            'indexes' => ['myindex' => [
+                'fields' => ['name']]],
+        ];
 
         $this->export->createTable('sometable', $fields, $options);
         $this->assertEqual($this->adapter->pop(), 'CREATE INDEX [myindex] ON [sometable] ([name])');
@@ -228,13 +228,13 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
     {
         $name = 'mytable';
 
-        $fields = array('id' => array('type' => 'boolean', 'primary' => true, 'notnull' => true),
-            'lang' => array('type' => 'integer', 'primary' => true, 'notnull' => true),
-        );
-        $options = array('foreignKeys' => array(array('local' => array('id', 'lang'),
-            'foreign' => array('id', 'lang'),
-            'foreignTable' => 'sometable')),
-        );
+        $fields = ['id' => ['type' => 'boolean', 'primary' => true, 'notnull' => true],
+            'lang' => ['type' => 'integer', 'primary' => true, 'notnull' => true],
+        ];
+        $options = ['foreignKeys' => [['local' => ['id', 'lang'],
+            'foreign' => ['id', 'lang'],
+            'foreignTable' => 'sometable']],
+        ];
 
         $sql = $this->export->createTableSql($name, $fields, $options);
 

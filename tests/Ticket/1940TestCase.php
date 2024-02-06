@@ -45,7 +45,7 @@ class Doctrine_Ticket_1940_TestCase extends Doctrine_UnitTestCase
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE, true);
 
         $user = new Ticket_1940_User();
-        $user->fromArray(array('username' => 'jwage', 'password' => 'changeme', 'email_address' => 'jonwage@gmail.com'));
+        $user->fromArray(['username' => 'jwage', 'password' => 'changeme', 'email_address' => 'jonwage@gmail.com']);
 
         $userArray = $user->toArray();
         $this->assertEqual($userArray['username'], 'jwage-modified');

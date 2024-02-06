@@ -36,11 +36,11 @@ class Doctrine_Ticket_1876_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array(
+        $this->tables = [
             'T1876_Recipe',
             'T1876_Company',
             'T1876_RecipeIngredient',
-        );
+        ];
         parent::prepareTables();
     }
 
@@ -101,15 +101,15 @@ class T1876_Recipe extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array('autoincrement' => true, 'primary' => true));
+        $this->hasColumn('id', 'integer', null, ['autoincrement' => true, 'primary' => true]);
         $this->hasColumn('company_id', 'integer', null);
         $this->hasColumn('name', 'string', 255);
     }
 
     public function setUp()
     {
-        $this->hasOne('T1876_Company as Company', array('local' => 'company_id', 'foreign' => 'id'));
-        $this->hasMany('T1876_RecipeIngredient as RecipeIngredients', array('local' => 'id', 'foreign' => 'recipe_id'));
+        $this->hasOne('T1876_Company as Company', ['local' => 'company_id', 'foreign' => 'id']);
+        $this->hasMany('T1876_RecipeIngredient as RecipeIngredients', ['local' => 'id', 'foreign' => 'recipe_id']);
 
         $this->actAs('SoftDelete');
     }
@@ -119,13 +119,13 @@ class T1876_Company extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array('autoincrement' => true, 'primary' => true));
+        $this->hasColumn('id', 'integer', null, ['autoincrement' => true, 'primary' => true]);
         $this->hasColumn('name', 'string', 255);
     }
 
     public function setUp()
     {
-        $this->hasMany('T1876_Recipe as Recipes', array('local' => 'id', 'foreign' => 'company_id'));
+        $this->hasMany('T1876_Recipe as Recipes', ['local' => 'id', 'foreign' => 'company_id']);
 
         $this->actAs('SoftDelete');
     }
@@ -135,14 +135,14 @@ class T1876_RecipeIngredient extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array('autoincrement' => true, 'primary' => true));
+        $this->hasColumn('id', 'integer', null, ['autoincrement' => true, 'primary' => true]);
         $this->hasColumn('recipe_id', 'integer', null);
         $this->hasColumn('name', 'string', 255);
     }
 
     public function setUp()
     {
-        $this->hasOne('T1876_Recipe as Recipe', array('local' => 'recipe_id', 'foreign' => 'id'));
+        $this->hasOne('T1876_Recipe as Recipe', ['local' => 'recipe_id', 'foreign' => 'id']);
 
         $this->actAs('SoftDelete');
     }

@@ -140,12 +140,12 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $coll->add(new User());
         $this->assertTrue($coll->count(), 2);
 
-        $this->assertEqual($coll->getKeys(), array(0, 1));
+        $this->assertEqual($coll->getKeys(), [0, 1]);
 
         $coll[2] = new User();
 
         $this->assertTrue($coll->count(), 3);
-        $this->assertEqual($coll->getKeys(), array(0, 1, 2));
+        $this->assertEqual($coll->getKeys(), [0, 1, 2]);
     }
 
     public function testLoadRelated()

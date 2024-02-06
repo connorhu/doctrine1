@@ -48,7 +48,7 @@ class Doctrine_Search_File_TestCase extends Doctrine_UnitTestCase
     {
         $this->_search = new Doctrine_Search_File();
 
-        $this->conn->export->exportClasses(array('FileIndex'));
+        $this->conn->export->exportClasses(['FileIndex']);
     }
 
     public function testIndexDirectoryIndexesAllFiles()

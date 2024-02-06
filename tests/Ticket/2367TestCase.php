@@ -43,13 +43,13 @@ class Doctrine_Ticket_2367_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         $article = new Ticket_2367_Article();
-        $article->fromArray(array(
-            'Translation' => array(
-                'en' => array(
+        $article->fromArray([
+            'Translation' => [
+                'en' => [
                     'content' => 'article content',
-                ),
-                'fr' => array(
-                    'content' => 'contenu de l\'article'))));
+                ],
+                'fr' => [
+                    'content' => 'contenu de l\'article']]]);
         $article->save();
         $article->delete();
         $check = (bool) Doctrine_Core::getTable('Ticket_2367_ArticleTranslation')->count();
@@ -61,19 +61,19 @@ class Ticket_2367_Article extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 2, array('type' => 'integer', 'primary' => true,
-            'autoincrement' => true, 'unsigned' => true, 'length' => '2'));
-        $this->hasColumn('content', 'string', 100, array('type' => 'string', 'length' => '100'));
+        $this->hasColumn('id', 'integer', 2, ['type' => 'integer', 'primary' => true,
+            'autoincrement' => true, 'unsigned' => true, 'length' => '2']);
+        $this->hasColumn('content', 'string', 100, ['type' => 'string', 'length' => '100']);
 
         $this->option('type', 'MyISAM');
     }
 
     public function setUp()
     {
-        $i18n0 = new Doctrine_Template_I18n(array(
+        $i18n0 = new Doctrine_Template_I18n([
             'appLevelDelete' => true,
-            'fields' => array(
-                0 => 'content')));
+            'fields' => [
+                0 => 'content']]);
         $this->actAs($i18n0);
     }
 }

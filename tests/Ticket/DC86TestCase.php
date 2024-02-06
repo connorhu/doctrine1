@@ -80,7 +80,7 @@ class Ticket_DC86_Test extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('primary', 'notnull'));
+        $this->hasColumn('id', 'integer', 4, ['primary', 'notnull']);
         $this->hasColumn('date', 'timestamp');
     }
 }

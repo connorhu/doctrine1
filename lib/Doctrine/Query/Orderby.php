@@ -36,7 +36,7 @@ class Doctrine_Query_Orderby extends Doctrine_Query_Part
      */
     public function parse($clause, $append = false)
     {
-        $terms = $this->_tokenizer->clauseExplode($clause, array(' ', ',', '+', '-', '*', '/', '<', '>', '=', '>=', '<='));
+        $terms = $this->_tokenizer->clauseExplode($clause, [' ', ',', '+', '-', '*', '/', '<', '>', '=', '>=', '<=']);
         $str = '';
 
         foreach ($terms as $term) {
@@ -46,7 +46,7 @@ class Doctrine_Query_Orderby extends Doctrine_Query_Part
             if (false !== $pos) {
                 $name = substr($term[0], 0, $pos);
 
-                $term[0] = $this->query->parseFunctionExpression($term[0], array($this, 'parse'));
+                $term[0] = $this->query->parseFunctionExpression($term[0], [$this, 'parse']);
             } else {
                 if ("'" !== substr($term[0], 0, 1) && "'" !== substr($term[0], -1)) {
                     if (false !== strpos($term[0], '.')) {

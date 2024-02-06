@@ -60,6 +60,6 @@ class Ticket_1206_BlogPost extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('I18n', array('fields' => array('title', 'body')));
+        $this->actAs('I18n', ['fields' => ['title', 'body']]);
     }
 }

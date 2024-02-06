@@ -36,7 +36,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('SearchTest');
+        $this->tables = ['SearchTest'];
 
         parent::prepareTables();
     }
@@ -97,7 +97,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
             ->where('i.keyword = ?')
         ;
 
-        $array = $q->execute(array('orm'), Doctrine_Core::HYDRATE_ARRAY);
+        $array = $q->execute(['orm'], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual($array[0]['title'], 'Once there was an ORM framework');
 
@@ -109,7 +109,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
             ->where('i.keyword = ?')
         ;
 
-        $array = $q->execute(array('007'), Doctrine_Core::HYDRATE_ARRAY);
+        $array = $q->execute(['007'], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual($array[0]['title'], '007');
     }
@@ -124,7 +124,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
             ->where('i.keyword = ? OR i.keyword = ?')
         ;
 
-        $array = $q->execute(array('orm', 'framework'), Doctrine_Core::HYDRATE_ARRAY);
+        $array = $q->execute(['orm', 'framework'], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual($array[0]['title'], 'Once there was an ORM framework');
     }
@@ -139,7 +139,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
             ->where('i.keyword = ?')
         ;
 
-        $array = $q->execute(array('was'), Doctrine_Core::HYDRATE_ARRAY);
+        $array = $q->execute(['was'], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual(count($array), 0);
     }
@@ -154,7 +154,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
             ->where('i.keyword = ?')
         ;
 
-        $array = $q->execute(array('someunknownword'), Doctrine_Core::HYDRATE_ARRAY);
+        $array = $q->execute(['someunknownword'], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual(count($array), 0);
     }
@@ -227,7 +227,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
 
     public function testUtf8AnalyzerWorks()
     {
-        $analyzer = new Doctrine_Search_Analyzer_Utf8(array('encoding' => 'utf-8'));
+        $analyzer = new Doctrine_Search_Analyzer_Utf8(['encoding' => 'utf-8']);
 
         $words = $analyzer->analyze('un Éléphant ça trompe énormément');
         $this->assertEqual($words[1], 'éléphant');

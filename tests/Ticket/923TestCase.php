@@ -73,8 +73,8 @@ class Doctrine_Ticket_923_TestCase extends Doctrine_UnitTestCase
             $q = new Doctrine_Query();
             $result = $q->select('d.*')
                 ->from('T923_Diagnostic d')
-                ->where('d.diag_timestamp >= ? AND d.diag_timestamp <= ?', array('2008-03-27 00:00:00', '2008-03-27 23:00:00'))
-                ->addWhere('d.id_type = ?', array('101'))
+                ->where('d.diag_timestamp >= ? AND d.diag_timestamp <= ?', ['2008-03-27 00:00:00', '2008-03-27 23:00:00'])
+                ->addWhere('d.id_type = ?', ['101'])
                 ->orderBy('d.diag_timestamp')
                 ->limit(20)
                 ->offset(0)

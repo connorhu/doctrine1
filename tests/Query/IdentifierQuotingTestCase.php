@@ -39,7 +39,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('Entity', 'Phonenumber');
+        $this->tables = ['Entity', 'Phonenumber'];
 
         parent::prepareTables();
     }

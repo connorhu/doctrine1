@@ -88,7 +88,7 @@ class Ticket_2105_Article extends Doctrine_Record
 
     public function setUp()
     {
-        $i18n = new Doctrine_Template_I18n(array('fields' => array(0 => 'name')));
+        $i18n = new Doctrine_Template_I18n(['fields' => [0 => 'name']]);
         $this->actAs($i18n);
     }
 }

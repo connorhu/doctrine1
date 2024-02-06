@@ -43,7 +43,7 @@ class Doctrine_Ticket_927_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Email';
 
         parent::prepareTables();

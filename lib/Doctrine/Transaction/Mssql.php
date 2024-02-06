@@ -44,7 +44,7 @@ class Doctrine_Transaction_Mssql extends Doctrine_Transaction
      * @throws PDOException                   if something fails at the PDO level
      * @throws Doctrine_Transaction_Exception if using unknown isolation level or unknown wait option
      */
-    public function setIsolation($isolation, $options = array())
+    public function setIsolation($isolation, $options = [])
     {
         switch ($isolation) {
             case 'READ UNCOMMITTED':

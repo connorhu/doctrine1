@@ -68,12 +68,12 @@ class Ticket_DC825_Model extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('model_id as id', 'integer', null, array(
+        $this->hasColumn('model_id as id', 'integer', null, [
             'type' => 'integer',
             'unsigned' => false,
             'primary' => true,
             'autoincrement' => true,
-        ));
+        ]);
         $this->hasColumn('username', 'string', 255);
         $this->hasColumn('password', 'string', 255);
     }
@@ -82,9 +82,9 @@ class Ticket_DC825_Model extends Doctrine_Record
     {
         $this->actAs('Timestampable');
         $this->actAs('SoftDelete');
-        $this->actAs('Versionable', array(
+        $this->actAs('Versionable', [
             'auditLog' => true,
             'generateRelations' => false,
-            'deleteVersions' => false));
+            'deleteVersions' => false]);
     }
 }

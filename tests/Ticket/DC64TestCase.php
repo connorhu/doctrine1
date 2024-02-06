@@ -72,10 +72,10 @@ class Ticket_DC64_Article extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('Sluggable', array(
-            'provider' => array($this, 'provideSlug'),
-            'builder' => array($this, 'formatSlug'),
-        ));
+        $this->actAs('Sluggable', [
+            'provider' => [$this, 'provideSlug'],
+            'builder' => [$this, 'formatSlug'],
+        ]);
     }
 
     public function __toString()

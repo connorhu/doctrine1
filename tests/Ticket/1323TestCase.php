@@ -9,7 +9,7 @@ class Doctrine_Ticket_1323_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'T1323User';
         $this->tables[] = 'T1323UserReference';
         parent::prepareTables();
@@ -166,17 +166,17 @@ class T1323User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('T1323User as Parents', array('local' => 'child_id',
+        $this->hasMany('T1323User as Parents', ['local' => 'child_id',
             'foreign' => 'parent_id',
             'refClass' => 'T1323UserReference',
             'refClassRelationAlias' => 'childLinks',
-        ));
+        ]);
 
-        $this->hasMany('T1323User as Children', array('local' => 'parent_id',
+        $this->hasMany('T1323User as Children', ['local' => 'parent_id',
             'foreign' => 'child_id',
             'refClass' => 'T1323UserReference',
             'refClassRelationAlias' => 'parentLinks',
-        ));
+        ]);
     }
 
     /**
@@ -224,7 +224,7 @@ class T1323UserReference extends Doctrine_Record
     public function setTableDefinition()
     {
         // $this->hasColumn('id', 'integer', null, array('primary' => true, 'autoincrement' => true));
-        $this->hasColumn('parent_id', 'integer', null, array('primary' => true));
-        $this->hasColumn('child_id', 'integer', null, array('primary' => true));
+        $this->hasColumn('parent_id', 'integer', null, ['primary' => true]);
+        $this->hasColumn('child_id', 'integer', null, ['primary' => true]);
     }
 }

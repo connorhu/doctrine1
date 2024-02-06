@@ -63,7 +63,7 @@ class Ticket_1540_TableName extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', 4, ['primary' => true, 'autoincrement' => true]);
     }
 
     public function setUp()

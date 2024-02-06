@@ -40,7 +40,7 @@ class Doctrine_Ticket_1028_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('I18nRelationTest', 'I18nAuthorTest');
+        $this->tables = ['I18nRelationTest', 'I18nAuthorTest'];
 
         parent::prepareTables();
     }

@@ -5,7 +5,7 @@ class Cms_CategoryLanguages extends Doctrine_Record
     public function setUp()
     {
         $this->setAttribute(Doctrine_Core::ATTR_COLL_KEY, 'language_id');
-        $this->hasOne('Cms_Category as category', array('local' => 'category_id', 'foreign' => 'id', 'onDelete' => 'CASCADE'));
+        $this->hasOne('Cms_Category as category', ['local' => 'category_id', 'foreign' => 'id', 'onDelete' => 'CASCADE']);
     }
 
     public function setTableDefinition()
@@ -16,7 +16,7 @@ class Cms_CategoryLanguages extends Doctrine_Record
         $this->option('collate', 'utf8_unicode_ci');
         $this->option('charset', 'utf8');
         $this->option('type', 'INNODB');
-        $this->index('index_category', array('fields' => array('category_id')));
-        $this->index('index_language', array('fields' => array('language_id')));
+        $this->index('index_category', ['fields' => ['category_id']]);
+        $this->index('index_language', ['fields' => ['language_id']]);
     }
 }

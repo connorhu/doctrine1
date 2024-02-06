@@ -40,7 +40,7 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
 
         parent::prepareTables();
     }
@@ -53,7 +53,7 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_CONSTRAINTS);
         $this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_PLUGINS);
 
-        $sql = $this->conn->export->exportClassesSql(array('I18nTest'));
+        $sql = $this->conn->export->exportClassesSql(['I18nTest']);
 
         foreach ($sql as $query) {
             $this->conn->exec($query);
@@ -113,7 +113,7 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
 
     public function testDataFetching()
     {
-        $i = Doctrine_Query::create()->from('I18nTest i')->innerJoin('i.Translation t INDEXBY t.lang')->orderby('t.lang')->fetchOne(array(), Doctrine_Core::HYDRATE_ARRAY);
+        $i = Doctrine_Query::create()->from('I18nTest i')->innerJoin('i.Translation t INDEXBY t.lang')->orderby('t.lang')->fetchOne([], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual($i['Translation']['EN']['name'], 'updated name');
         $this->assertEqual($i['Translation']['EN']['title'], 'updated title');

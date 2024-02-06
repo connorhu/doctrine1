@@ -65,16 +65,16 @@ END;
         // this is almost an end-to-end testing :-)
         $models = Doctrine_Core::loadModels($path, Doctrine_Core::MODEL_LOADING_CONSERVATIVE);
 
-        $sql = $this->conn->export->exportSortedClassesSql(array('WikiTest'));
+        $sql = $this->conn->export->exportSortedClassesSql(['WikiTest']);
         $sql = current($sql);
 
-        $result = array(
+        $result = [
             0 => 'CREATE TABLE wiki_test_translation_version (id INTEGER, lang CHAR(2), title VARCHAR(255), content TEXT, version INTEGER, PRIMARY KEY(id, lang, version))',
             1 => 'CREATE TABLE wiki_test_translation_index (keyword VARCHAR(200), field VARCHAR(50), position INTEGER, id INTEGER, lang CHAR(2), PRIMARY KEY(keyword, field, position, id, lang))',
             2 => 'CREATE TABLE wiki_test_translation (id INTEGER, title VARCHAR(255), content TEXT, lang CHAR(2), version INTEGER, slug VARCHAR(255), PRIMARY KEY(id, lang))',
             3 => 'CREATE TABLE wiki_test (id INTEGER PRIMARY KEY AUTOINCREMENT)',
             4 => 'CREATE UNIQUE INDEX wiki_test_translation_sluggable_idx ON wiki_test_translation (slug)',
-        );
+        ];
 
         foreach ($sql as $idx => $req) {
             $this->assertEqual($req, $result[$idx]);

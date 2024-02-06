@@ -32,7 +32,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('User');
+        $this->tables = ['User'];
         parent::prepareTables();
     }
 
@@ -58,7 +58,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
         for ($i = 0; $i < 10; ++$i) {
             $u = Doctrine_Query::create()
                 ->from('User u')
-                ->addWhere('u.name = ?', array('Hans'))
+                ->addWhere('u.name = ?', ['Hans'])
                 ->useResultCache($cache, 3600, 'hans_query')
                 ->execute()
             ;

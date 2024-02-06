@@ -36,7 +36,7 @@ class Doctrine_Ticket_1653_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Ticket_1653_User';
         $this->tables[] = 'Ticket_1653_Email';
         parent::prepareTables();
@@ -91,9 +91,9 @@ class Ticket_1653_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1653_Email as emails', array('local' => 'id',
+        $this->hasMany('Ticket_1653_Email as emails', ['local' => 'id',
             'foreign' => 'user_id',
-            'cascade' => array('delete')));
+            'cascade' => ['delete']]);
     }
 
     protected function validate()
@@ -111,13 +111,13 @@ class Ticket_1653_Email extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('user_id', 'integer');
-        $this->hasColumn('address', 'string', 255, array('notnull' => true));
+        $this->hasColumn('address', 'string', 255, ['notnull' => true]);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1653_User as user', array('local' => 'user_id',
+        $this->hasOne('Ticket_1653_User as user', ['local' => 'user_id',
             'foreign' => 'id',
-            'cascade' => array('delete')));
+            'cascade' => ['delete']]);
     }
 }

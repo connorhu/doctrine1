@@ -38,9 +38,9 @@ class Doctrine_Query_TestCase extends Doctrine_UnitTestCase
     {
         $q = Doctrine_Query::create()
             ->from('User u')
-            ->where('u.id IN ?', array(array(1, 2, 3)))
-            ->whereNotIn('u.name', array('', 'a'))
-            ->addWhere('u.id NOT IN ?', array(array(4, 5, 6, 7)))
+            ->where('u.id IN ?', [[1, 2, 3]])
+            ->whereNotIn('u.name', ['', 'a'])
+            ->addWhere('u.id NOT IN ?', [[4, 5, 6, 7]])
         ;
 
         $this->assertEqual(
@@ -53,7 +53,7 @@ class Doctrine_Query_TestCase extends Doctrine_UnitTestCase
     {
         $q = Doctrine_Query::create()
             ->from('User u')
-            ->where('u.id IN ?', array(1))
+            ->where('u.id IN ?', [1])
         ;
 
         $this->assertEqual(
@@ -187,7 +187,7 @@ class Doctrine_Query_TestCase extends Doctrine_UnitTestCase
             ->where('u.id = ?', $id)
         ;
 
-        $users = $query->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+        $users = $query->execute([], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertTrue(array_key_exists('summ', $users[0]));
     }
@@ -230,8 +230,8 @@ class Doctrine_Query_TestCase extends Doctrine_UnitTestCase
             'WHERE (e.name = ? OR e.loginname = ? AND (e.type = 0))'
         );
 
-        $items1 = $q1->execute(array('zYne', 'jwage'), Doctrine_Core::HYDRATE_ARRAY);
-        $items2 = $q2->execute(array('zYne', 'jwage'), Doctrine_Core::HYDRATE_ARRAY);
+        $items1 = $q1->execute(['zYne', 'jwage'], Doctrine_Core::HYDRATE_ARRAY);
+        $items2 = $q2->execute(['zYne', 'jwage'], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual(count($items1), count($items2));
 
@@ -263,8 +263,8 @@ class Doctrine_Query_TestCase extends Doctrine_UnitTestCase
             'WHERE (e.name = ? AND e.loginname = ? OR e.id = ? AND (e.type = 0))'
         );
 
-        $items1 = $q1->execute(array('jon', 'jwage', 4), Doctrine_Core::HYDRATE_ARRAY);
-        $items2 = $q2->execute(array('jon', 'jwage', 4), Doctrine_Core::HYDRATE_ARRAY);
+        $items1 = $q1->execute(['jon', 'jwage', 4], Doctrine_Core::HYDRATE_ARRAY);
+        $items2 = $q2->execute(['jon', 'jwage', 4], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual(count($items1), count($items2));
 
@@ -298,8 +298,8 @@ class Doctrine_Query_TestCase extends Doctrine_UnitTestCase
             "WHERE (e.name = 'jon' AND e.loginname = 'jwage' OR e.id = 4 OR e.id = 5 AND e.name LIKE 'Arnold%' AND (e.type = 0))"
         );
 
-        $items1 = $q1->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
-        $items2 = $q2->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+        $items1 = $q1->execute([], Doctrine_Core::HYDRATE_ARRAY);
+        $items2 = $q2->execute([], Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual(count($items1), count($items2));
 

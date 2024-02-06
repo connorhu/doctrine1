@@ -54,7 +54,7 @@ class Doctrine_Export_Record_TestCase extends Doctrine_UnitTestCase
 
     public function testExportSupportsForeignKeys()
     {
-        $sql = $this->conn->export->exportClassesSql(array('ForeignKeyTest'));
+        $sql = $this->conn->export->exportClassesSql(['ForeignKeyTest']);
 
         $this->assertEqual($sql[0], 'CREATE TABLE foreign_key_test (id BIGINT AUTO_INCREMENT, name TEXT, code INT, content TEXT, parent_id BIGINT, INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB');
         if (isset($sql[1])) {
@@ -66,21 +66,21 @@ class Doctrine_Export_Record_TestCase extends Doctrine_UnitTestCase
 
     public function testExportSupportsIndexes()
     {
-        $sql = $this->conn->export->exportClassesSql(array('MysqlIndexTestRecord'));
+        $sql = $this->conn->export->exportClassesSql(['MysqlIndexTestRecord']);
 
         $this->assertEqual($sql[0], 'CREATE TABLE mysql_index_test_record (id BIGINT AUTO_INCREMENT, name TEXT, code INT, content TEXT, FULLTEXT INDEX content_idx (content), UNIQUE INDEX namecode_idx (name, code), PRIMARY KEY(id)) ENGINE = MYISAM');
     }
 
     public function testRecordDefinitionsSupportTableOptions()
     {
-        $sql = $this->conn->export->exportClassesSql(array('MysqlTestRecord'));
+        $sql = $this->conn->export->exportClassesSql(['MysqlTestRecord']);
 
         $this->assertEqual($sql[0], 'CREATE TABLE mysql_test_record (name TEXT, code BIGINT, PRIMARY KEY(name, code)) ENGINE = INNODB');
     }
 
     public function testExportSupportsForeignKeysWithoutAttributes()
     {
-        $sql = $this->conn->export->exportClassesSql(array('ForeignKeyTest'));
+        $sql = $this->conn->export->exportClassesSql(['ForeignKeyTest']);
 
         $this->assertEqual($sql[0], 'CREATE TABLE foreign_key_test (id BIGINT AUTO_INCREMENT, name TEXT, code INT, content TEXT, parent_id BIGINT, INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB');
         if (isset($sql[1])) {
@@ -92,11 +92,11 @@ class Doctrine_Export_Record_TestCase extends Doctrine_UnitTestCase
 
     public function testExportSupportsForeignKeysForManyToManyRelations()
     {
-        $sql = $this->conn->export->exportClassesSql(array('MysqlUser'));
+        $sql = $this->conn->export->exportClassesSql(['MysqlUser']);
 
         $this->assertEqual($sql[0], 'CREATE TABLE mysql_user (id BIGINT AUTO_INCREMENT, name TEXT, PRIMARY KEY(id)) ENGINE = INNODB');
 
-        $sql = $this->conn->export->exportClassesSql(array('MysqlGroup'));
+        $sql = $this->conn->export->exportClassesSql(['MysqlGroup']);
 
         $this->assertEqual($sql[0], 'CREATE TABLE mysql_group (id BIGINT AUTO_INCREMENT, name TEXT, PRIMARY KEY(id)) ENGINE = INNODB');
     }

@@ -77,9 +77,9 @@ class EnumUpdateBug extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('enumupdatebug');
-        $this->hasColumn('id', 'integer', 3, array('autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true));
-        $this->hasColumn('bla_id', 'integer', 2, array('unsigned' => true));
-        $this->hasColumn('separator', 'enum', 1, array('values' => array(0 => 'comma',   1 => 'pipe')));
+        $this->hasColumn('id', 'integer', 3, ['autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true]);
+        $this->hasColumn('bla_id', 'integer', 2, ['unsigned' => true]);
+        $this->hasColumn('separator', 'enum', 1, ['values' => [0 => 'comma',   1 => 'pipe']]);
     }
 
     public function setUp()

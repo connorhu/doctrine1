@@ -63,14 +63,14 @@ class T904_Section extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
-        $this->hasColumn('title', 'string', 60, array('notnull' => true));
+        $this->hasColumn('id', 'integer', 4, ['primary' => true, 'autoincrement' => true]);
+        $this->hasColumn('title', 'string', 60, ['notnull' => true]);
         $this->hasColumn('summary', 'string', 255);
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('I18n', array('fields' => array(0 => 'title',   1 => 'summary'), 'className' => '%CLASS%_i18n'));
+        $this->actAs('I18n', ['fields' => [0 => 'title',   1 => 'summary'], 'className' => '%CLASS%_i18n']);
     }
 }

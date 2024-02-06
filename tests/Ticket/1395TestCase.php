@@ -36,7 +36,7 @@ class Doctrine_Ticket_1395_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'T1395_MyModel';
         parent::prepareTables();
     }
@@ -66,7 +66,7 @@ class T1395_MyModel extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('primary' => true, 'notnull' => true));
+        $this->hasColumn('id', 'integer', 4, ['primary' => true, 'notnull' => true]);
         $this->hasColumn('dt_created', 'date');
     }
 

@@ -52,7 +52,7 @@ class Doctrine_Ticket_DC317_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($page->topic, 'my-topic');
 
-        $tree = $tree->fetchTree(array('root_id' => 'my-topic'));
+        $tree = $tree->fetchTree(['root_id' => 'my-topic']);
         $this->assertTrue($tree instanceof Doctrine_Collection);
     }
 }
@@ -61,16 +61,16 @@ class Ticket_DC317_Page extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('topic', 'string', 32, array(
+        $this->hasColumn('topic', 'string', 32, [
             'type' => 'string',
             'notnull' => true,
             'length' => '32',
-        ));
-        $this->hasColumn('title', 'string', 255, array(
+        ]);
+        $this->hasColumn('title', 'string', 255, [
             'type' => 'string',
             'notnull' => true,
             'length' => '255',
-        ));
+        ]);
 
         $this->option('type', 'InnoDB');
         $this->option('collate', 'utf8_unicode_ci');
@@ -79,10 +79,10 @@ class Ticket_DC317_Page extends Doctrine_Record
 
     public function setUp()
     {
-        $nestedset0 = new Doctrine_Template_NestedSet(array(
+        $nestedset0 = new Doctrine_Template_NestedSet([
             'hasManyRoots' => true,
             'rootColumnName' => 'topic',
-        ));
+        ]);
         $this->actAs($nestedset0);
     }
 }

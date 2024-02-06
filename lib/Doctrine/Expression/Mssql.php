@@ -119,7 +119,7 @@ class Doctrine_Expression_Mssql extends Doctrine_Expression_Driver
     public function date_part($datepart, $date)
     {
         // remove ' and " from datepart for dblib
-        $datepart = str_replace(array('\'', '"'), '', $datepart);
+        $datepart = str_replace(['\'', '"'], '', $datepart);
 
         return 'DATEPART('.$datepart.', '.$date.')';
     }

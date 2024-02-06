@@ -13,10 +13,10 @@ class Group extends Entity
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('User', array(
+        $this->hasMany('User', [
             'local' => 'group_id',
             'foreign' => 'user_id',
             'refClass' => 'Groupuser',
-        ));
+        ]);
     }
 }

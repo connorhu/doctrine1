@@ -172,13 +172,13 @@ class RelA extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('rel_a');
-        $this->hasColumn('name', 'string', 25, array());
-        $this->hasColumn('rel_b_id', 'integer', 10, array());
+        $this->hasColumn('name', 'string', 25, []);
+        $this->hasColumn('rel_b_id', 'integer', 10, []);
     }
 
     public function setUp()
     {
-        $this->HasOne('RelB as b', array('local' => 'rel_b_id', 'foreign' => 'id'));
+        $this->HasOne('RelB as b', ['local' => 'rel_b_id', 'foreign' => 'id']);
     }
 }
 
@@ -187,13 +187,13 @@ class RelB extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('rel_b');
-        $this->hasColumn('name', 'string', 25, array());
-        $this->hasColumn('rel_c_id', 'integer', 10, array());
+        $this->hasColumn('name', 'string', 25, []);
+        $this->hasColumn('rel_c_id', 'integer', 10, []);
     }
 
     public function setUp()
     {
-        $this->HasOne('RelC as c', array('local' => 'rel_c_id', 'foreign' => 'id'));
+        $this->HasOne('RelC as c', ['local' => 'rel_c_id', 'foreign' => 'id']);
     }
 }
 
@@ -202,13 +202,13 @@ class RelC extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('rel_c');
-        $this->hasColumn('name', 'string', 25, array());
-        $this->hasColumn('rel_d_id', 'integer', 10, array());
+        $this->hasColumn('name', 'string', 25, []);
+        $this->hasColumn('rel_d_id', 'integer', 10, []);
     }
 
     public function setUp()
     {
-        $this->HasOne('RelD as d', array('local' => 'rel_d_id', 'foreign' => 'id'));
+        $this->HasOne('RelD as d', ['local' => 'rel_d_id', 'foreign' => 'id']);
     }
 }
 
@@ -217,13 +217,13 @@ class RelD extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('rel_d');
-        $this->hasColumn('name', 'string', 25, array());
-        $this->hasColumn('rel_e_id', 'integer', 10, array());
+        $this->hasColumn('name', 'string', 25, []);
+        $this->hasColumn('rel_e_id', 'integer', 10, []);
     }
 
     public function setUp()
     {
-        $this->HasOne('RelE as e', array('local' => 'rel_e_id', 'foreign' => 'id'));
+        $this->HasOne('RelE as e', ['local' => 'rel_e_id', 'foreign' => 'id']);
     }
 }
 
@@ -232,7 +232,7 @@ class RelE extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('rel_e');
-        $this->hasColumn('name', 'string', 25, array());
+        $this->hasColumn('name', 'string', 25, []);
     }
 
     public function setUp()

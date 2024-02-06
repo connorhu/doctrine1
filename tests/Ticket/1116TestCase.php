@@ -42,7 +42,7 @@ class Doctrine_Ticket_1116_TestCase extends Doctrine_UnitTestCase
         // $this->dbh = new PDO("mysql:host=localhost;dbname=testing", 'root', 'password');
 
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh);
-        $this->conn->export->exportClasses(array('Ticket_1116_User'));
+        $this->conn->export->exportClasses(['Ticket_1116_User']);
     }
 
     public function testTicket()
@@ -51,7 +51,7 @@ class Doctrine_Ticket_1116_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
         $q->select('s.*')
             ->from('Ticket_1116_User s')
-            ->where('s.username = ?', array('test'))
+            ->where('s.username = ?', ['test'])
         ;
 
         // to see the error switch dbh to a real db, the next line will trigger the error
@@ -63,7 +63,7 @@ class Doctrine_Ticket_1116_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(count($params), 1); // now we have array('test',null) very strange .....
 
         $this->assertEqual($sql, 'SELECT u.id AS u__id, u.username AS u__username, u.deleted_at AS u__deleted_at FROM user u WHERE (u.username = ? AND (u.deleted_at IS NULL))');
-        $this->assertEqual($params, array('test'));
+        $this->assertEqual($params, ['test']);
 
         // now also this works! (always works witch mock only fails with mysql)
         $test = $q->fetchOne();
@@ -77,7 +77,7 @@ class Ticket_1116_User extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('user');
-        $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', 4, ['primary' => true, 'autoincrement' => true]);
         $this->hasColumn('username', 'string', 255);
     }
 

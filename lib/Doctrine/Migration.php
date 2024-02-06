@@ -33,13 +33,13 @@ class Doctrine_Migration
     protected $_migrationTableName = 'migration_version';
     protected $_migrationTableCreated = false;
     protected $_connection;
-    protected $_migrationClassesDirectory = array();
-    protected $_migrationClasses = array();
+    protected $_migrationClassesDirectory = [];
+    protected $_migrationClasses = [];
     protected $_reflectionClass;
-    protected $_errors = array();
+    protected $_errors = [];
     protected $_process;
 
-    protected static $_migrationClassesForDirectories = array();
+    protected static $_migrationClassesForDirectories = [];
 
     /**
      * Specify the path to the directory with the migration classes.
@@ -126,7 +126,7 @@ class Doctrine_Migration
     {
         $directory = $directory ? $directory : $this->_migrationClassesDirectory;
 
-        $classesToLoad = array();
+        $classesToLoad = [];
         $classes = get_declared_classes();
         foreach ((array) $directory as $dir) {
             $it = new RecursiveIteratorIterator(
@@ -152,7 +152,7 @@ class Doctrine_Migration
                         $e = explode('_', $file->getFileName());
                         $timestamp = $e[0];
 
-                        $classesToLoad[$timestamp] = array('className' => $className, 'path' => $file->getPathName());
+                        $classesToLoad[$timestamp] = ['className' => $className, 'path' => $file->getPathName()];
                     }
                 }
             }
@@ -386,7 +386,7 @@ class Doctrine_Migration
      */
     public function clearErrors()
     {
-        $this->_errors = array();
+        $this->_errors = [];
     }
 
     /**
@@ -431,7 +431,7 @@ class Doctrine_Migration
      */
     protected function _throwErrorsException()
     {
-        $messages = array();
+        $messages = [];
         $num = 0;
         foreach ($this->getErrors() as $error) {
             ++$num;
@@ -540,7 +540,7 @@ class Doctrine_Migration
         $this->_migrationTableCreated = true;
 
         try {
-            $this->_connection->export->createTable($this->_migrationTableName, array('version' => array('type' => 'integer', 'size' => 11)));
+            $this->_connection->export->createTable($this->_migrationTableName, ['version' => ['type' => 'integer', 'size' => 11]]);
 
             return true;
         } catch (Exception $e) {

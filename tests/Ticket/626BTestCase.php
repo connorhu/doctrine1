@@ -21,7 +21,7 @@ class Doctrine_Ticket_626B_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('T626_Group', 'T626B_Student', 'T626_Course', 'T626B_StudentCourse');
+        $this->tables = ['T626_Group', 'T626B_Student', 'T626_Course', 'T626B_StudentCourse'];
         parent::prepareTables();
     }
 
@@ -98,15 +98,15 @@ class T626B_Student extends Doctrine_Record
     {
         $this->setTableName('T626B_Student_record');
 
-        $this->hasColumn('s_id as id', 'varchar', 30, array('primary' => true));
-        $this->hasColumn('s_g_id as group_id', 'varchar', 30, array('notnull' => true));
-        $this->hasColumn('s_name as name', 'varchar', 50, array());
+        $this->hasColumn('s_id as id', 'varchar', 30, ['primary' => true]);
+        $this->hasColumn('s_g_id as group_id', 'varchar', 30, ['notnull' => true]);
+        $this->hasColumn('s_name as name', 'varchar', 50, []);
     }
 
     public function setUp()
     {
-        $this->hasMany('T626_Course as StudyCourses', array('refClass' => 'T626B_StudentCourse', 'local' => 'sc_student_id', 'foreign' => 'sc_course_id'));
-        $this->hasOne('T626_Group as Group', array('local' => 's_g_id', 'foreign' => 'g_id'));
+        $this->hasMany('T626_Course as StudyCourses', ['refClass' => 'T626B_StudentCourse', 'local' => 'sc_student_id', 'foreign' => 'sc_course_id']);
+        $this->hasOne('T626_Group as Group', ['local' => 's_g_id', 'foreign' => 'g_id']);
     }
 }
 
@@ -116,15 +116,15 @@ class T626_Group extends Doctrine_Record
     {
         $this->setTableName('T626B_Student_group');
 
-        $this->hasColumn('g_id as id', 'varchar', 30, array('primary' => true));
-        $this->hasColumn('g_name as name', 'varchar', 50, array());
+        $this->hasColumn('g_id as id', 'varchar', 30, ['primary' => true]);
+        $this->hasColumn('g_name as name', 'varchar', 50, []);
     }
 
     public function setUp()
     {
         $this->hasMany(
             'T626B_Student as Students',
-            array('local' => 'g_id', 'foreign' => 's_id')
+            ['local' => 'g_id', 'foreign' => 's_id']
         );
     }
 }
@@ -135,13 +135,13 @@ class T626_Course extends Doctrine_Record
     {
         $this->setTableName('T626_course');
 
-        $this->hasColumn('c_id as id', 'varchar', 20, array('primary' => true));
-        $this->hasColumn('c_name as name', 'varchar', 50, array());
+        $this->hasColumn('c_id as id', 'varchar', 20, ['primary' => true]);
+        $this->hasColumn('c_name as name', 'varchar', 50, []);
     }
 
     public function setUp()
     {
-        $this->hasMany('T626B_Student as Students', array('refClass' => 'T626B_StudentCourse', 'local' => 'sc_course_id', 'foreign' => 'sc_student_id'));
+        $this->hasMany('T626B_Student as Students', ['refClass' => 'T626B_StudentCourse', 'local' => 'sc_course_id', 'foreign' => 'sc_student_id']);
     }
 }
 
@@ -151,14 +151,14 @@ class T626B_StudentCourse extends Doctrine_Record
     {
         $this->setTableName('T626B_Student_course');
 
-        $this->hasColumn('sc_student_id as student_id', 'varchar', 30, array('primary' => true));
-        $this->hasColumn('sc_course_id as course_id', 'varchar', 20, array('primary' => true));
-        $this->hasColumn('sc_remark  as remark', 'varchar', 500, array());
+        $this->hasColumn('sc_student_id as student_id', 'varchar', 30, ['primary' => true]);
+        $this->hasColumn('sc_course_id as course_id', 'varchar', 20, ['primary' => true]);
+        $this->hasColumn('sc_remark  as remark', 'varchar', 500, []);
     }
 
     public function setUp()
     {
-        $this->hasOne('T626B_Student as Student', array('local' => 'sc_student_id', 'foreign' => 's_id'));
-        $this->hasOne('T626_Course as Course', array('local' => 'sc_course_id', 'foreign' => 'c_id'));
+        $this->hasOne('T626B_Student as Student', ['local' => 'sc_student_id', 'foreign' => 's_id']);
+        $this->hasOne('T626_Course as Course', ['local' => 'sc_course_id', 'foreign' => 'c_id']);
     }
 }

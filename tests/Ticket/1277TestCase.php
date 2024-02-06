@@ -36,7 +36,7 @@ class Doctrine_Ticket_1277_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('T1277_User');
+        $this->tables = ['T1277_User'];
         parent::prepareTables();
     }
 
@@ -205,25 +205,25 @@ class T1277_User extends Doctrine_Record
     {
         $this->setTableName('t1277_users');
 
-        $this->hasColumns(array(
-            'id' => array(
+        $this->hasColumns([
+            'id' => [
                 'type' => 'integer',
                 'length' => 4,
                 'notnull' => true,
                 'autoincrement' => true,
                 'primary' => true,
-            ),
+            ],
 
-            'username' => array(
+            'username' => [
                 'type' => 'string',
                 'length' => 50,
-            ),
+            ],
 
-            'email' => array(
+            'email' => [
                 'type' => 'string',
                 'length' => 50,
                 'default' => null,
-            ),
-        ));
+            ],
+        ]);
     }
 }

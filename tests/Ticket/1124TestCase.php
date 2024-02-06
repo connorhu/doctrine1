@@ -15,7 +15,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Ticket_1124_Record';
 
         parent::prepareTables();
@@ -166,7 +166,7 @@ class Ticket_1124_Record extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('emb1_record');
-        $this->hasColumn('id', 'integer', 15, array('autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true));
+        $this->hasColumn('id', 'integer', 15, ['autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true]);
         $this->hasColumn('no_alias', 'integer', 4);	// column with no aliasing
         $this->hasColumn('disjoint_alias as somethingElse', 'integer', 4);	// column whose alias has no relation to the column itself
         $this->hasColumn('tableized_alias as tableizedAlias', 'integer', 4);	// column whose alias' tableized form is equivalent to the column name itself

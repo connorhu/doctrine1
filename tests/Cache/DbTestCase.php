@@ -40,10 +40,10 @@ class Doctrine_Cache_Db_TestCase extends Doctrine_Cache_Abstract_TestCase
     {
         parent::setUp();
 
-        $this->cache = new Doctrine_Cache_Db(array(
+        $this->cache = new Doctrine_Cache_Db([
             'connection' => $this->connection,
             'tableName' => 'd_cache',
-        ));
+        ]);
         $this->connection->exec('DROP TABLE IF EXISTS d_cache');
         $this->cache->createTable();
     }
@@ -78,7 +78,7 @@ class Doctrine_Cache_Db_TestCase extends Doctrine_Cache_Abstract_TestCase
         for ($i = 0; $i < 10; ++$i) {
             $u = Doctrine_Query::create()
                 ->from('User u')
-                ->addWhere('u.name = ?', array('Hans'))
+                ->addWhere('u.name = ?', ['Hans'])
                 ->useResultCache($cache, 3600, 'hans_query')
                 ->execute()
             ;

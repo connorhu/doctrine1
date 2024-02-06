@@ -93,7 +93,7 @@ class Doctrine_Pager
      *
      * @param $params Optional parameters to Doctrine_Query::execute
      */
-    protected function _initialize($params = array())
+    protected function _initialize($params = [])
     {
         // retrieve the number of items found
         $countQuery = $this->getCountQuery();
@@ -158,7 +158,7 @@ class Doctrine_Pager
      *                                          Default is a blank array
      * @return Doctrine_Pager_Range Pager Range
      */
-    public function getRange($rangeStyle, $options = array())
+    public function getRange($rangeStyle, $options = [])
     {
         $class = 'Doctrine_Pager_Range_'.ucfirst($rangeStyle);
 
@@ -475,7 +475,7 @@ class Doctrine_Pager
      *
      * @return array Doctrine_Query counter params
      */
-    public function getCountQueryParams($defaultParams = array())
+    public function getCountQueryParams($defaultParams = [])
     {
         return (null !== $this->_countQueryParams) ? $this->_countQueryParams : $defaultParams;
     }
@@ -489,13 +489,13 @@ class Doctrine_Pager
      *                    If not defined, the params passed to execute method will be used.
      * @param bool     optional argument that append the query param instead of overriding the existent ones
      */
-    public function setCountQueryParams($params = array(), $append = false)
+    public function setCountQueryParams($params = [], $append = false)
     {
         if ($append && is_array($this->_countQueryParams)) {
             $this->_countQueryParams = array_merge($this->_countQueryParams, $params);
         } else {
             if (null !== $params && !is_array($params)) {
-                $params = array($params);
+                $params = [$params];
             }
 
             $this->_countQueryParams = $params;
@@ -513,7 +513,7 @@ class Doctrine_Pager
      * @param                      $hydrationMode Hydration Mode of Doctrine_Query::execute returned ResultSet
      * @return Doctrine_Collection The root collection
      */
-    public function execute($params = array(), $hydrationMode = null)
+    public function execute($params = [], $hydrationMode = null)
     {
         if (!$this->getExecuted()) {
             $this->_initialize($params);

@@ -282,7 +282,7 @@ class Doctrine_Transaction_TestCase extends Doctrine_UnitTestCase
 }
 class TransactionListener extends Doctrine_EventListener
 {
-    protected $_messages = array();
+    protected $_messages = [];
 
     public function preTransactionCommit(Doctrine_Event $event)
     {

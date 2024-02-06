@@ -63,11 +63,11 @@ class Ticket_DC25_Article extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_DC25_Tag as Tags', array(
+        $this->hasMany('Ticket_DC25_Tag as Tags', [
             'local' => 'article_id',
             'foreign' => 'tag_id',
             'refClass' => 'Ticket_DC25_ArticleTag',
-        ));
+        ]);
     }
 }
 
@@ -80,11 +80,11 @@ class Ticket_DC25_Tag extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_DC25_Article as Article', array(
+        $this->hasMany('Ticket_DC25_Article as Article', [
             'local' => 'tag_id',
             'foreign' => 'article_id',
             'refClass' => 'Ticket_DC25_ArticleTag',
-        ));
+        ]);
     }
 }
 

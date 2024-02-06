@@ -38,7 +38,7 @@ class Doctrine_Ticket_1621b_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Ticket_1621b_Term';
         $this->tables[] = 'Ticket_1621b_AltTerm';
         $this->tables[] = 'Ticket_1621b_PrefTerm';
@@ -149,33 +149,33 @@ class Ticket_1621b_Concept extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('unsigned' => true, 'primary' => true, 'autoincrement' => true, 'type' => 'integer', 'length' => '4'));
-        $this->hasColumn('identifier', 'string', 255, array('type' => 'string', 'length' => '255'));
+        $this->hasColumn('id', 'integer', 4, ['unsigned' => true, 'primary' => true, 'autoincrement' => true, 'type' => 'integer', 'length' => '4']);
+        $this->hasColumn('identifier', 'string', 255, ['type' => 'string', 'length' => '255']);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1621b_CurrentLanguagePrefTerm as preferedTerm', array('local' => 'id',
+        $this->hasOne('Ticket_1621b_CurrentLanguagePrefTerm as preferedTerm', ['local' => 'id',
             'foreign' => 'conceptId',
-            'onDelete' => 'CASCADE'));
+            'onDelete' => 'CASCADE']);
 
-        $this->hasMany('Ticket_1621b_PrefTerm as preferedTerms', array('local' => 'id',
+        $this->hasMany('Ticket_1621b_PrefTerm as preferedTerms', ['local' => 'id',
             'foreign' => 'conceptId',
-            'onDelete' => 'CASCADE'));
+            'onDelete' => 'CASCADE']);
 
-        $this->hasMany('Ticket_1621b_AltTerm as altTerms', array('local' => 'id',
+        $this->hasMany('Ticket_1621b_AltTerm as altTerms', ['local' => 'id',
             'foreign' => 'conceptId',
-            'onDelete' => 'CASCADE'));
+            'onDelete' => 'CASCADE']);
 
-        $this->hasMany('Ticket_1621b_Concept as broaderConcepts', array('refClass' => 'Ticket_1621b_ConceptHierarchicalRelation',
+        $this->hasMany('Ticket_1621b_Concept as broaderConcepts', ['refClass' => 'Ticket_1621b_ConceptHierarchicalRelation',
             'refClassRelationAlias' => 'narrowerLinks',
             'local' => 'conceptIdSource',
-            'foreign' => 'conceptIdTarget'));
+            'foreign' => 'conceptIdTarget']);
 
-        $this->hasMany('Ticket_1621b_Concept as narrowerConcepts', array('refClass' => 'Ticket_1621b_ConceptHierarchicalRelation',
+        $this->hasMany('Ticket_1621b_Concept as narrowerConcepts', ['refClass' => 'Ticket_1621b_ConceptHierarchicalRelation',
             'refClassRelationAlias' => 'broaderLinks',
             'local' => 'conceptIdTarget',
-            'foreign' => 'conceptIdSource'));
+            'foreign' => 'conceptIdSource']);
     }
 }
 
@@ -183,21 +183,21 @@ class Ticket_1621b_Term extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('unsigned' => true, 'primary' => true, 'autoincrement' => true, 'type' => 'integer', 'length' => '4'));
-        $this->hasColumn('concept_id as conceptId', 'integer', 4, array('type' => 'integer', 'unsigned' => true, 'length' => '4'));
-        $this->hasColumn('lexical_value as lexicalValue', 'string', 255, array('notnull' => true, 'type' => 'string', 'length' => '255'));
-        $this->hasColumn('type', 'string', 20, array('notnull' => true, 'type' => 'string', 'length' => '20'));
-        $this->hasColumn('lang_id as langId', 'string', 3, array('notnull' => true, 'type' => 'string', 'length' => '3'));
+        $this->hasColumn('id', 'integer', 4, ['unsigned' => true, 'primary' => true, 'autoincrement' => true, 'type' => 'integer', 'length' => '4']);
+        $this->hasColumn('concept_id as conceptId', 'integer', 4, ['type' => 'integer', 'unsigned' => true, 'length' => '4']);
+        $this->hasColumn('lexical_value as lexicalValue', 'string', 255, ['notnull' => true, 'type' => 'string', 'length' => '255']);
+        $this->hasColumn('type', 'string', 20, ['notnull' => true, 'type' => 'string', 'length' => '20']);
+        $this->hasColumn('lang_id as langId', 'string', 3, ['notnull' => true, 'type' => 'string', 'length' => '3']);
 
-        $this->setSubClasses(array('Ticket_1621b_AltTerm' => array('type' => 'alt'), 'Ticket_1621b_PrefTerm' => array('type' => 'pref'), 'Ticket_1621b_CurrentLanguagePrefTerm' => array('langId' => Doctrine_Ticket_1621b_TestCase::LANG)));
+        $this->setSubClasses(['Ticket_1621b_AltTerm' => ['type' => 'alt'], 'Ticket_1621b_PrefTerm' => ['type' => 'pref'], 'Ticket_1621b_CurrentLanguagePrefTerm' => ['langId' => Doctrine_Ticket_1621b_TestCase::LANG]]);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1621b_Concept as concept', array('local' => 'conceptId',
-            'foreign' => 'id'));
-        $this->hasOne('Ticket_1621b_Language as language', array('local' => 'langId',
-            'foreign' => 'id'));
+        $this->hasOne('Ticket_1621b_Concept as concept', ['local' => 'conceptId',
+            'foreign' => 'id']);
+        $this->hasOne('Ticket_1621b_Language as language', ['local' => 'langId',
+            'foreign' => 'id']);
     }
 }
 
@@ -229,17 +229,17 @@ class Ticket_1621b_Language extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'string', 3, array('type' => 'string', 'primary' => true, 'length' => '3'));
-        $this->hasColumn('display', 'string', 50, array('type' => 'string', 'notnull' => true, 'length' => '50'));
-        $this->hasColumn('description', 'string', 50, array('type' => 'string', 'length' => '50'));
+        $this->hasColumn('id', 'string', 3, ['type' => 'string', 'primary' => true, 'length' => '3']);
+        $this->hasColumn('display', 'string', 50, ['type' => 'string', 'notnull' => true, 'length' => '50']);
+        $this->hasColumn('description', 'string', 50, ['type' => 'string', 'length' => '50']);
     }
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1621b_Term', array('local' => 'id',
-            'foreign' => 'langId'));
+        $this->hasMany('Ticket_1621b_Term', ['local' => 'id',
+            'foreign' => 'langId']);
 
-        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'display', 1 => 'description')));
+        $i18n0 = new Doctrine_Template_I18n(['fields' => [0 => 'display', 1 => 'description']]);
         $this->actAs($i18n0);
     }
 }
@@ -248,17 +248,17 @@ class Ticket_1621b_ConceptHierarchicalRelation extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('unsigned' => true, 'primary' => true, 'autoincrement' => true, 'type' => 'integer', 'length' => '4'));
-        $this->hasColumn('concept_id_s as conceptIdSource', 'integer', 4, array('type' => 'integer', 'unsigned' => true, 'length' => '4'));
-        $this->hasColumn('concept_id_t as conceptIdTarget', 'integer', 4, array('type' => 'integer', 'unsigned' => true, 'length' => '4'));
+        $this->hasColumn('id', 'integer', 4, ['unsigned' => true, 'primary' => true, 'autoincrement' => true, 'type' => 'integer', 'length' => '4']);
+        $this->hasColumn('concept_id_s as conceptIdSource', 'integer', 4, ['type' => 'integer', 'unsigned' => true, 'length' => '4']);
+        $this->hasColumn('concept_id_t as conceptIdTarget', 'integer', 4, ['type' => 'integer', 'unsigned' => true, 'length' => '4']);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1621b_Concept as hierarchieTarget', array('local' => 'conceptIdTarget',
-            'foreign' => 'id'));
+        $this->hasOne('Ticket_1621b_Concept as hierarchieTarget', ['local' => 'conceptIdTarget',
+            'foreign' => 'id']);
 
-        $this->hasOne('Ticket_1621b_Concept as hierarchieSource', array('local' => 'conceptIdSource',
-            'foreign' => 'id'));
+        $this->hasOne('Ticket_1621b_Concept as hierarchieSource', ['local' => 'conceptIdSource',
+            'foreign' => 'id']);
     }
 }

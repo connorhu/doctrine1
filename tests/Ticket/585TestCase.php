@@ -35,7 +35,7 @@ class Doctrine_Ticket_585_TestCase extends Doctrine_UnitTestCase
                 ->leftJoin('u.Email e')
             ;
 
-            $results = $query->execute(array(), $hydrateType);
+            $results = $query->execute([], $hydrateType);
 
             $expectedSql = 'SELECT e.id AS e__0, e.name AS e__1 FROM entity e LEFT JOIN email e2 ON e.email_id = e2.id WHERE (e.type = 0)';
 
@@ -52,7 +52,7 @@ class Doctrine_Ticket_585_TestCase extends Doctrine_UnitTestCase
     public function testHydrateScalarWithAllColumnsAliasedThenResultsHasAllRecords()
     {
         $hydrateType = Doctrine_Core::HYDRATE_SCALAR;
-        $expectedKeys = array('u_aliasId', 'u_aliasName');
+        $expectedKeys = ['u_aliasId', 'u_aliasName'];
 
         $this->doTestWithAllColumnsAliased($hydrateType, $expectedKeys);
     }
@@ -60,7 +60,7 @@ class Doctrine_Ticket_585_TestCase extends Doctrine_UnitTestCase
     public function testHydrateArrayShallowWithAllColumnsAliasedThenResultsHasAllRecords()
     {
         $hydrateType = Doctrine_Core::HYDRATE_ARRAY_SHALLOW;
-        $expectedKeys = array('aliasId', 'aliasName');
+        $expectedKeys = ['aliasId', 'aliasName'];
 
         $this->doTestWithAllColumnsAliased($hydrateType, $expectedKeys);
     }
@@ -68,7 +68,7 @@ class Doctrine_Ticket_585_TestCase extends Doctrine_UnitTestCase
     public function testHydrateArrayWithAllColumnsAliasedThenResultsHasAllRecords()
     {
         $hydrateType = Doctrine_Core::HYDRATE_ARRAY;
-        $expectedKeys = array('aliasId', 'aliasName');
+        $expectedKeys = ['aliasId', 'aliasName'];
 
         $this->doTestWithAllColumnsAliased($hydrateType, $expectedKeys);
     }

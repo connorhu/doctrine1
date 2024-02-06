@@ -67,11 +67,11 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function dropDatabaseSql($name)
     {
-        return array(
+        return [
             'SET FOREIGN_KEY_CHECKS = 0',
             'DROP DATABASE '.$this->conn->quoteIdentifier($name),
             'SET FOREIGN_KEY_CHECKS = 1',
-        );
+        ];
     }
 
     /**
@@ -106,7 +106,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      *                        'type'    => 'innodb',
      *                        );
      */
-    public function createTableSql($name, array $fields, array $options = array())
+    public function createTableSql($name, array $fields, array $options = [])
     {
         if (!$name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
@@ -142,10 +142,10 @@ class Doctrine_Export_Mysql extends Doctrine_Export
                 if (!$found) {
                     if (is_array($local)) {
                         foreach ($local as $localidx) {
-                            $options['indexes'][$localidx] = array('fields' => array($localidx => array()));
+                            $options['indexes'][$localidx] = ['fields' => [$localidx => []]];
                         }
                     } else {
-                        $options['indexes'][$local] = array('fields' => array($local => array()));
+                        $options['indexes'][$local] = ['fields' => [$local => []]];
                     }
                 }
             }
@@ -154,7 +154,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
         // add all indexes
         if (isset($options['indexes']) && !empty($options['indexes'])) {
             // Case Insensitive checking for duplicate indexes...
-            $dupes = array();
+            $dupes = [];
             foreach ($options['indexes'] as $key => $index) {
                 if (in_array(strtolower($key), $dupes)) {
                     unset($options['indexes'][$key]);
@@ -172,13 +172,13 @@ class Doctrine_Export_Mysql extends Doctrine_Export
         // attach all primary keys
         if (isset($options['primary']) && !empty($options['primary'])) {
             $keyColumns = array_values($options['primary']);
-            $keyColumns = array_map(array($this->conn, 'quoteIdentifier'), $keyColumns);
+            $keyColumns = array_map([$this->conn, 'quoteIdentifier'], $keyColumns);
             $queryFields .= ', PRIMARY KEY('.implode(', ', $keyColumns).')';
         }
 
         $query = 'CREATE TABLE '.$this->conn->quoteIdentifier($name, true).' ('.$queryFields.')';
 
-        $optionStrings = array();
+        $optionStrings = [];
 
         if (isset($options['comment'])) {
             $optionStrings['comment'] = 'COMMENT = '.$this->conn->quote($options['comment'], 'text');
@@ -357,7 +357,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
             }
         }
 
-        $rename = array();
+        $rename = [];
         if (!empty($changes['rename']) && is_array($changes['rename'])) {
             foreach ($changes['rename'] as $fieldName => $field) {
                 $rename[$field['name']] = $fieldName;
@@ -416,12 +416,12 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      *                              );
      * @return bool
      */
-    public function createSequence($sequenceName, $start = 1, array $options = array())
+    public function createSequence($sequenceName, $start = 1, array $options = [])
     {
         $sequenceName = $this->conn->quoteIdentifier($sequenceName, true);
         $seqcolName = $this->conn->quoteIdentifier($this->conn->getAttribute(Doctrine_Core::ATTR_SEQCOL_NAME), true);
 
-        $optionsStrings = array();
+        $optionsStrings = [];
 
         if (isset($options['comment']) && !empty($options['comment'])) {
             $optionsStrings['comment'] = 'COMMENT = '.$this->conn->quote($options['comment'], 'string');
@@ -600,7 +600,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
             throw new Doctrine_Export_Exception('No columns given for index '.$name);
         }
         if (!is_array($definition['fields'])) {
-            $definition['fields'] = array($definition['fields']);
+            $definition['fields'] = [$definition['fields']];
         }
 
         $query = $type.'INDEX '.$this->conn->quoteIdentifier($name);
@@ -619,7 +619,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function getIndexFieldDeclarationList(array $fields)
     {
-        $declFields = array();
+        $declFields = [];
 
         foreach ($fields as $fieldName => $field) {
             $fieldString = $this->conn->quoteIdentifier($fieldName);

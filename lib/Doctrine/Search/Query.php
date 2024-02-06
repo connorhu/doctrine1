@@ -31,13 +31,13 @@ class Doctrine_Search_Query
     /**
      * @var Doctrine_Table the index table
      */
-    protected $_table = array();
+    protected $_table = [];
 
     protected $_sql = '';
 
-    protected $_params = array();
+    protected $_params = [];
 
-    protected $_words = array();
+    protected $_words = [];
 
     protected $_tokenizer;
 
@@ -56,7 +56,7 @@ class Doctrine_Search_Query
         $this->_tokenizer = new Doctrine_Query_Tokenizer();
         $this->_table = $table;
 
-        $foreignId = current(array_diff($this->_table->getColumnNames(), array('keyword', 'field', 'position')));
+        $foreignId = current(array_diff($this->_table->getColumnNames(), ['keyword', 'field', 'position']));
 
         $this->_condition = $foreignId.' %s (SELECT '.$foreignId.' FROM '.$this->_table->getTableName().' WHERE ';
     }
@@ -65,7 +65,7 @@ class Doctrine_Search_Query
     {
         $text = trim($text);
 
-        $foreignId = current(array_diff($this->_table->getColumnNames(), array('keyword', 'field', 'position')));
+        $foreignId = current(array_diff($this->_table->getColumnNames(), ['keyword', 'field', 'position']));
 
         $weighted = false;
         if (false === strpos($text, '^')) {
@@ -108,11 +108,11 @@ class Doctrine_Search_Query
             $brackets = true;
         }
 
-        $foreignId = current(array_diff($this->_table->getColumnNames(), array('keyword', 'field', 'position')));
+        $foreignId = current(array_diff($this->_table->getColumnNames(), ['keyword', 'field', 'position']));
 
         $terms = $this->_tokenizer->sqlExplode($clause, ' OR ', '(', ')');
 
-        $ret = array();
+        $ret = [];
 
         if (count($terms) > 1) {
             $leavesOnly = true;
@@ -212,7 +212,7 @@ class Doctrine_Search_Query
 
             $where = 'keyword LIKE ?';
 
-            $params = array($word);
+            $params = [$word];
         } else {
             $where = 'keyword = ?';
         }

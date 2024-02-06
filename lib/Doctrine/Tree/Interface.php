@@ -49,7 +49,7 @@ interface Doctrine_Tree_Interface
      * @param  mixed|null $hydrationMode
      * @return Iterator   instance of Doctrine_Node_<Implementation>_PreOrderIterator
      */
-    public function fetchTree($options = array(), $hydrationMode = null);
+    public function fetchTree($options = [], $hydrationMode = null);
 
     /**
      * optimised method that returns iterator for traversal of the tree from the given record primary key.
@@ -59,5 +59,5 @@ interface Doctrine_Tree_Interface
      * @param  mixed|null $hydrationMode
      * @return iterator   instance of Doctrine_Node_<Implementation>_PreOrderIterator
      */
-    public function fetchBranch($pk, $options = array(), $hydrationMode = null);
+    public function fetchBranch($pk, $options = [], $hydrationMode = null);
 }

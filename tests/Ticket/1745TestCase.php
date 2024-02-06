@@ -34,7 +34,7 @@ class Doctrine_Ticket_1745_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('locality');
+        $this->tables = ['locality'];
 
         parent::prepareTables();
     }
@@ -87,14 +87,14 @@ class Locality extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('locality');
-        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
-        $this->hasColumn('postal_code', 'string', 6, array('type' => 'string', 'notnull' => true, 'length' => '6'));
-        $this->hasColumn('city', 'string', 120, array('type' => 'string', 'notnull' => true, 'length' => '120'));
+        $this->hasColumn('id', 'integer', 4, ['type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4']);
+        $this->hasColumn('postal_code', 'string', 6, ['type' => 'string', 'notnull' => true, 'length' => '6']);
+        $this->hasColumn('city', 'string', 120, ['type' => 'string', 'notnull' => true, 'length' => '120']);
     }
 
     public function setUp()
     {
-        $searchable0 = new Doctrine_Template_Searchable(array('fields' => array(0 => 'city')));
+        $searchable0 = new Doctrine_Template_Searchable(['fields' => [0 => 'city']]);
         $this->actAs($searchable0);
     }
 }

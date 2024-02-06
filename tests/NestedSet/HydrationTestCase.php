@@ -60,7 +60,7 @@ class Doctrine_NestedSet_Hydration_TestCase extends Doctrine_UnitTestCase
     {
         $results = Doctrine_Core::getTable('NestedSetTest_SingleRootNode')
             ->createQuery('n')
-            ->execute(array(), Doctrine_Core::HYDRATE_RECORD_HIERARCHY)
+            ->execute([], Doctrine_Core::HYDRATE_RECORD_HIERARCHY)
         ;
 
         $this->assertEqual($results[0]['__children'][0]['__children'][0]['name'], 'node3');
@@ -71,7 +71,7 @@ class Doctrine_NestedSet_Hydration_TestCase extends Doctrine_UnitTestCase
     {
         $results = Doctrine_Core::getTable('NestedSetTest_SingleRootNode')
             ->createQuery('n')
-            ->execute(array(), Doctrine_Core::HYDRATE_ARRAY_HIERARCHY)
+            ->execute([], Doctrine_Core::HYDRATE_ARRAY_HIERARCHY)
         ;
 
         $this->assertEqual($results[0]['__children'][0]['__children'][0]['name'], 'node3');
@@ -82,12 +82,12 @@ class Doctrine_NestedSet_Hydration_TestCase extends Doctrine_UnitTestCase
     {
         $array = Doctrine_Core::getTable('NestedSetTest_SingleRootNode')
             ->createQuery('n')
-            ->execute(array(), Doctrine_Core::HYDRATE_ARRAY_HIERARCHY)
+            ->execute([], Doctrine_Core::HYDRATE_ARRAY_HIERARCHY)
         ;
 
         $coll = Doctrine_Core::getTable('NestedSetTest_SingleRootNode')
             ->createQuery('n')
-            ->execute(array(), Doctrine_Core::HYDRATE_RECORD_HIERARCHY)
+            ->execute([], Doctrine_Core::HYDRATE_RECORD_HIERARCHY)
         ;
 
         $this->assertEqual($array, $coll->toArray());
@@ -98,7 +98,7 @@ class Doctrine_NestedSet_Hydration_TestCase extends Doctrine_UnitTestCase
         try {
             $results = Doctrine_Core::getTable('User')
                 ->createQuery('u')
-                ->execute(array(), Doctrine_Core::HYDRATE_RECORD_HIERARCHY)
+                ->execute([], Doctrine_Core::HYDRATE_RECORD_HIERARCHY)
             ;
 
             $this->fail();
@@ -109,7 +109,7 @@ class Doctrine_NestedSet_Hydration_TestCase extends Doctrine_UnitTestCase
         try {
             $results = Doctrine_Core::getTable('User')
                 ->createQuery('u')
-                ->execute(array(), Doctrine_Core::HYDRATE_ARRAY_HIERARCHY)
+                ->execute([], Doctrine_Core::HYDRATE_ARRAY_HIERARCHY)
             ;
 
             $this->fail();

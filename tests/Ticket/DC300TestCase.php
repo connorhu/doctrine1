@@ -68,12 +68,12 @@ class Doctrine_Ticket_DC300_TestCase extends Doctrine_UnitTestCase
         $u1 = Doctrine_Core::getTable('Ticket_DC300_User')->find(1);
 
         // update the groups user (id 1) is linked to
-        $u1->synchronizeWithArray(array(
-            'Groups' => array(
-                array('name' => 'group1 update'),
-                array('name' => 'group2 update'),
-            ),
-        ));
+        $u1->synchronizeWithArray([
+            'Groups' => [
+                ['name' => 'group1 update'],
+                ['name' => 'group2 update'],
+            ],
+        ]);
         $u1->save();
 
         // update the user-objects with real data from database
@@ -93,11 +93,11 @@ class Ticket_DC300_Group extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_DC300_User as Users', array(
+        $this->hasMany('Ticket_DC300_User as Users', [
             'local' => 'group_id',
             'foreign' => 'user_id',
             'refClass' => 'Ticket_DC300_UserGroup',
-        ));
+        ]);
     }
 }
 
@@ -110,11 +110,11 @@ class Ticket_DC300_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_DC300_Group as Groups', array(
+        $this->hasMany('Ticket_DC300_Group as Groups', [
             'local' => 'user_id',
             'foreign' => 'group_id',
             'refClass' => 'Ticket_DC300_UserGroup',
-        ));
+        ]);
     }
 }
 

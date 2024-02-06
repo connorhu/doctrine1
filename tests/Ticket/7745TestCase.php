@@ -84,10 +84,10 @@ class RecordTest1 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('RecordTest2', array(
+        $this->hasOne('RecordTest2', [
             'local' => 'record_test2_id',
             'foreign' => 'id',
-        ));
+        ]);
     }
 }
 
@@ -100,10 +100,10 @@ class RecordTest2 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('RecordTest1', array(
+        $this->hasMany('RecordTest1', [
             'local' => 'id',
             'foreign' => 'record_test2_id',
-        ));
+        ]);
     }
 }
 

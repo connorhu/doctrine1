@@ -70,7 +70,7 @@ class Doctrine_Ticket_1250_i18n extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $i18n0 = new Doctrine_Template_I18n(array('length' => 5, 'fields' => array(0 => 'title', 1 => 'content')));
+        $i18n0 = new Doctrine_Template_I18n(['length' => 5, 'fields' => [0 => 'title', 1 => 'content']]);
         $this->actAs($i18n0);
     }
 }

@@ -54,7 +54,7 @@ class Doctrine_PessimisticLocking_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('Forum_Entry', 'Entity', 'Phonenumber', 'Email', 'Groupuser');
+        $this->tables = ['Forum_Entry', 'Entity', 'Phonenumber', 'Email', 'Groupuser'];
         parent::prepareTables();
     }
 

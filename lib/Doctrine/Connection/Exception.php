@@ -31,7 +31,7 @@ class Doctrine_Connection_Exception extends Doctrine_Exception
     /**
      * @var array an array containing messages for portable error codes
      */
-    protected static $errorMessages = array(
+    protected static $errorMessages = [
         Doctrine_Core::ERR => 'unknown error',
         Doctrine_Core::ERR_ALREADY_EXISTS => 'already exists',
         Doctrine_Core::ERR_CANNOT_CREATE => 'can not create',
@@ -64,7 +64,7 @@ class Doctrine_Connection_Exception extends Doctrine_Exception
         Doctrine_Core::ERR_LOADMODULE => 'error while including on demand module',
         Doctrine_Core::ERR_TRUNCATED => 'truncated',
         Doctrine_Core::ERR_DEADLOCK => 'deadlock detected',
-    );
+    ];
 
     /**
      * @see Doctrine_Core::ERR_* constants

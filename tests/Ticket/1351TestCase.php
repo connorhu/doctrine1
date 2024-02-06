@@ -74,8 +74,8 @@ class Ticket_1351_Article extends Doctrine_Record
 
     public function setUp()
     {
-        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'title', 1 => 'body')));
-        $searchable1 = new Doctrine_Template_Searchable(array('fields' => array(0 => 'title')));
+        $i18n0 = new Doctrine_Template_I18n(['fields' => [0 => 'title', 1 => 'body']]);
+        $searchable1 = new Doctrine_Template_Searchable(['fields' => [0 => 'title']]);
         $i18n0->addChild($searchable1);
         $this->actAs($i18n0);
     }

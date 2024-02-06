@@ -45,7 +45,7 @@ class Doctrine_Ticket_1254_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->getCurrentConnection()->beginTransaction();
 
-        $cats = array('cat1', 'cat2');
+        $cats = ['cat1', 'cat2'];
         $now = time();
 
         for ($i = 0; $i < 10; ++$i) {
@@ -91,14 +91,14 @@ class RelX extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('rel_x');
-        $this->hasColumn('name', 'string', 25, array());
-        $this->hasColumn('category', 'string', 25, array());
-        $this->hasColumn('created_at', 'timestamp', null, array());
+        $this->hasColumn('name', 'string', 25, []);
+        $this->hasColumn('category', 'string', 25, []);
+        $this->hasColumn('created_at', 'timestamp', null, []);
     }
 
     public function setUp()
     {
-        $this->HasMany('RelY as y', array('local' => 'id', 'foreign' => 'rel_x_id'));
+        $this->HasMany('RelY as y', ['local' => 'id', 'foreign' => 'rel_x_id']);
     }
 }
 
@@ -107,8 +107,8 @@ class RelY extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('rel_y');
-        $this->hasColumn('name', 'string', 25, array());
-        $this->hasColumn('rel_x_id', 'integer', 10, array());
+        $this->hasColumn('name', 'string', 25, []);
+        $this->hasColumn('rel_x_id', 'integer', 10, []);
     }
 
     public function setUp()

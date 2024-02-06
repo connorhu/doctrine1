@@ -33,7 +33,7 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
     /**
      * @var array an array containing all listeners
      */
-    protected $_listeners = array();
+    protected $_listeners = [];
 
     /**
      * add

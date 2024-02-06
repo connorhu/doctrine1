@@ -33,14 +33,14 @@ class Doctrine_Data_Import extends Doctrine_Data
      *
      * @var array
      */
-    protected $_importedObjects = array();
+    protected $_importedObjects = [];
 
     /**
      * Array of the raw data parsed from yaml.
      *
      * @var array
      */
-    protected $_rows = array();
+    protected $_rows = [];
 
     /**
      * Optionally pass the directory/path to the yaml for importing.
@@ -65,7 +65,7 @@ class Doctrine_Data_Import extends Doctrine_Data
         $mergeFunction = true === $recursiveMerge ? 'array_merge_recursive' : 'array_merge';
         $directory = $this->getDirectory();
 
-        $array = array();
+        $array = [];
 
         if (null !== $directory) {
             foreach ((array) $directory as $dir) {
@@ -80,7 +80,7 @@ class Doctrine_Data_Import extends Doctrine_Data
                         new RecursiveDirectoryIterator($dir),
                         RecursiveIteratorIterator::LEAVES_ONLY
                     );
-                    $filesOrdered = array();
+                    $filesOrdered = [];
                     foreach ($it as $file) {
                         $filesOrdered[] = $file;
                     }
@@ -133,7 +133,7 @@ class Doctrine_Data_Import extends Doctrine_Data
                         $relRowKey = $rowKey.'_'.$relClassName;
 
                         if (Doctrine_Relation::ONE == $rel->getType()) {
-                            $val = array($relRowKey => $value);
+                            $val = [$relRowKey => $value];
                             $this->_rows[$className][$rowKey][$key] = $relRowKey;
                         } else {
                             $val = $value;
@@ -153,7 +153,7 @@ class Doctrine_Data_Import extends Doctrine_Data
     protected function _buildNestedSetRows($className, $data)
     {
         foreach ($data as $rowKey => $row) {
-            $children = isset($row['children']) ? $row['children'] : array();
+            $children = isset($row['children']) ? $row['children'] : [];
             unset($row['children']);
             $this->_rows[$className][$rowKey] = $row;
 
@@ -232,7 +232,7 @@ class Doctrine_Data_Import extends Doctrine_Data
                     $obj->{$key} = $value;
                 } catch (Exception $e) {
                     // used for Doctrine plugin methods (Doctrine_Template)
-                    if (is_callable(array($obj, 'set'.Doctrine_Inflector::classify($key)))) {
+                    if (is_callable([$obj, 'set'.Doctrine_Inflector::classify($key)])) {
                         $func = 'set'.Doctrine_Inflector::classify($key);
                         $obj->{$func}($value);
                     } else {
@@ -274,10 +274,10 @@ class Doctrine_Data_Import extends Doctrine_Data
      */
     protected function _loadData(array $array)
     {
-        $nestedSets = array();
+        $nestedSets = [];
 
         $specifiedModels = $this->getModels();
-        $rows = array();
+        $rows = [];
 
         foreach ($array as $className => $data) {
             if (!empty($specifiedModels) && !in_array($className, $specifiedModels)) {
@@ -294,7 +294,7 @@ class Doctrine_Data_Import extends Doctrine_Data
             }
         }
 
-        $buildRows = array();
+        $buildRows = [];
         foreach ($this->_rows as $className => $classRows) {
             $rowKeyPrefix = $this->_getRowKeyPrefix(Doctrine_Core::getTable($className));
             foreach ($classRows as $rowKey => $row) {
@@ -342,8 +342,8 @@ class Doctrine_Data_Import extends Doctrine_Data
     protected function _loadNestedSetData($model, $nestedSetData, $parent = null)
     {
         foreach ($nestedSetData as $rowKey => $nestedSet) {
-            $children = array();
-            $data = array();
+            $children = [];
+            $data = [];
 
             if (array_key_exists('children', $nestedSet)) {
                 $children = (array) $nestedSet['children'];

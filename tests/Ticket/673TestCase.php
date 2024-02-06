@@ -21,7 +21,7 @@ class Doctrine_Ticket_673_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('T673_Student');
+        $this->tables = ['T673_Student'];
         parent::prepareTables();
     }
 
@@ -67,8 +67,8 @@ class T673_Student extends Doctrine_Record
     {
         $this->setTableName('T673_Student_record');
 
-        $this->hasColumn('s_id as id', 'varchar', 30, array('primary' => true));
-        $this->hasColumn('s_foo as foo', 'integer', 4, array('notnull' => true));
-        $this->hasColumn('s_name as name', 'varchar', 50, array());
+        $this->hasColumn('s_id as id', 'varchar', 30, ['primary' => true]);
+        $this->hasColumn('s_foo as foo', 'integer', 4, ['notnull' => true]);
+        $this->hasColumn('s_name as name', 'varchar', 50, []);
     }
 }

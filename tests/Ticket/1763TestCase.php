@@ -74,12 +74,12 @@ class Ticket_1763_User extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('email_address', 'string', 255, array('unique' => true,
+        $this->hasColumn('email_address', 'string', 255, ['unique' => true,
             'notnull' => true,
-            'email' => true));
-        $this->hasColumn('username', 'string', 255, array('unique' => true,
-            'notnull' => true));
+            'email' => true]);
+        $this->hasColumn('username', 'string', 255, ['unique' => true,
+            'notnull' => true]);
         $this->hasColumn('password', 'string', 255);
-        $this->hasColumn('ip_address', 'string', 255, array('notnull' => true, 'ip' => true));
+        $this->hasColumn('ip_address', 'string', 255, ['notnull' => true, 'ip' => true]);
     }
 }

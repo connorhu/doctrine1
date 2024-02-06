@@ -77,7 +77,7 @@ class DoctrineTest_Coverage
 
         $coveredArray = $this->result['data'];
         // lets sort it.
-        uasort($coveredArray, array($this, 'sortArray'));
+        uasort($coveredArray, [$this, 'sortArray']);
 
         // and flip if it perhaps?
         if (isset($_GET['flip']) && 'true' == $_GET['flip']) {
@@ -135,7 +135,7 @@ class DoctrineTest_Coverage
 
         // loop through all files and generate coverage files for them
         $it = new RecursiveDirectoryIterator(Doctrine_Core::getPath());
-        $notCoveredArray = array();
+        $notCoveredArray = [];
         foreach (new RecursiveIteratorIterator($it) as $file) {
             if (strpos($file->getPathname(), 'config.php')) {
                 continue;
@@ -162,12 +162,12 @@ class DoctrineTest_Coverage
                 $coverageInfo[$class] = $this->generateCoverageInfoNotCoveredFile($class);
             }
         }
-        $this->result['totals'] = array(
+        $this->result['totals'] = [
             'lines' => $this->totallines,
             'notcovered' => $this->totalnotcovered,
             'covered' => $this->totalcovered,
             'maybe' => $this->totalmaybe,
-            'percentage' => $this->calculateTotalPercentage());
+            'percentage' => $this->calculateTotalPercentage()];
 
         $this->result['data'] = $coverageInfo;
 
@@ -232,10 +232,10 @@ class DoctrineTest_Coverage
         $this->totallines += $lines;
         $this->totalnotcovered += $lines;
         if (0 == $lines) {
-            return array('covered' => 0, 'maybe' => 0, 'notcovered' => $lines, 'total' => $lines, 'percentage' => 100, 'type' => 'notcovered');
+            return ['covered' => 0, 'maybe' => 0, 'notcovered' => $lines, 'total' => $lines, 'percentage' => 100, 'type' => 'notcovered'];
         }
 
-        return array('covered' => 0, 'maybe' => 0, 'notcovered' => $lines, 'total' => $lines, 'percentage' => 0, 'type' => 'notcovered');
+        return ['covered' => 0, 'maybe' => 0, 'notcovered' => $lines, 'total' => $lines, 'percentage' => 0, 'type' => 'notcovered'];
     }
 
     /*
@@ -319,7 +319,7 @@ class DoctrineTest_Coverage
         }
         $percentage = round((($covered + $maybe) / $total) * 100, 2);
 
-        return array('covered' => $covered, 'maybe' => $maybe, 'notcovered' => $notcovered, 'total' => $total, 'percentage' => $percentage, 'type' => 'covered');
+        return ['covered' => $covered, 'maybe' => $maybe, 'notcovered' => $notcovered, 'total' => $total, 'percentage' => $percentage, 'type' => 'covered'];
     }
 
     /*

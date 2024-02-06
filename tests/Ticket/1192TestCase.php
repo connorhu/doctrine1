@@ -76,8 +76,8 @@ class Ticket_1192_CPK extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
-        $this->hasColumn('user_id', 'integer', 4, array('primary' => true));
+        $this->hasColumn('id', 'integer', 4, ['primary' => true, 'autoincrement' => true]);
+        $this->hasColumn('user_id', 'integer', 4, ['primary' => true]);
         $this->hasColumn('name', 'string', 255);
     }
 }

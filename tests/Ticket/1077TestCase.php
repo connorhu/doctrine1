@@ -94,8 +94,8 @@ class Ticket_1077_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1077_Phonenumber as Phonenumbers', array('local' => 'id',
-            'foreign' => 'user_id'));
+        $this->hasMany('Ticket_1077_Phonenumber as Phonenumbers', ['local' => 'id',
+            'foreign' => 'user_id']);
     }
 
     public function usernameAccessor()
@@ -146,7 +146,7 @@ class Ticket_1077_Phonenumber extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1077_User as User', array('local' => 'user_id',
-            'foreign' => 'id'));
+        $this->hasOne('Ticket_1077_User as User', ['local' => 'user_id',
+            'foreign' => 'id']);
     }
 }

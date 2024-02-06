@@ -62,9 +62,9 @@ class Ticket_1567_Project extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('name', 'string', 255, array('notnull' => true));
+        $this->hasColumn('name', 'string', 255, ['notnull' => true]);
         $this->hasColumn('user_id', 'integer');
-        $this->hasColumn('deleted', 'boolean', 1, array('notnull' => true, 'default' => 'false'));
+        $this->hasColumn('deleted', 'boolean', 1, ['notnull' => true, 'default' => 'false']);
     }
 
     public function setUp()

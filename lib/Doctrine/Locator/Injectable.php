@@ -40,7 +40,7 @@ class Doctrine_Locator_Injectable
     /**
      * @var array an array of bound resources
      */
-    protected $_resources = array();
+    protected $_resources = [];
 
     /**
      * @var Doctrine_Null Doctrine_Null object, used for extremely fast null value checking

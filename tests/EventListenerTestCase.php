@@ -42,7 +42,7 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('EventListenerTest');
+        $this->tables = ['EventListenerTest'];
         parent::prepareTables();
     }
 
@@ -184,7 +184,7 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase
 
 class Doctrine_EventListener_TestLogger implements Doctrine_Overloadable, Countable
 {
-    private $messages = array();
+    private $messages = [];
 
     public function __call($m, $a)
     {
@@ -198,7 +198,7 @@ class Doctrine_EventListener_TestLogger implements Doctrine_Overloadable, Counta
 
     public function clear()
     {
-        $this->messages = array();
+        $this->messages = [];
     }
 
     public function getAll()

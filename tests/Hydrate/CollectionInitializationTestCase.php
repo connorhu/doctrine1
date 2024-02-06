@@ -47,7 +47,7 @@ class Doctrine_Hydrate_CollectionInitialization_TestCase extends Doctrine_UnitTe
 
     public function prepareTables()
     {
-        $this->tables = array('Entity', 'Phonenumber');
+        $this->tables = ['Entity', 'Phonenumber'];
         parent::prepareTables();
     }
 

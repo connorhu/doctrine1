@@ -74,20 +74,20 @@ class Ticket_DC198_Email extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('user_id', 'integer', null, array(
+        $this->hasColumn('user_id', 'integer', null, [
             'type' => 'integer',
-        ));
-        $this->hasColumn('address', 'string', 150, array(
+        ]);
+        $this->hasColumn('address', 'string', 150, [
             'type' => 'string',
             'length' => '150',
-        ));
+        ]);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC198_User', array(
+        $this->hasOne('Ticket_DC198_User', [
             'local' => 'user_id',
-            'foreign' => 'id'));
+            'foreign' => 'id']);
     }
 }
 
@@ -95,16 +95,16 @@ class Ticket_DC198_User extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('name', 'string', 150, array(
+        $this->hasColumn('name', 'string', 150, [
             'type' => 'string',
             'length' => '150',
-        ));
+        ]);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC198_Email as email', array(
+        $this->hasOne('Ticket_DC198_Email as email', [
             'local' => 'id',
-            'foreign' => 'user_id'));
+            'foreign' => 'user_id']);
     }
 }

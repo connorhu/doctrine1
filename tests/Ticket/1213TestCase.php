@@ -59,10 +59,10 @@ class Doctrine_Ticket_1213_Birthday extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('person_guid', 'string', 32, array('primary' => true));
+        $this->hasColumn('person_guid', 'string', 32, ['primary' => true]);
         $this->hasColumn('Bday', 'timestamp');
 
-        $this->index('person_guid', array('fields' => array('person_guid')));
+        $this->index('person_guid', ['fields' => ['person_guid']]);
     }
 }
 
@@ -70,16 +70,16 @@ class Doctrine_Ticket_1213_Person extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('guid', 'string', 32, array('primary' => true));
+        $this->hasColumn('guid', 'string', 32, ['primary' => true]);
         $this->hasColumn('Name', 'string', 100);
 
-        $this->index('guid', array('fields' => array('guid')));
+        $this->index('guid', ['fields' => ['guid']]);
     }
 
     public function setUp()
     {
-        $this->hasOne('Doctrine_Ticket_1213_Birthday as Birthday', array('local' => 'guid',
+        $this->hasOne('Doctrine_Ticket_1213_Birthday as Birthday', ['local' => 'guid',
             'foreign' => 'person_guid',
-            'owningSide' => true));
+            'owningSide' => true]);
     }
 }

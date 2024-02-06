@@ -46,7 +46,7 @@ class Doctrine_Ticket_1860_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('Ticket_1860_User');
+        $this->tables = ['Ticket_1860_User'];
         parent::prepareTables();
     }
 
@@ -86,9 +86,9 @@ class Ticket_1860_User extends Doctrine_Record
     {
         $this->setTableName('ticket_1860_users');
 
-        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'unsigned' => '1', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
-        $this->hasColumn('username', 'string', 45, array('type' => 'string', 'notnull' => true, 'unique' => true, 'length' => '45'));
-        $this->hasColumn('password', 'string', 45, array('type' => 'string', 'notnull' => true, 'length' => '45'));
+        $this->hasColumn('id', 'integer', 4, ['type' => 'integer', 'unsigned' => '1', 'primary' => true, 'autoincrement' => true, 'length' => '4']);
+        $this->hasColumn('username', 'string', 45, ['type' => 'string', 'notnull' => true, 'unique' => true, 'length' => '45']);
+        $this->hasColumn('password', 'string', 45, ['type' => 'string', 'notnull' => true, 'length' => '45']);
     }
 
     public function setUp()

@@ -70,7 +70,7 @@ class Ticket_832_UserTemplate extends Doctrine_Template
 
     public function setUp()
     {
-        $this->hasMany('Ticket_832_EmailTemplate as Email', array('local' => 'id', 'foreign' => 'user_id'));
+        $this->hasMany('Ticket_832_EmailTemplate as Email', ['local' => 'id', 'foreign' => 'user_id']);
     }
 }
 
@@ -84,7 +84,7 @@ class Ticket_832_EmailTemplate extends Doctrine_Template
 
     public function setUp()
     {
-        $this->hasOne('Ticket_832_UserTemplate as User', array('local' => 'user_id', 'foreign' => 'id'));
+        $this->hasOne('Ticket_832_UserTemplate as User', ['local' => 'user_id', 'foreign' => 'id']);
     }
 }
 

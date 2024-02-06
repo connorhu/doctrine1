@@ -40,7 +40,7 @@ class Doctrine_Record_Filter_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('CompositeRecord', 'RelatedCompositeRecord');
+        $this->tables = ['CompositeRecord', 'RelatedCompositeRecord'];
 
         parent::prepareTables();
     }
@@ -98,9 +98,9 @@ class CompositeRecord extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('RelatedCompositeRecord as Related', array('foreign' => 'foreign_id'));
+        $this->hasOne('RelatedCompositeRecord as Related', ['foreign' => 'foreign_id']);
 
-        $this->unshiftFilter(new Doctrine_Record_Filter_Compound(array('Related')));
+        $this->unshiftFilter(new Doctrine_Record_Filter_Compound(['Related']));
     }
 }
 class RelatedCompositeRecord extends Doctrine_Record

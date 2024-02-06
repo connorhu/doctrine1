@@ -46,7 +46,7 @@ class Doctrine_Ticket_384_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'ticket384_Resume';
         $this->tables[] = 'ticket384_ResumeHasLanguage';
         $this->tables[] = 'ticket384_LanguageLevel';
@@ -103,18 +103,18 @@ class ticket384_Resume extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('resume');
-        $this->hasColumn('id', 'integer', 8, array(
+        $this->hasColumn('id', 'integer', 8, [
             'primary' => true,
             'autoincrement' => true,
             'unsigned' => true,
-        ));
+        ]);
 
         $this->hasColumn('title', 'string', 255);
     }
 
     public function setUp()
     {
-        $this->hasMany('ticket384_ResumeHasLanguage as KnownLanguages', array('local' => 'id', 'foreign' => 'resume_id'));
+        $this->hasMany('ticket384_ResumeHasLanguage as KnownLanguages', ['local' => 'id', 'foreign' => 'resume_id']);
     }
 }
 
@@ -123,44 +123,44 @@ class ticket384_ResumeHasLanguage extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('resume_has_language');
-        $this->hasColumn('id', 'integer', 8, array(
+        $this->hasColumn('id', 'integer', 8, [
             'primary' => true,
             'autoincrement' => true,
             'unsigned' => true,
-        ));
+        ]);
 
-        $this->hasColumn('resume_id', 'integer', 8, array(
+        $this->hasColumn('resume_id', 'integer', 8, [
             'notnull' => true,
             'unsigned' => true,
-        ));
+        ]);
 
-        $this->hasColumn('language_id', 'integer', 2, array(
+        $this->hasColumn('language_id', 'integer', 2, [
             'unsigned' => true,
-        ));
+        ]);
 
-        $this->hasColumn('language_level_id', 'integer', 2, array(
+        $this->hasColumn('language_level_id', 'integer', 2, [
             'unsigned' => true,
-        ));
+        ]);
 
-        $this->hasColumn('comments', 'string', 4000, array());
+        $this->hasColumn('comments', 'string', 4000, []);
     }
 
     public function setUp()
     {
-        $this->hasOne('ticket384_Resume as Resume', array('local' => 'resume_id',
+        $this->hasOne('ticket384_Resume as Resume', ['local' => 'resume_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE',
-            'onUpdate' => 'CASCADE'));
+            'onUpdate' => 'CASCADE']);
 
-        $this->hasOne('ticket384_Language as Language', array('local' => 'language_id',
+        $this->hasOne('ticket384_Language as Language', ['local' => 'language_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE',
-            'onUpdate' => 'CASCADE'));
+            'onUpdate' => 'CASCADE']);
 
-        $this->hasOne('ticket384_LanguageLevel as Level', array('local' => 'language_level_id',
+        $this->hasOne('ticket384_LanguageLevel as Level', ['local' => 'language_level_id',
             'foreign' => 'id',
             'onDelete' => 'SET NULL',
-            'onUpdate' => 'CASCADE'));
+            'onUpdate' => 'CASCADE']);
     }
 }
 
@@ -169,19 +169,19 @@ class ticket384_Language extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('language');
-        $this->hasColumn('id', 'integer', 2, array(
+        $this->hasColumn('id', 'integer', 2, [
             'primary' => true,
             'autoincrement' => true,
             'unsigned' => true,
-        ));
+        ]);
 
-        $this->hasColumn('label', 'string', 100, array('notnull' => true));
+        $this->hasColumn('label', 'string', 100, ['notnull' => true]);
     }
 
     public function setUp()
     {
-        $this->hasMany('ticket384_Resume as Resumes', array('local' => 'id', 'foreign' => 'language_id'));
-        $this->hasMany('ticket384_ResumeHasLanguage as ResumeKnownLanguages', array('local' => 'id', 'foreign' => 'language_id'));
+        $this->hasMany('ticket384_Resume as Resumes', ['local' => 'id', 'foreign' => 'language_id']);
+        $this->hasMany('ticket384_ResumeHasLanguage as ResumeKnownLanguages', ['local' => 'id', 'foreign' => 'language_id']);
     }
 }
 
@@ -190,19 +190,19 @@ class ticket384_LanguageLevel extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('language_level');
-        $this->hasColumn('id', 'integer', 2, array(
+        $this->hasColumn('id', 'integer', 2, [
             'primary' => true,
             'autoincrement' => true,
             'unsigned' => true,
-        ));
+        ]);
 
-        $this->hasColumn('label', 'string', 100, array('notnull' => true));
+        $this->hasColumn('label', 'string', 100, ['notnull' => true]);
     }
 
     public function setUp()
     {
-        $this->hasMany('ticket384_ResumeHasLanguage as ResumeKnownLanguages', array(
+        $this->hasMany('ticket384_ResumeHasLanguage as ResumeKnownLanguages', [
             'local' => 'id',
-            'foreign' => 'language_level_id'));
+            'foreign' => 'language_level_id']);
     }
 }

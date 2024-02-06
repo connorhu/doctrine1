@@ -71,8 +71,8 @@ class Ticket_1121_User extends Doctrine_Record
     public function setUp()
     {
         $this->actAs('SoftDelete');
-        $this->hasOne('Ticket_1121_Profile as Profile', array('local' => 'profile_id',
-            'foreign' => 'id'));
+        $this->hasOne('Ticket_1121_Profile as Profile', ['local' => 'profile_id',
+            'foreign' => 'id']);
     }
 }
 
@@ -87,7 +87,7 @@ class Ticket_1121_Profile extends Doctrine_Record
     public function setUp()
     {
         $this->actAs('SoftDelete');
-        $this->hasOne('Ticket_1121_User as User', array('local' => 'id',
-            'foreign' => 'profile_id'));
+        $this->hasOne('Ticket_1121_User as User', ['local' => 'id',
+            'foreign' => 'profile_id']);
     }
 }

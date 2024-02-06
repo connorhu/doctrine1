@@ -38,20 +38,20 @@ class Doctrine_Ticket_1417_TestCase extends Doctrine_UnitTestCase
     {
         $user = new User();
         $user->name = 'jwagejon';
-        $this->assertEqual($user->getModified(), array('name' => 'jwagejon'));
-        $this->assertEqual($user->getModified(true), array('name' => null));
+        $this->assertEqual($user->getModified(), ['name' => 'jwagejon']);
+        $this->assertEqual($user->getModified(true), ['name' => null]);
         $user->save();
-        $this->assertEqual($user->getModified(), array());
-        $this->assertEqual($user->getModified(true), array());
-        $this->assertEqual($user->getLastModified(), array('name' => 'jwagejon', 'type' => 0));
-        $this->assertEqual($user->getLastModified(true), array('name' => null, 'type' => null));
+        $this->assertEqual($user->getModified(), []);
+        $this->assertEqual($user->getModified(true), []);
+        $this->assertEqual($user->getLastModified(), ['name' => 'jwagejon', 'type' => 0]);
+        $this->assertEqual($user->getLastModified(true), ['name' => null, 'type' => null]);
         $user->name = 'jon';
-        $this->assertEqual($user->getModified(), array('name' => 'jon'));
-        $this->assertEqual($user->getModified(true), array('name' => 'jwagejon'));
+        $this->assertEqual($user->getModified(), ['name' => 'jon']);
+        $this->assertEqual($user->getModified(true), ['name' => 'jwagejon']);
         $user->save();
-        $this->assertEqual($user->getModified(), array());
-        $this->assertEqual($user->getModified(true), array());
-        $this->assertEqual($user->getLastModified(), array('name' => 'jon'));
-        $this->assertEqual($user->getLastModified(true), array('name' => 'jwagejon'));
+        $this->assertEqual($user->getModified(), []);
+        $this->assertEqual($user->getModified(true), []);
+        $this->assertEqual($user->getLastModified(), ['name' => 'jon']);
+        $this->assertEqual($user->getLastModified(true), ['name' => 'jwagejon']);
     }
 }

@@ -58,20 +58,20 @@ class Ticket_DC276_Post extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('content', 'string', 1000, array(
+        $this->hasColumn('content', 'string', 1000, [
             'type' => 'string',
             'length' => '1000',
-        ));
-        $this->hasColumn('max_comments', 'integer', null, array(
+        ]);
+        $this->hasColumn('max_comments', 'integer', null, [
             'type' => 'integer',
-        ));
+        ]);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC276_Comment as Comments', array(
+        $this->hasOne('Ticket_DC276_Comment as Comments', [
             'local' => 'id',
-            'foreign' => 'post_id'));
+            'foreign' => 'post_id']);
     }
 }
 
@@ -79,19 +79,19 @@ class Ticket_DC276_Comment extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('post_id', 'integer', null, array(
+        $this->hasColumn('post_id', 'integer', null, [
             'type' => 'integer',
-        ));
-        $this->hasColumn('content', 'string', 100, array(
+        ]);
+        $this->hasColumn('content', 'string', 100, [
             'type' => 'string',
             'length' => '100',
-        ));
+        ]);
     }
 
     public function setUp()
     {
-        $this->hasMany('Ticket_DC276_Post', array(
+        $this->hasMany('Ticket_DC276_Post', [
             'local' => 'post_id',
-            'foreign' => 'id'));
+            'foreign' => 'id']);
     }
 }

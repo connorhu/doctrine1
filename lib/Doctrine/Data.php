@@ -38,7 +38,7 @@ class Doctrine_Data
      *
      * @var string
      */
-    protected $_formats = array('csv', 'yml', 'xml');
+    protected $_formats = ['csv', 'yml', 'xml'];
 
     /**
      * format.
@@ -65,7 +65,7 @@ class Doctrine_Data
      *
      * @var string
      */
-    protected $_models = array();
+    protected $_models = [];
 
     /**
      * _exportIndividualFiles.
@@ -189,7 +189,7 @@ class Doctrine_Data
      * @param string $models
      * @param string $_exportIndividualFiles
      */
-    public function exportData($directory, $format = 'yml', $models = array(), $_exportIndividualFiles = false)
+    public function exportData($directory, $format = 'yml', $models = [], $_exportIndividualFiles = false)
     {
         $export = new Doctrine_Data_Export($directory);
         $export->setFormat($format);
@@ -208,7 +208,7 @@ class Doctrine_Data
      * @param string $format
      * @param string $models
      */
-    public function importData($directory, $format = 'yml', $models = array(), $append = false, $charset = 'UTF-8')
+    public function importData($directory, $format = 'yml', $models = [], $append = false, $charset = 'UTF-8')
     {
         $import = new Doctrine_Data_Import($directory);
         $import->setFormat($format);
@@ -255,7 +255,7 @@ class Doctrine_Data
             $models = Doctrine_Core::getLoadedModels();
         }
 
-        $connections = array();
+        $connections = [];
         foreach ($models as $model) {
             $connections[Doctrine_Core::getTable($model)->getConnection()->getName()][] = $model;
         }

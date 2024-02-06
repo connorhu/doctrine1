@@ -55,7 +55,7 @@ class Doctrine_Ticket_969_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'T1';
         $this->tables[] = 'T2';
         $this->tables[] = 'T3';
@@ -99,14 +99,14 @@ class T1 extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('t1');
-        $this->hasColumn('t1_id', 'integer', 3, array('autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true));
+        $this->hasColumn('t1_id', 'integer', 3, ['autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true]);
         $this->hasColumn('t2_id', 'integer', 3);
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('T2', array('local' => 't2_id', 'foreign' => 't2_id'));
+        $this->hasOne('T2', ['local' => 't2_id', 'foreign' => 't2_id']);
     }
 }
 
@@ -115,14 +115,14 @@ class T2 extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('t2');
-        $this->hasColumn('t2_id', 'integer', 3, array('autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true));
+        $this->hasColumn('t2_id', 'integer', 3, ['autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true]);
         $this->hasColumn('hello_id', 'integer', 3);
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('T3', array('local' => 'hello_id', 'foreign' => 'hello_id'));
+        $this->hasMany('T3', ['local' => 'hello_id', 'foreign' => 'hello_id']);
     }
 }
 
@@ -131,7 +131,7 @@ class T3 extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('t3');
-        $this->hasColumn('t3_id', 'integer', 3, array('autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true));
+        $this->hasColumn('t3_id', 'integer', 3, ['autoincrement' => true, 'unsigned' => true, 'primary' => true, 'notnull' => true]);
         $this->hasColumn('hello_id', 'integer', 3);
     }
 

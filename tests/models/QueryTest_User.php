@@ -8,7 +8,7 @@ class QueryTest_User extends Doctrine_Record
             'username as username',
             'string',
             50,
-            array('notnull')
+            ['notnull']
         );
         $this->hasColumn('visibleRankId', 'integer', 4);
         $this->hasColumn('subscriptionId', 'integer', 4);
@@ -19,16 +19,16 @@ class QueryTest_User extends Doctrine_Record
      */
     public function setUp()
     {
-        $this->hasOne('QueryTest_Rank as visibleRank', array(
+        $this->hasOne('QueryTest_Rank as visibleRank', [
             'local' => 'visibleRankId', 'foreign' => 'id',
-        ));
+        ]);
 
-        $this->hasOne('QueryTest_Subscription', array(
+        $this->hasOne('QueryTest_Subscription', [
             'local' => 'subscriptionId', 'foreign' => 'id',
-        ));
+        ]);
 
-        $this->hasMany('QueryTest_Rank as ranks', array(
+        $this->hasMany('QueryTest_Rank as ranks', [
             'local' => 'userId', 'foreign' => 'rankId', 'refClass' => 'QueryTest_UserRank',
-        ));
+        ]);
     }
 }

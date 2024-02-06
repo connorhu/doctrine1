@@ -17,7 +17,7 @@ class Doctrine_Ticket_576_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('Entity');
+        $this->tables = ['Entity'];
         parent::prepareTables();
     }
 
@@ -46,7 +46,7 @@ class Doctrine_Ticket_576_TestCase extends Doctrine_UnitTestCase
         $data = Doctrine_Query::create()
             ->select('name')
             ->from('Entity')
-            ->fetchOne(array(), Doctrine_Core::HYDRATE_ARRAY)
+            ->fetchOne([], Doctrine_Core::HYDRATE_ARRAY)
         ;
 
         $user->hydrate($data);

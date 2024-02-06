@@ -31,7 +31,7 @@ class Doctrine_Validator_Exception extends Doctrine_Exception implements Countab
     /**
      * @var array
      */
-    private $invalid = array();
+    private $invalid = [];
 
     public function __construct(array $invalid)
     {

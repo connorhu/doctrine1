@@ -58,11 +58,11 @@ class Ticket_1044_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1044_UserProfile as UserProfile', array('local' => 'user_profile_id',
-            'foreign' => 'id'));
-        $this->hasOne('Ticket_1044_UserProfile as UserProfile', array('local' => 'user_profile_id',
+        $this->hasOne('Ticket_1044_UserProfile as UserProfile', ['local' => 'user_profile_id',
+            'foreign' => 'id']);
+        $this->hasOne('Ticket_1044_UserProfile as UserProfile', ['local' => 'user_profile_id',
             'foreign' => 'id',
-            'override' => true));
+            'override' => true]);
     }
 }
 

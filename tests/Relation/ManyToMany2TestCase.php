@@ -40,7 +40,7 @@ class Doctrine_Relation_ManyToMany2_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('TestUser', 'TestMovie', 'TestMovieUserBookmark', 'TestMovieUserVote');
+        $this->tables = ['TestUser', 'TestMovie', 'TestMovieUserBookmark', 'TestMovieUserVote'];
         parent::prepareTables();
     }
 

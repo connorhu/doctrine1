@@ -35,7 +35,7 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
 
     public function __construct(Doctrine_Manager $manager, $adapter)
     {
-        $this->supported = array(
+        $this->supported = [
             'sequences' => true,
             'indexes' => true,
             'summary_functions' => true,
@@ -54,7 +54,7 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
             'prepared_statements' => true,
             'identifier_quoting' => true,
             'pattern_escaping' => true,
-        );
+        ];
 
         $this->properties['sql_file_delimiter'] = "\n/\n";
         $this->properties['number_max_precision'] = 38;

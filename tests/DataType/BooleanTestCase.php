@@ -40,7 +40,7 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('BooleanTest');
+        $this->tables = ['BooleanTest'];
         parent::prepareTables();
     }
 
@@ -88,11 +88,11 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase
     public function testPreparedQueries()
     {
         $query = new Doctrine_Query($this->connection);
-        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = ?', array(false));
+        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = ?', [false]);
         $this->assertEqual(count($ret), 1);
 
         $query = new Doctrine_Query($this->connection);
-        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = ?', array(true));
+        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = ?', [true]);
         $this->assertEqual(count($ret), 1);
     }
 

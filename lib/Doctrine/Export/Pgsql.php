@@ -118,7 +118,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
             return true;
         }
 
-        $sql = array();
+        $sql = [];
 
         if (isset($changes['add']) && is_array($changes['add'])) {
             foreach ($changes['add'] as $fieldName => $field) {
@@ -222,7 +222,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      * @return string
      * @throws Doctrine_Connection_Exception if something fails at database level
      */
-    public function createSequenceSql($sequenceName, $start = 1, array $options = array())
+    public function createSequenceSql($sequenceName, $start = 1, array $options = [])
     {
         $sequenceName = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($sequenceName), true);
 
@@ -248,7 +248,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      * @param  unknown_type $name
      * @return unknown
      */
-    public function createTableSql($name, array $fields, array $options = array())
+    public function createTableSql($name, array $fields, array $options = [])
     {
         if (!$name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
@@ -262,7 +262,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
 
         if (isset($options['primary']) && !empty($options['primary'])) {
             $keyColumns = array_values($options['primary']);
-            $keyColumns = array_map(array($this->conn, 'quoteIdentifier'), $keyColumns);
+            $keyColumns = array_map([$this->conn, 'quoteIdentifier'], $keyColumns);
             $queryFields .= ', PRIMARY KEY('.implode(', ', $keyColumns).')';
         }
 

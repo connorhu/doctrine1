@@ -11,7 +11,7 @@ class Doctrine_Ticket_941_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('Site', 'Variable', 'SiteVarvalue');
+        $this->tables = ['Site', 'Variable', 'SiteVarvalue'];
         parent::prepareTables();
     }
 
@@ -127,16 +127,16 @@ abstract class BaseSite extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('_site');
-        $this->hasColumn('site_id', 'integer', 4, array('notnull' => true, 'primary' => true, 'autoincrement' => true));
-        $this->hasColumn('site_domain', 'string', 255, array('notnull' => true));
+        $this->hasColumn('site_id', 'integer', 4, ['notnull' => true, 'primary' => true, 'autoincrement' => true]);
+        $this->hasColumn('site_domain', 'string', 255, ['notnull' => true]);
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Variable as Variables', array('refClass' => 'SiteVarvalue',
+        $this->hasMany('Variable as Variables', ['refClass' => 'SiteVarvalue',
             'local' => 'site_id',
-            'foreign' => 'variable_id'));
+            'foreign' => 'variable_id']);
     }
 }
 abstract class BaseVariable extends Doctrine_Record
@@ -144,19 +144,19 @@ abstract class BaseVariable extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('_variable');
-        $this->hasColumn('variable_id', 'integer', 4, array('notnull' => true, 'primary' => true, 'autoincrement' => true));
-        $this->hasColumn('variable_name', 'string', 100, array('notnull' => true));
+        $this->hasColumn('variable_id', 'integer', 4, ['notnull' => true, 'primary' => true, 'autoincrement' => true]);
+        $this->hasColumn('variable_name', 'string', 100, ['notnull' => true]);
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Site as Sites', array('refClass' => 'SiteVarvalue',
+        $this->hasMany('Site as Sites', ['refClass' => 'SiteVarvalue',
             'local' => 'variable_id',
-            'foreign' => 'site_id'));
+            'foreign' => 'site_id']);
 
-        $this->hasMany('SiteVarvalue as Values', array('local' => 'variable_id',
-            'foreign' => 'variable_id'));
+        $this->hasMany('SiteVarvalue as Values', ['local' => 'variable_id',
+            'foreign' => 'variable_id']);
     }
 }
 abstract class BaseSiteVarvalue extends Doctrine_Record
@@ -164,17 +164,17 @@ abstract class BaseSiteVarvalue extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('_site_varvalue');
-        $this->hasColumn('varvalue_id', 'integer', 4, array('notnull' => true, 'primary' => true, 'autoincrement' => true));
-        $this->hasColumn('site_id', 'integer', 4, array('notnull' => true));
-        $this->hasColumn('variable_id', 'integer', 4, array('notnull' => true));
-        $this->hasColumn('varvalue_value', 'string', null, array('notnull' => true));
+        $this->hasColumn('varvalue_id', 'integer', 4, ['notnull' => true, 'primary' => true, 'autoincrement' => true]);
+        $this->hasColumn('site_id', 'integer', 4, ['notnull' => true]);
+        $this->hasColumn('variable_id', 'integer', 4, ['notnull' => true]);
+        $this->hasColumn('varvalue_value', 'string', null, ['notnull' => true]);
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Variable as Variables', array('local' => 'variable_id',
-            'foreign' => 'variable_id'));
+        $this->hasOne('Variable as Variables', ['local' => 'variable_id',
+            'foreign' => 'variable_id']);
     }
 }
 class Site extends BaseSite

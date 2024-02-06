@@ -84,7 +84,7 @@ class RemoveColumnTest extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('AA', 'integer', null, array('primary' => true));
+        $this->hasColumn('AA', 'integer', null, ['primary' => true]);
         $this->hasColumn('bb', 'integer');
         $this->hasColumn('CC', 'string', 10);
         $this->hasColumn('dd', 'string', 10);

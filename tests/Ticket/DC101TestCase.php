@@ -40,7 +40,7 @@ class Doctrine_Ticket_DC101_TestCase extends Doctrine_UnitTestCase
 
         $conn = Doctrine_Manager::getInstance()->connection($dbh, 'mysql', false);
 
-        $sql = $conn->export->exportSortedClassesSql(array('Ticket_DC101_User', 'Ticket_DC101_Profile'), false);
+        $sql = $conn->export->exportSortedClassesSql(['Ticket_DC101_User', 'Ticket_DC101_Profile'], false);
         $this->assertEqual($sql[2], 'ALTER TABLE ticket__d_c101__profile ADD CONSTRAINT user_id_fk FOREIGN KEY (user_id) REFERENCES ticket__d_c101__user(id)');
     }
 }
@@ -54,10 +54,10 @@ class Ticket_DC101_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC101_Profile as Profile', array(
+        $this->hasOne('Ticket_DC101_Profile as Profile', [
             'local' => 'id',
             'foreign' => 'user_id',
-        ));
+        ]);
     }
 }
 
@@ -71,10 +71,10 @@ class Ticket_DC101_Profile extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC101_User as User', array(
+        $this->hasOne('Ticket_DC101_User as User', [
             'local' => 'user_id',
             'foreign' => 'id',
             'foreignKeyName' => 'user_id_fk',
-        ));
+        ]);
     }
 }

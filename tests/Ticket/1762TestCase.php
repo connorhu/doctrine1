@@ -66,9 +66,9 @@ class User2 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Role2 as Roles', array('refClass' => 'UserRole2',
+        $this->hasMany('Role2 as Roles', ['refClass' => 'UserRole2',
             'local' => 'user_id',
-            'foreign' => 'role_id'));
+            'foreign' => 'role_id']);
     }
 }
 
@@ -81,9 +81,9 @@ class Role2 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('User2 as Users', array('refClass' => 'UserRole2',
+        $this->hasMany('User2 as Users', ['refClass' => 'UserRole2',
             'local' => 'role_id',
-            'foreign' => 'User_id'));
+            'foreign' => 'User_id']);
     }
 }
 
@@ -91,7 +91,7 @@ class UserRole2 extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('user_id', 'integer', null, array('primary' => true));
-        $this->hasColumn('role_id', 'integer', null, array('primary' => true));
+        $this->hasColumn('user_id', 'integer', null, ['primary' => true]);
+        $this->hasColumn('role_id', 'integer', null, ['primary' => true]);
     }
 }

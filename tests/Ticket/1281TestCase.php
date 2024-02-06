@@ -41,9 +41,9 @@ class Doctrine_Ticket_1281_TestCase extends Doctrine_UnitTestCase
         $user->name = 'zYne-';
 
         // new values
-        $this->assertEqual($user->getModified(), array('name' => 'zYne-'));
+        $this->assertEqual($user->getModified(), ['name' => 'zYne-']);
 
         // old values
-        $this->assertEqual($user->getModified(true), array('name' => 'zYne'));
+        $this->assertEqual($user->getModified(true), ['name' => 'zYne']);
     }
 }

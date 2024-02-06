@@ -4,11 +4,11 @@ class Tag extends Doctrine_Record
 {
     public function setUp()
     {
-        $this->hasMany('Photo', array(
+        $this->hasMany('Photo', [
             'local' => 'tag_id',
             'foreign' => 'photo_id',
             'refClass' => 'Phototag',
-        ));
+        ]);
     }
 
     public function setTableDefinition()

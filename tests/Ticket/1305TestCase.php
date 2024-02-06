@@ -64,6 +64,6 @@ class Ticket_1305_Record extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('name', 'string', 255, array('notnull' => true, 'default' => 'test'));
+        $this->hasColumn('name', 'string', 255, ['notnull' => true, 'default' => 'test']);
     }
 }

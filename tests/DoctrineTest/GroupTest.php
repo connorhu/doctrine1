@@ -7,7 +7,7 @@
  */
 class GroupTest extends UnitTestCase
 {
-    protected $_testCases = array();
+    protected $_testCases = [];
     protected $_name;
     protected $_title;
     protected $_onlyRunFailed = false;

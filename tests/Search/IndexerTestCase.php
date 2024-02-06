@@ -40,7 +40,7 @@ class Doctrine_Search_Indexer_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('Doctrine_File', 'Doctrine_File_Index');
+        $this->tables = ['Doctrine_File', 'Doctrine_File_Index'];
 
         parent::prepareTables();
     }
@@ -65,7 +65,7 @@ class Doctrine_Search_Indexer_TestCase extends Doctrine_UnitTestCase
     public function testSearchingFiles()
     {
         $files = Doctrine_Query::create()->select('DISTINCT i.file_id')->from('Doctrine_File_Index i')
-            ->where('i.keyword = ?', array('database'))->execute(array(), Doctrine_Hydrate::HYDRATE_ARRAY)
+            ->where('i.keyword = ?', ['database'])->execute([], Doctrine_Hydrate::HYDRATE_ARRAY)
         ;
 
         $this->assertEqual(count($files), 11);

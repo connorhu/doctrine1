@@ -70,7 +70,7 @@ class Doctrine_Ticket_Njero_TestCase extends Doctrine_UnitTestCase
         // this test passes, but there is another issue just not reflected in this test yet, see "in my app" note below
 
         $q->from('PolicyN p, p.RateN r, r.PolicyCodeN y, r.CoverageCodeN c, r.LiabilityCodeN l')
-            ->where('(p.id = ?)', array('1'))
+            ->where('(p.id = ?)', ['1'])
         ;
 
         $p = $q->execute()->getFirst();

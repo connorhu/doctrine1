@@ -33,8 +33,8 @@ class stComment extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('st_comment');
-        $this->hasColumn('title', 'string', 100, array());
-        $this->hasColumn('body', 'string', 1000, array());
+        $this->hasColumn('title', 'string', 100, []);
+        $this->hasColumn('body', 'string', 1000, []);
     }
 }
 
@@ -53,7 +53,7 @@ class Doctrine_Ticket_480_TestCase extends Doctrine_UnitTestCase
 
     public function testTicket()
     {
-        $this->conn->export->exportClasses(array('stComment'));
+        $this->conn->export->exportClasses(['stComment']);
         $queries = $this->dbh->getAll();
 
         // (2nd|1st except transaction init.) executed query must be CREATE TABLE or CREATE SEQUENCE, not CREATE TRIGGER

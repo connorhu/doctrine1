@@ -51,7 +51,7 @@ class Doctrine_Ticket_1325_TestCase extends Doctrine_UnitTestCase
 
         $res = Doctrine_Query::create()
             ->from('Ticket_1325_TableName_NoAlias')
-            ->fetchOne(array(), Doctrine_Core::HYDRATE_ARRAY)
+            ->fetchOne([], Doctrine_Core::HYDRATE_ARRAY)
         ;
 
         $time = strtotime($res['event_date']);
@@ -68,7 +68,7 @@ class Doctrine_Ticket_1325_TestCase extends Doctrine_UnitTestCase
 
         $res = Doctrine_Query::create()
             ->from('Ticket_1325_TableName_Aliased')
-            ->fetchOne(array(), Doctrine_Core::HYDRATE_ARRAY)
+            ->fetchOne([], Doctrine_Core::HYDRATE_ARRAY)
         ;
 
         $time = strtotime($res['eventDate']);
@@ -80,12 +80,12 @@ class Ticket_1325_TableName_NoAlias extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', 4, ['primary' => true, 'autoincrement' => true]);
     }
 
     public function setUp()
     {
-        $this->actAs(new Doctrine_Template_Timestampable(array('created' => array('name' => 'event_date', 'type' => 'timestamp'), 'updated' => array('disabled' => true))));
+        $this->actAs(new Doctrine_Template_Timestampable(['created' => ['name' => 'event_date', 'type' => 'timestamp'], 'updated' => ['disabled' => true]]));
     }
 }
 
@@ -93,11 +93,11 @@ class Ticket_1325_TableName_Aliased extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', 4, ['primary' => true, 'autoincrement' => true]);
     }
 
     public function setUp()
     {
-        $this->actAs(new Doctrine_Template_Timestampable(array('created' => array('name' => 'event_date', 'alias' => 'eventDate', 'type' => 'timestamp'), 'updated' => array('disabled' => true))));
+        $this->actAs(new Doctrine_Template_Timestampable(['created' => ['name' => 'event_date', 'alias' => 'eventDate', 'type' => 'timestamp'], 'updated' => ['disabled' => true]]));
     }
 }

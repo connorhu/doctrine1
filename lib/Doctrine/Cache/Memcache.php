@@ -39,7 +39,7 @@ class Doctrine_Cache_Memcache extends Doctrine_Cache_Driver
      *
      * @param array $options associative array of cache driver options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         if (!extension_loaded('memcache')) {
             throw new Doctrine_Cache_Exception('In order to use Memcache driver, the memcache extension must be loaded.');
@@ -50,7 +50,7 @@ class Doctrine_Cache_Memcache extends Doctrine_Cache_Driver
             $value = $options['servers'];
             if (isset($value['host'])) {
                 // in this case, $value seems to be a simple associative array (one server only)
-                $value = array(0 => $value); // let's transform it into a classical array of associative arrays
+                $value = [0 => $value]; // let's transform it into a classical array of associative arrays
             }
             $this->setOption('servers', $value);
         }
@@ -129,7 +129,7 @@ class Doctrine_Cache_Memcache extends Doctrine_Cache_Driver
      */
     protected function _getCacheKeys()
     {
-        $keys = array();
+        $keys = [];
         $allSlabs = $this->_memcache->getExtendedStats('slabs');
 
         foreach ($allSlabs as $server => $slabs) {

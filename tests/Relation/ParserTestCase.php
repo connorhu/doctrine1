@@ -38,23 +38,23 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $p = array('type' => Doctrine_Relation::ONE,
-            'local' => 'email_id');
+        $p = ['type' => Doctrine_Relation::ONE,
+            'local' => 'email_id'];
 
         $r->bind('Email', $p);
 
-        $this->assertEqual($r->getPendingRelation('Email'), array('type' => Doctrine_Relation::ONE,
+        $this->assertEqual($r->getPendingRelation('Email'), ['type' => Doctrine_Relation::ONE,
             'local' => 'email_id',
             'class' => 'Email',
             'alias' => 'Email',
-        ));
+        ]);
     }
 
     public function testBindThrowsExceptionIfTypeNotSet()
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $p = array('local' => 'email_id');
+        $p = ['local' => 'email_id'];
         try {
             $r->bind('Email', $p);
             $this->fail('should throw exception');
@@ -67,9 +67,9 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $d = $r->completeDefinition(array('class' => 'Phonenumber',
+        $d = $r->completeDefinition(['class' => 'Phonenumber',
             'type' => Doctrine_Relation::MANY,
-            'foreign' => 'entity_id'));
+            'foreign' => 'entity_id']);
 
         $this->assertEqual($d['local'], 'id');
     }
@@ -78,9 +78,9 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $d = $r->completeDefinition(array('class' => 'Email',
+        $d = $r->completeDefinition(['class' => 'Email',
             'type' => Doctrine_Relation::ONE,
-            'foreign' => 'id'));
+            'foreign' => 'id']);
 
         $this->assertEqual($d['local'], 'email_id');
     }
@@ -89,9 +89,9 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $d = $r->completeDefinition(array('class' => 'Phonenumber',
+        $d = $r->completeDefinition(['class' => 'Phonenumber',
             'type' => Doctrine_Relation::MANY,
-            'local' => 'id'));
+            'local' => 'id']);
 
         $this->assertEqual($d['foreign'], 'entity_id');
     }
@@ -100,9 +100,9 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $d = $r->completeDefinition(array('class' => 'Email',
+        $d = $r->completeDefinition(['class' => 'Email',
             'type' => Doctrine_Relation::ONE,
-            'local' => 'email_id'));
+            'local' => 'email_id']);
 
         $this->assertEqual($d['foreign'], 'id');
     }
@@ -111,8 +111,8 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $d = $r->completeDefinition(array('class' => 'Email',
-            'type' => Doctrine_Relation::ONE));
+        $d = $r->completeDefinition(['class' => 'Email',
+            'type' => Doctrine_Relation::ONE]);
 
         $this->assertEqual($d['foreign'], 'id');
         $this->assertEqual($d['local'], 'email_id');
@@ -122,8 +122,8 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $d = $r->completeDefinition(array('class' => 'Phonenumber',
-            'type' => Doctrine_Relation::MANY));
+        $d = $r->completeDefinition(['class' => 'Phonenumber',
+            'type' => Doctrine_Relation::MANY]);
 
         $this->assertEqual($d['foreign'], 'entity_id');
         $this->assertEqual($d['local'], 'id');
@@ -133,10 +133,10 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $d = $r->completeAssocDefinition(array('class' => 'Group',
+        $d = $r->completeAssocDefinition(['class' => 'Group',
             'type' => Doctrine_Relation::MANY,
             'local' => 'user_id',
-            'refClass' => 'GroupUser'));
+            'refClass' => 'GroupUser']);
 
         $this->assertEqual($d['foreign'], 'group_id');
     }
@@ -145,10 +145,10 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
 
-        $d = $r->completeAssocDefinition(array('class' => 'Group',
+        $d = $r->completeAssocDefinition(['class' => 'Group',
             'type' => Doctrine_Relation::MANY,
             'foreign' => 'group_id',
-            'refClass' => 'GroupUser'));
+            'refClass' => 'GroupUser']);
 
         $this->assertEqual($d['local'], 'user_id');
     }
@@ -156,8 +156,8 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     public function testGetRelationReturnsForeignKeyObjectForOneToOneRelation()
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
-        $p = array('type' => Doctrine_Relation::ONE,
-            'local' => 'email_id');
+        $p = ['type' => Doctrine_Relation::ONE,
+            'local' => 'email_id'];
 
         $r->bind('Email', $p);
 
@@ -169,7 +169,7 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     public function testGetRelationReturnsForeignKeyObjectForOneToManyRelation()
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
-        $p = array('type' => Doctrine_Relation::MANY);
+        $p = ['type' => Doctrine_Relation::MANY];
 
         $r->bind('Phonenumber', $p);
 
@@ -181,8 +181,8 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     public function testGetRelationReturnsForeignKeyObjectForManytToManyRelation()
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
-        $p = array('type' => Doctrine_Relation::MANY,
-            'refClass' => 'GroupUser');
+        $p = ['type' => Doctrine_Relation::MANY,
+            'refClass' => 'GroupUser'];
 
         $r->bind('Group', $p);
 
@@ -196,10 +196,10 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     public function testGetRelationReturnsForeignKeyObjectForNestRelation()
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('Entity'));
-        $p = array('type' => Doctrine_Relation::MANY,
+        $p = ['type' => Doctrine_Relation::MANY,
             'refClass' => 'EntityReference',
             'local' => 'entity1',
-            'foreign' => 'entity2');
+            'foreign' => 'entity2'];
 
         $r->bind('Entity', $p);
 

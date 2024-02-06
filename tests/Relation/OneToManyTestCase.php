@@ -40,7 +40,7 @@ class Doctrine_Relation_OneToMany_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('Entity', 'Phonenumber', 'Email', 'Policy', 'PolicyAsset', 'Role', 'Auth');
+        $this->tables = ['Entity', 'Phonenumber', 'Email', 'Policy', 'PolicyAsset', 'Role', 'Auth'];
 
         parent::prepareTables();
     }

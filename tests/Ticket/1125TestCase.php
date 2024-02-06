@@ -42,11 +42,11 @@ class Doctrine_Ticket_1125_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $fields = array('id' => array('primary' => true,
+        $fields = ['id' => ['primary' => true,
             'autoincrement' => true,
             'type' => 'integer',
-            'length' => 4),
-            'name' => array('type' => 'string'));
+            'length' => 4],
+            'name' => ['type' => 'string']];
         $this->conn->export->createTable('test', $fields);
         $this->assertEqual($this->dbh->pop(), 'CREATE TABLE test (id INT AUTO_INCREMENT, name TEXT, PRIMARY KEY(id)) ENGINE = INNODB');
     }

@@ -44,7 +44,7 @@ class Doctrine_Plugin_TestCase extends Doctrine_UnitTestCase
 
     public function testNestedPluginsGetExportedRecursively()
     {
-        $sql = $this->conn->export->exportSortedClassesSql(array('Wiki'));
+        $sql = $this->conn->export->exportSortedClassesSql(['Wiki']);
         $sql = current($sql);
 
         $this->assertEqual($sql[0], 'CREATE TABLE wiki_translation_version (id INTEGER, lang CHAR(2), title VARCHAR(255), content TEXT, version INTEGER, PRIMARY KEY(id, lang, version))');
@@ -137,10 +137,10 @@ class Wiki extends Doctrine_Record
 
     public function setUp()
     {
-        $options = array('fields' => array('title', 'content'));
+        $options = ['fields' => ['title', 'content']];
         $auditLog = new Doctrine_Template_Versionable($options);
         $search = new Doctrine_Template_Searchable($options);
-        $slug = new Doctrine_Template_Sluggable(array('fields' => array('title'), 'indexName' => 'plugin_test_case_sluggable'));
+        $slug = new Doctrine_Template_Sluggable(['fields' => ['title'], 'indexName' => 'plugin_test_case_sluggable']);
         $i18n = new Doctrine_Template_I18n($options);
 
         $i18n->addChild($auditLog)

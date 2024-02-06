@@ -73,7 +73,7 @@ class T1641_User extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('user_id as id', 'integer', null, array('primary' => true, 'autoincrement' => true));
+        $this->hasColumn('user_id as id', 'integer', null, ['primary' => true, 'autoincrement' => true]);
         $this->hasColumn('name', 'string', 100);
     }
 

@@ -79,14 +79,14 @@ class Doctrine_Ticket_1304_Slug extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('title', 'string', 255, array('type' => 'string', 'length' => '255'));
-        $this->hasColumn('content', 'string', null, array('type' => 'string'));
+        $this->hasColumn('title', 'string', 255, ['type' => 'string', 'length' => '255']);
+        $this->hasColumn('content', 'string', null, ['type' => 'string']);
     }
 
     public function setUp()
     {
-        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'title', 1 => 'content')));
-        $sluggable1 = new Doctrine_Template_Sluggable(array('fields' => array(0 => 'title'), 'indexName' => 'i18n_sluggable_test'));
+        $i18n0 = new Doctrine_Template_I18n(['fields' => [0 => 'title', 1 => 'content']]);
+        $sluggable1 = new Doctrine_Template_Sluggable(['fields' => [0 => 'title'], 'indexName' => 'i18n_sluggable_test']);
         $i18n0->addChild($sluggable1);
         $this->actAs($i18n0);
     }

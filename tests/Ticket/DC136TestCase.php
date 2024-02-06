@@ -54,7 +54,7 @@ class Doctrine_Ticket_DC136_TestCase extends Doctrine_UnitTestCase
         $user1->username = 'jonwage';
 
         $user2 = $table->find($id);
-        $this->assertEqual($user2->getModified(), array());
+        $this->assertEqual($user2->getModified(), []);
     }
 }
 

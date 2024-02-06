@@ -10,8 +10,8 @@ class Log_Entry extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Log_Status', array(
+        $this->hasOne('Log_Status', [
             'local' => 'status_id', 'foreign' => 'id',
-        ));
+        ]);
     }
 }

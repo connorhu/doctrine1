@@ -148,7 +148,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
      * @param  mixed|null $hydrationMode
      * @return mixed      the tree or FALSE if the tree could not be found
      */
-    public function fetchTree($options = array(), $hydrationMode = null)
+    public function fetchTree($options = [], $hydrationMode = null)
     {
         // fetch tree
         $q = $this->getBaseQuery();
@@ -167,12 +167,12 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
         }
 
         if (!is_null($depth)) {
-            $q->addWhere($this->_baseAlias.'.level BETWEEN ? AND ?', array(0, $depth));
+            $q->addWhere($this->_baseAlias.'.level BETWEEN ? AND ?', [0, $depth]);
         }
 
         $q = $this->returnQueryWithRootId($q, $rootId);
 
-        $tree = $q->execute(array(), $hydrationMode);
+        $tree = $q->execute([], $hydrationMode);
 
         if (count($tree) <= 0) {
             return false;
@@ -191,7 +191,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
      *
      * @todo Only fetch the lft and rgt values of the initial record. more is not needed.
      */
-    public function fetchBranch($pk, $options = array(), $hydrationMode = null)
+    public function fetchBranch($pk, $options = [], $hydrationMode = null)
     {
         $record = $this->table->find($pk);
         if (!($record instanceof Doctrine_Record) || !$record->exists()) {
@@ -202,18 +202,18 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
         $depth = isset($options['depth']) ? $options['depth'] : null;
 
         $q = $this->getBaseQuery();
-        $params = array($record->get('lft'), $record->get('rgt'));
+        $params = [$record->get('lft'), $record->get('rgt')];
         $q->addWhere($this->_baseAlias.'.lft >= ? AND '.$this->_baseAlias.'.rgt <= ?', $params)
             ->addOrderBy($this->_baseAlias.'.lft asc')
         ;
 
         if (!is_null($depth)) {
-            $q->addWhere($this->_baseAlias.'.level BETWEEN ? AND ?', array($record->get('level'), $record->get('level') + $depth));
+            $q->addWhere($this->_baseAlias.'.level BETWEEN ? AND ?', [$record->get('level'), $record->get('level') + $depth]);
         }
 
         $q = $this->returnQueryWithRootId($q, $record->getNode()->getRootValue());
 
-        return $q->execute(array(), $hydrationMode);
+        return $q->execute([], $hydrationMode);
     }
 
     /**

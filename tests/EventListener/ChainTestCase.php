@@ -40,7 +40,7 @@ class Doctrine_EventListener_Chain_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('EventListenerChainTest');
+        $this->tables = ['EventListenerChainTest'];
         parent::prepareTables();
     }
 

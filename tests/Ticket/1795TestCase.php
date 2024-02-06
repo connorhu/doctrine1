@@ -64,7 +64,7 @@ class Ticket_1795_BlogPost extends Doctrine_Record
 
     public function setUp()
     {
-        $i18n = new Doctrine_Template_I18n(array('fields' => array('title')));
+        $i18n = new Doctrine_Template_I18n(['fields' => ['title']]);
         $i18n->addChild(new CustomTemplate());
         $this->actAs($i18n);
     }

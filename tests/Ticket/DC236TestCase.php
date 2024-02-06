@@ -73,10 +73,10 @@ class Ticket_DC236_File extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('name', 'string', 255, array(
+        $this->hasColumn('name', 'string', 255, [
             'type' => 'string',
             'length' => '255',
-        ));
+        ]);
     }
 
     public function setUp()

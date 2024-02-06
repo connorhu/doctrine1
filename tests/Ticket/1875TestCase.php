@@ -58,6 +58,6 @@ class Ticket_1875_Account extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 255);
-        $this->hasColumn('amount', 'decimal', 4, array('scale' => 2));
+        $this->hasColumn('amount', 'decimal', 4, ['scale' => 2]);
     }
 }

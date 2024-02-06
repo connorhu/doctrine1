@@ -40,7 +40,7 @@ class Doctrine_Query_MultiJoin2_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('QueryTest_Category', 'QueryTest_Board', 'QueryTest_User', 'QueryTest_Entry');
+        $this->tables = ['QueryTest_Category', 'QueryTest_Board', 'QueryTest_User', 'QueryTest_Entry'];
 
         parent::prepareTables();
     }
@@ -111,7 +111,7 @@ class Doctrine_Query_MultiJoin2_TestCase extends Doctrine_UnitTestCase
                 ->leftJoin('le.author a')
                 ->where('c.parentCategoryId = 0')
                 ->orderBy('c.position ASC, subCats.position ASC, b.position ASC')
-                ->execute(array(), Doctrine_Core::HYDRATE_ARRAY)
+                ->execute([], Doctrine_Core::HYDRATE_ARRAY)
             ;
             $this->pass();
         } catch (Doctrine_Exception $e) {

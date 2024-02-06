@@ -72,7 +72,7 @@ class Ticket_1257_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1257_Role as Role', array('local' => 'role_id', 'foreign' => 'id'));
+        $this->hasOne('Ticket_1257_Role as Role', ['local' => 'role_id', 'foreign' => 'id']);
     }
 }
 
@@ -86,6 +86,6 @@ class Ticket_1257_Role extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1257_User as Users', array('local' => 'id', 'foreign' => 'role_id'));
+        $this->hasMany('Ticket_1257_User as Users', ['local' => 'id', 'foreign' => 'role_id']);
     }
 }

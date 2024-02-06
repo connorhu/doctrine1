@@ -64,14 +64,14 @@ class Ticket_2229_SlugBug extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('SlugBug');
-        $this->hasColumn('id', 'integer', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', 11, ['primary' => true, 'notnull' => true, 'autoincrement' => true]);
         $this->hasColumn('name', 'string');
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->actAs('Sluggable', array('unique' => true,
-            'fields' => array('name')));
+        $this->actAs('Sluggable', ['unique' => true,
+            'fields' => ['name']]);
     }
 }

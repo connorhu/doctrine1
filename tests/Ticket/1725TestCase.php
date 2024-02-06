@@ -69,8 +69,8 @@ class Ticket_1725_User extends Doctrine_Record
     {
         $this->actAs('Timestampable');
         $this->actAs('SoftDelete');
-        $this->actAs('Versionable', array(
+        $this->actAs('Versionable', [
             'generateRelations' => false,
-            'deleteVersions' => false));
+            'deleteVersions' => false]);
     }
 }

@@ -51,7 +51,7 @@ class Doctrine_Ticket_DC437_TestCase extends Doctrine_UnitTestCase
         // Don't see any better place to perform connection preparation
         $this->prepareConnections();
 
-        $this->tables = array();
+        $this->tables = [];
         $this->tables[] = 'Doctrine_Ticket_DC437_Record';
 
         /* Export classes for each of the existing connections.
@@ -59,7 +59,7 @@ class Doctrine_Ticket_DC437_TestCase extends Doctrine_UnitTestCase
          * To trick Doctrine_Export::exportClasses() implementation to use
          * a proper connection, we need to manually re-bind all the components.
          */
-        foreach (array('conn1', 'conn2') as $dbConnName) {
+        foreach (['conn1', 'conn2'] as $dbConnName) {
             $dbConn = $this->manager->getConnection($dbConnName);
             foreach ($this->tables as $componentName) {
                 $this->manager->bindComponent($componentName, $dbConn->getName());
@@ -112,12 +112,12 @@ class Doctrine_Ticket_DC437_Record extends Doctrine_Record
     {
         $this->setTableName('dc437records');
 
-        $this->hasColumn('id', 'integer', 5, array(
+        $this->hasColumn('id', 'integer', 5, [
             'unsigned' => true,
             'notnull' => true,
             'primary' => true,
             'autoincrement' => true,
-        ));
+        ]);
 
         $this->hasColumn('test', 'string');
     }

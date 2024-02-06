@@ -40,7 +40,7 @@ class Doctrine_Query_ApplyInheritance_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('InheritanceDeal', 'InheritanceEntityUser', 'InheritanceUser');
+        $this->tables = ['InheritanceDeal', 'InheritanceEntityUser', 'InheritanceUser'];
 
         parent::prepareTables();
     }

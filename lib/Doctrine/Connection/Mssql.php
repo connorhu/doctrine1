@@ -40,7 +40,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
     public function __construct(Doctrine_Manager $manager, $adapter)
     {
         // initialize all driver options
-        $this->supported = array(
+        $this->supported = [
             'sequences' => 'emulated',
             'indexes' => true,
             'affected_rows' => true,
@@ -56,7 +56,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
             'primary_key' => true,
             'result_introspection' => true,
             'prepared_statements' => 'emulated',
-        );
+        ];
 
         $this->properties['varchar_max_length'] = 8000;
 
@@ -81,7 +81,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
 
         if (false !== strpos($identifier, '.')) {
             $parts = explode('.', $identifier);
-            $quotedParts = array();
+            $quotedParts = [];
             foreach ($parts as $p) {
                 $quotedParts[] = $this->quoteIdentifier($p);
             }
@@ -160,9 +160,9 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      */
     private function parseOrderBy($orderby)
     {
-        $matches = array();
-        $chunks = array();
-        $tokens = array();
+        $matches = [];
+        $chunks = [];
+        $tokens = [];
         $parsed = str_ireplace('ORDER BY', '', $orderby);
 
         preg_match_all('/(\w+\(.+?\)\s+(ASC|DESC)),?/', $orderby, $matches);
@@ -233,21 +233,21 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
         $this->serverInfo = $serverInfo;
         if (!$native) {
             if (preg_match('/([0-9]+)\.([0-9]+)\.([0-9]+)/', $serverInfo, $tmp)) {
-                $serverInfo = array(
+                $serverInfo = [
                     'major' => $tmp[1],
                     'minor' => $tmp[2],
                     'patch' => $tmp[3],
                     'extra' => null,
                     'native' => $serverInfo,
-                );
+                ];
             } else {
-                $serverInfo = array(
+                $serverInfo = [
                     'major' => null,
                     'minor' => null,
                     'patch' => null,
                     'extra' => null,
                     'native' => $serverInfo,
-                );
+                ];
             }
         }
 
@@ -282,13 +282,13 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      * @param  array                                   $params query parameters
      * @return PDOStatement|Doctrine_Adapter_Statement
      */
-    public function execute($query, array $params = array())
+    public function execute($query, array $params = [])
     {
         if (!empty($params)) {
             $query = $this->replaceBoundParamsWithInlineValuesInQuery($query, $params);
         }
 
-        return parent::execute($query, array());
+        return parent::execute($query, []);
     }
 
     /**
@@ -298,13 +298,13 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      * @param  array                                   $params query parameters
      * @return PDOStatement|Doctrine_Adapter_Statement
      */
-    public function exec($query, array $params = array())
+    public function exec($query, array $params = [])
     {
         if (!empty($params)) {
             $query = $this->replaceBoundParamsWithInlineValuesInQuery($query, $params);
         }
 
-        return parent::exec($query, array());
+        return parent::exec($query, []);
     }
 
     /**
@@ -361,7 +361,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
 
             $id = $this->lastInsertId($table->getTableName());
 
-            return $this->update($table, $fields, array($id));
+            return $this->update($table, $fields, [$id]);
         }
 
         return parent::insert($table, $fields);

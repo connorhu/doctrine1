@@ -130,10 +130,10 @@ class Doctrine_Task_TestCase extends Doctrine_UnitTestCase
         $this->loadPhpFixture('TestTask004.php');
         $this->loadPhpFixture('TestTask005.php');
 
-        $aClassWithInvalidTaskName = array(
+        $aClassWithInvalidTaskName = [
             'Doctrine_Task_TestCase_TestTask004' => '-invalid-task-name',
             'Doctrine_Task_TestCase_TestTask005' => 'another invalid task name',
-        );
+        ];
 
         $numPasses = 0;
 

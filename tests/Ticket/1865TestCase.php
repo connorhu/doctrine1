@@ -75,14 +75,14 @@ class Ticket_1865_Profile extends Doctrine_Record
 {
     public function setUp()
     {
-        $this->hasOne('Ticket_1865_User as User', array('local' => 'id', 'foreign' => 'id', 'onDelete' => 'CASCADE'));
+        $this->hasOne('Ticket_1865_User as User', ['local' => 'id', 'foreign' => 'id', 'onDelete' => 'CASCADE']);
     }
 
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 20, array('autoincrement', 'primary'));
-        $this->hasColumn('user_id', 'integer', 20, array('notnull', 'unique'));
-        $this->hasColumn('icq', 'string', 9, array('notnull'));
+        $this->hasColumn('id', 'integer', 20, ['autoincrement', 'primary']);
+        $this->hasColumn('user_id', 'integer', 20, ['notnull', 'unique']);
+        $this->hasColumn('icq', 'string', 9, ['notnull']);
     }
 }
 
@@ -90,14 +90,14 @@ class Ticket_1865_User extends Doctrine_Record
 {
     public function setUp()
     {
-        $this->hasOne('Ticket_1865_Profile as Profile', array('local' => 'id', 'foreign' => 'user_id'));
+        $this->hasOne('Ticket_1865_Profile as Profile', ['local' => 'id', 'foreign' => 'user_id']);
     }
 
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 20, array('autoincrement', 'primary'));
+        $this->hasColumn('id', 'integer', 20, ['autoincrement', 'primary']);
         $this->hasColumn('name', 'string', 50);
-        $this->hasColumn('loginname', 'string', 20, array('unique'));
+        $this->hasColumn('loginname', 'string', 20, ['unique']);
         $this->hasColumn('password', 'string', 16);
     }
 

@@ -64,6 +64,6 @@ class Ticket_1824_Test extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('I18n', array('fields' => array('test')));
+        $this->actAs('I18n', ['fields' => ['test']]);
     }
 }

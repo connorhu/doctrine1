@@ -78,7 +78,7 @@ class Ticket_1629_User extends Doctrine_Record
     public function setUp()
     {
         $this->actAs('SoftDelete');
-        $this->hasMany('Ticket_1629_Phonenumber as Phonenumbers', array('local' => 'id', 'foreign' => 'user_id'));
+        $this->hasMany('Ticket_1629_Phonenumber as Phonenumbers', ['local' => 'id', 'foreign' => 'user_id']);
     }
 }
 
@@ -93,6 +93,6 @@ class Ticket_1629_Phonenumber extends Doctrine_Record
     public function setUp()
     {
         $this->actAs('SoftDelete');
-        $this->hasOne('Ticket_1629_User as User', array('local' => 'user_id', 'foreign' => 'id'));
+        $this->hasOne('Ticket_1629_User as User', ['local' => 'user_id', 'foreign' => 'id']);
     }
 }

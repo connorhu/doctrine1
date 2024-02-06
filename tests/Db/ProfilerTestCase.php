@@ -44,7 +44,7 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
 
     public function testQuery()
     {
-        $this->conn = Doctrine_Manager::getInstance()->openConnection(array('sqlite::memory:'));
+        $this->conn = Doctrine_Manager::getInstance()->openConnection(['sqlite::memory:']);
 
         $this->profiler = new Doctrine_Connection_Profiler();
 
@@ -70,7 +70,7 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($this->profiler->lastEvent()->getCode(), Doctrine_Db_Event::PREPARE);
         $this->assertTrue(is_numeric($this->profiler->lastEvent()->getElapsedSecs()));
 
-        $stmt->execute(array(1));
+        $stmt->execute([1]);
 
         $this->assertEqual($this->profiler->lastEvent()->getQuery(), 'INSERT INTO test (id) VALUES (?)');
         $this->assertTrue($this->profiler->lastEvent()->hasEnded());
@@ -94,8 +94,8 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($this->profiler->lastEvent()->getCode(), Doctrine_Db_Event::PREPARE);
         $this->assertTrue(is_numeric($this->profiler->lastEvent()->getElapsedSecs()));
 
-        $stmt->execute(array(1));
-        $stmt2->execute(array(1));
+        $stmt->execute([1]);
+        $stmt2->execute([1]);
 
         $this->assertEqual($this->profiler->lastEvent()->getQuery(), 'INSERT INTO test (id) VALUES (?)');
         $this->assertTrue($this->profiler->lastEvent()->hasEnded());
@@ -109,8 +109,8 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $stmt = $this->conn->prepare('INSERT INTO test (id) VALUES (?)');
-            $stmt->execute(array(1));
-            $stmt->execute(array(1));
+            $stmt->execute([1]);
+            $stmt->execute([1]);
             $this->pass();
         } catch (Doctrine_Db_Exception $e) {
             $this->fail($e->__toString());

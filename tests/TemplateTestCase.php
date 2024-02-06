@@ -94,11 +94,11 @@ class UserTemplate extends Doctrine_Template
 
     public function setUp()
     {
-        $this->hasMany('GroupTemplate as Group', array('local' => 'user_id',
+        $this->hasMany('GroupTemplate as Group', ['local' => 'user_id',
             'foreign' => 'group_id',
-            'refClass' => 'GroupUserTemplate'));
-        $this->hasMany('EmailTemplate as Email', array('local' => 'id',
-            'foreign' => 'user_id'));
+            'refClass' => 'GroupUserTemplate']);
+        $this->hasMany('EmailTemplate as Email', ['local' => 'id',
+            'foreign' => 'user_id']);
     }
 
     public function foo()
@@ -116,8 +116,8 @@ class EmailTemplate extends Doctrine_Template
 
     public function setUp()
     {
-        $this->hasOne('UserTemplate as User', array('local' => 'user_id',
-            'foreign' => 'id'));
+        $this->hasOne('UserTemplate as User', ['local' => 'user_id',
+            'foreign' => 'id']);
     }
 }
 class GroupTemplate extends Doctrine_Template
@@ -129,9 +129,9 @@ class GroupTemplate extends Doctrine_Template
 
     public function setUp()
     {
-        $this->hasMany('UserTemplate as User', array('local' => 'user_id',
+        $this->hasMany('UserTemplate as User', ['local' => 'user_id',
             'foreign' => 'group_id',
-            'refClass' => 'GroupUserTemplate'));
+            'refClass' => 'GroupUserTemplate']);
     }
 }
 class GroupUserTemplate extends Doctrine_Template

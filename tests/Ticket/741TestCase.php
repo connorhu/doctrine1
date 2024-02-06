@@ -13,7 +13,7 @@ class Doctrine_Ticket_741_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('Parent741', 'Child741');
+        $this->tables = ['Parent741', 'Child741'];
         parent::prepareTables();
     }
 
@@ -34,18 +34,18 @@ class Parent741 extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 4, [
             'primary' => true,
             'autoincrement' => true,
             'notnull' => true,
-        ));
+        ]);
 
         $this->hasColumn('amount', 'integer');
     }
 
     public function setUp()
     {
-        $this->hasMany('Child741 as Cows', array('local' => 'id', 'foreign' => 'moo_id'));
+        $this->hasMany('Child741 as Cows', ['local' => 'id', 'foreign' => 'moo_id']);
     }
 }
 
@@ -53,18 +53,18 @@ class Child741 extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 4, [
             'primary' => true,
             'autoincrement' => true,
             'notnull' => true,
-        ));
+        ]);
 
         $this->hasColumn('moo_id', 'integer');
     }
 
     public function setUp()
     {
-        $this->hasOne('Parent741 as Moo', array('local' => 'moo_id', 'foreign' => 'id'));
+        $this->hasOne('Parent741 as Moo', ['local' => 'moo_id', 'foreign' => 'id']);
     }
 
     public function postInsert($e)

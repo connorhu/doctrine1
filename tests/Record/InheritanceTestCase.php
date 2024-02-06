@@ -22,7 +22,7 @@ class Doctrine_Record_Inheritance_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array_merge($this->tables, array('SymfonyRecord'));
+        $this->tables = array_merge($this->tables, ['SymfonyRecord']);
         parent::prepareTables();
     }
 
@@ -43,7 +43,7 @@ class Doctrine_Record_Inheritance_TestCase extends Doctrine_UnitTestCase
         // load our record
         $record = Doctrine_Query::create()->query(
             'SELECT * FROM SymfonyRecord r',
-            array()
+            []
         )->getFirst();
 
         // did we get a record object?

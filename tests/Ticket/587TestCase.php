@@ -17,7 +17,7 @@ class Doctrine_Ticket_587_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array_merge($this->tables, array('BookmarkUser', 'Bookmark', 'Page'));
+        $this->tables = array_merge($this->tables, ['BookmarkUser', 'Bookmark', 'Page']);
         parent::prepareTables();
     }
 
@@ -55,7 +55,7 @@ class Doctrine_Ticket_587_TestCase extends Doctrine_UnitTestCase
         // load our user and our collection of pages
         $user = Doctrine_Query::create()->query(
             'SELECT * FROM BookmarkUser u WHERE u.name=?',
-            array('Anonymous')
+            ['Anonymous']
         )->getFirst();
         $pages = Doctrine_Query::create()->query('SELECT * FROM Page');
 

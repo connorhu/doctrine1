@@ -80,9 +80,9 @@ class Ticket_1483_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1483_Group as Groups', array('local' => 'user_id',
+        $this->hasMany('Ticket_1483_Group as Groups', ['local' => 'user_id',
             'foreign' => 'group_id',
-            'refClass' => 'Ticket_1483_UserGroup'));
+            'refClass' => 'Ticket_1483_UserGroup']);
     }
 }
 
@@ -95,9 +95,9 @@ class Ticket_1483_Group extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1483_User as Users', array('local' => 'group_id',
+        $this->hasMany('Ticket_1483_User as Users', ['local' => 'group_id',
             'foreign' => 'user_id',
-            'refClass' => 'Ticket_1483_UserGroup'));
+            'refClass' => 'Ticket_1483_UserGroup']);
     }
 }
 

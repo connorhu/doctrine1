@@ -57,7 +57,7 @@ class Doctrine_Ticket_1630_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         $cacheConn = Doctrine_Manager::getInstance()->openConnection('sqlite::memory:', 'cache', false);
-        $cacheDriver = new Doctrine_Cache_Db(array('tableName' => 'cache', 'connection' => $cacheConn));
+        $cacheDriver = new Doctrine_Cache_Db(['tableName' => 'cache', 'connection' => $cacheConn]);
         $cacheDriver->createTable();
 
         $currentCacheDriver = $this->conn->getAttribute(Doctrine_Core::ATTR_QUERY_CACHE);
@@ -90,7 +90,7 @@ class Ticket_1630_BlogPost extends Doctrine_Record
 
     public function setUp()
     {
-        $i18n = new Doctrine_Template_I18n(array('fields' => array('title')));
+        $i18n = new Doctrine_Template_I18n(['fields' => ['title']]);
         $this->actAs($i18n);
     }
 }

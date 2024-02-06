@@ -37,7 +37,7 @@ class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         // we don't need the standard tables here
-        $this->tables = array('TreeLeaf');
+        $this->tables = ['TreeLeaf'];
         parent::prepareTables();
     }
 

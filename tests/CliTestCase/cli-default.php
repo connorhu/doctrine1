@@ -6,7 +6,7 @@
  */
 
 require_once dirname(dirname(dirname(__FILE__))).'/lib/Doctrine/Core.php';
-spl_autoload_register(array('Doctrine_Core', 'autoload'));
+spl_autoload_register(['Doctrine_Core', 'autoload']);
 
 require_once dirname(__FILE__).'/TestTask02.php';
 

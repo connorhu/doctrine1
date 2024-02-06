@@ -61,15 +61,15 @@ class Ticket_1619_Article extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('article');
-        $this->hasColumn('id', 'integer', 3, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '3'));
-        $this->hasColumn('name', 'string', 60, array('type' => 'string', 'length' => '60'));
-        $this->hasColumn('description', 'string', 4000, array('type' => 'string', 'length' => '4000'));
+        $this->hasColumn('id', 'integer', 3, ['type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '3']);
+        $this->hasColumn('name', 'string', 60, ['type' => 'string', 'length' => '60']);
+        $this->hasColumn('description', 'string', 4000, ['type' => 'string', 'length' => '4000']);
     }
 
     public function setUp()
     {
-        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'name', 1 => 'description')));
-        $searchable1 = new Doctrine_Template_Searchable(array('fields' => array(0 => 'name')));
+        $i18n0 = new Doctrine_Template_I18n(['fields' => [0 => 'name', 1 => 'description']]);
+        $searchable1 = new Doctrine_Template_Searchable(['fields' => [0 => 'name']]);
         $i18n0->addChild($searchable1);
         $this->actAs($i18n0);
     }

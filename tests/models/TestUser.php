@@ -6,16 +6,16 @@ class TestUser extends Doctrine_Record
     {
         $this->hasMany(
             'TestMovie as UserBookmarks',
-            array('local' => 'user_id',
+            ['local' => 'user_id',
                 'foreign' => 'movie_id',
-                'refClass' => 'TestMovieUserBookmark')
+                'refClass' => 'TestMovieUserBookmark']
         );
 
         $this->hasMany(
             'TestMovie as UserVotes',
-            array('local' => 'user_id',
+            ['local' => 'user_id',
                 'foreign' => 'movie_id',
-                'refClass' => 'TestMovieUserVote')
+                'refClass' => 'TestMovieUserVote']
         );
     }
 

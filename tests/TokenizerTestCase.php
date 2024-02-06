@@ -50,63 +50,63 @@ class Doctrine_Tokenizer_TestCase extends Doctrine_UnitTestCase
         $str = 'word1 word2 word3';
         $a = $tokenizer->sqlExplode($str);
 
-        $this->assertEqual($a, array('word1', 'word2', 'word3'));
+        $this->assertEqual($a, ['word1', 'word2', 'word3']);
 
         $str = 'word1 (word2 word3)';
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', '(word2 word3)'));
+        $this->assertEqual($a, ['word1', '(word2 word3)']);
 
         $str = "word1 'word2 word3'";
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', "'word2 word3'"));
+        $this->assertEqual($a, ['word1', "'word2 word3'"]);
 
         $str = "word1 'word2 word3'";
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', "'word2 word3'"));
+        $this->assertEqual($a, ['word1', "'word2 word3'"]);
 
         $str = 'word1 "word2 word3"';
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', '"word2 word3"'));
+        $this->assertEqual($a, ['word1', '"word2 word3"']);
 
         $str = 'word1 ((word2) word3)';
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', '((word2) word3)'));
+        $this->assertEqual($a, ['word1', '((word2) word3)']);
 
         $str = "word1 ( (word2) 'word3')";
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', "( (word2) 'word3')"));
+        $this->assertEqual($a, ['word1', "( (word2) 'word3')"]);
 
         $str = "word1 ( \"(word2) 'word3')";
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', "( \"(word2) 'word3')"));
+        $this->assertEqual($a, ['word1', "( \"(word2) 'word3')"]);
 
         $str = "word1 ( ''(word2) 'word3')";
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', "( ''(word2) 'word3')"));
+        $this->assertEqual($a, ['word1', "( ''(word2) 'word3')"]);
 
         $str = "word1 ( '()()'(word2) 'word3')";
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', "( '()()'(word2) 'word3')"));
+        $this->assertEqual($a, ['word1', "( '()()'(word2) 'word3')"]);
 
         $str = "word1 'word2)() word3'";
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', "'word2)() word3'"));
+        $this->assertEqual($a, ['word1', "'word2)() word3'"]);
 
         $str = 'word1 (word2() word3)';
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', '(word2() word3)'));
+        $this->assertEqual($a, ['word1', '(word2() word3)']);
 
         $str = 'word1 "word2)() word3"';
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('word1', '"word2)() word3"'));
+        $this->assertEqual($a, ['word1', '"word2)() word3"']);
 
         $str = "something (subquery '')";
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('something', "(subquery '')"));
+        $this->assertEqual($a, ['something', "(subquery '')"]);
 
         $str = 'something (( ))';
         $a = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array('something', '(( ))'));
+        $this->assertEqual($a, ['something', '(( ))']);
     }
 
     public function testSqlExplode2()
@@ -115,7 +115,7 @@ class Doctrine_Tokenizer_TestCase extends Doctrine_UnitTestCase
         $str = 'rdbms (dbal OR database)';
         $a = $tokenizer->sqlExplode($str, ' OR ');
 
-        $this->assertEqual($a, array('rdbms (dbal OR database)'));
+        $this->assertEqual($a, ['rdbms (dbal OR database)']);
     }
 
     public function testBracketExplode()
@@ -123,29 +123,29 @@ class Doctrine_Tokenizer_TestCase extends Doctrine_UnitTestCase
         $tokenizer = new Doctrine_Query_Tokenizer();
 
         $str = 'foo.field AND bar.field';
-        $a = $tokenizer->bracketExplode($str, array(' \&\& ', ' AND '), '(', ')');
-        $this->assertEqual($a, array('foo.field', 'bar.field'));
+        $a = $tokenizer->bracketExplode($str, [' \&\& ', ' AND '], '(', ')');
+        $this->assertEqual($a, ['foo.field', 'bar.field']);
 
         // delimiters should be case insensitive
         $str = 'foo.field and bar.field';
-        $a = $tokenizer->bracketExplode($str, array(' \&\& ', ' AND '), '(', ')');
-        $this->assertEqual($a, array('foo.field', 'bar.field'));
+        $a = $tokenizer->bracketExplode($str, [' \&\& ', ' AND '], '(', ')');
+        $this->assertEqual($a, ['foo.field', 'bar.field']);
 
         // test the JOIN splitter as used in Doctrine_Query_From::parse()
         $str = 'foo.field join bar.field';
         $a = $tokenizer->bracketExplode($str, 'JOIN');
-        $this->assertEqual($a, array('foo.field', 'bar.field'));
+        $this->assertEqual($a, ['foo.field', 'bar.field']);
 
         // test that table names including the split string are unaffected
         $str = 'foojointable.field join bar.field';
         $a = $tokenizer->bracketExplode($str, 'JOIN');
-        $this->assertEqual($a, array('foojointable.field', 'bar.field'));
+        $this->assertEqual($a, ['foojointable.field', 'bar.field']);
     }
 
     public function testQuoteExplodedShouldQuoteArray()
     {
         $tokenizer = new Doctrine_Query_Tokenizer();
-        $term = $tokenizer->quoteExplode('test', array("'test'", 'test2'));
+        $term = $tokenizer->quoteExplode('test', ["'test'", 'test2']);
         $this->assertEqual($term[0], 'test');
     }
 }

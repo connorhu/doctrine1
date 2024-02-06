@@ -89,7 +89,7 @@ class Ticket_DC28_Tree extends Doctrine_Record
 
     public function setUp()
     {
-        $i18n = new Doctrine_Template_I18n(array('fields' => array(0 => 'name')));
+        $i18n = new Doctrine_Template_I18n(['fields' => [0 => 'name']]);
         $this->actAs($i18n);
         $this->actAs('NestedSet');
     }

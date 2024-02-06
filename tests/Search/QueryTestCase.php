@@ -36,7 +36,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('SearchTest', 'SearchTestIndex');
+        $this->tables = ['SearchTest', 'SearchTestIndex'];
 
         parent::prepareTables();
     }
@@ -213,7 +213,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
         $sql = 'SELECT COUNT(keyword) AS relevance, id '
              .'FROM search_test_index WHERE keyword = ? GROUP BY id ORDER BY relevance DESC';
 
-        $this->assertEqual($q->getParams(), array('doctrine'));
+        $this->assertEqual($q->getParams(), ['doctrine']);
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
 
@@ -228,7 +228,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
              .'AND id IN (SELECT id FROM search_test_index WHERE keyword = ?) '
              .'GROUP BY id ORDER BY relevance DESC';
 
-        $this->assertEqual($q->getParams(), array('doctrine', 'orm', 'dbal'));
+        $this->assertEqual($q->getParams(), ['doctrine', 'orm', 'dbal']);
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
 
@@ -242,7 +242,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
              .'AND (position + 1) IN (SELECT position FROM search_test_index WHERE keyword = ?) '
              .'GROUP BY id ORDER BY relevance DESC';
 
-        $this->assertEqual($q->getParams(), array('doctrine', 'orm'));
+        $this->assertEqual($q->getParams(), ['doctrine', 'orm']);
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
 
@@ -257,7 +257,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
              .'AND (position + 2) IN (SELECT position FROM search_test_index WHERE keyword = ?) '
              .'GROUP BY id ORDER BY relevance DESC';
 
-        $this->assertEqual($q->getParams(), array('doctrine', 'orm', 'dbal'));
+        $this->assertEqual($q->getParams(), ['doctrine', 'orm', 'dbal']);
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
 
@@ -286,7 +286,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
              .'AND id IN (SELECT id FROM search_test_index WHERE keyword = ?) '
              .'GROUP BY id ORDER BY relevance DESC';
 
-        $this->assertEqual($q->getParams(), array('doct?ine', 'orm'));
+        $this->assertEqual($q->getParams(), ['doct?ine', 'orm']);
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
 
@@ -301,7 +301,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
              .'AND id IN (SELECT id FROM search_test_index WHERE keyword = ?) '
              .'GROUP BY id ORDER BY relevance DESC';
 
-        $this->assertEqual($q->getParams(), array('doc%', 'orm'));
+        $this->assertEqual($q->getParams(), ['doc%', 'orm']);
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
 
@@ -317,7 +317,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
              .'AND (position + 1) IN (SELECT position FROM search_test_index WHERE keyword = ?)) '
              .'GROUP BY id ORDER BY relevance DESC';
 
-        $this->assertEqual($q->getParams(), array('doctrine', 'orm', 'database'));
+        $this->assertEqual($q->getParams(), ['doctrine', 'orm', 'database']);
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
 

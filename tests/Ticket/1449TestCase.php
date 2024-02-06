@@ -77,8 +77,8 @@ class Ticket_1449_Document extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1449_Attachment as Attachments', array('local' => 'id',
-            'foreign' => 'document_id'));
+        $this->hasMany('Ticket_1449_Attachment as Attachments', ['local' => 'id',
+            'foreign' => 'document_id']);
     }
 }
 
@@ -92,7 +92,7 @@ class Ticket_1449_Attachment extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_1449_Document as Document', array('local' => 'document_id',
-            'foreign' => 'id'));
+        $this->hasOne('Ticket_1449_Document as Document', ['local' => 'document_id',
+            'foreign' => 'id']);
     }
 }

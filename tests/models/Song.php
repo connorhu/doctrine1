@@ -4,9 +4,9 @@ class Song extends Doctrine_Record
 {
     public function setUp()
     {
-        $this->hasOne('Album', array('local' => 'album_id',
+        $this->hasOne('Album', ['local' => 'album_id',
             'foreign' => 'id',
-            'onDelete' => 'CASCADE'));
+            'onDelete' => 'CASCADE']);
     }
 
     public function setTableDefinition()

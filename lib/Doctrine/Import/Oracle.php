@@ -81,7 +81,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
 
         $tableNames = $this->conn->fetchColumn($query);
 
-        return array_map(array($this->conn->formatter, 'fixSequenceName'), $tableNames);
+        return array_map([$this->conn->formatter, 'fixSequenceName'], $tableNames);
     }
 
     /**
@@ -99,7 +99,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
 
         $constraints = $this->conn->fetchColumn($query);
 
-        return array_map(array($this->conn->formatter, 'fixIndexName'), $constraints);
+        return array_map([$this->conn->formatter, 'fixIndexName'], $constraints);
     }
 
     /**
@@ -122,15 +122,15 @@ LEFT JOIN (
 ) pk ON pk.column_name = tc.column_name and pk.table_name = tc.table_name
 WHERE tc.table_name = :tableName ORDER BY column_id
 QEND;
-        $result = $this->conn->fetchAssoc($sql, array(':tableName' => $table));
+        $result = $this->conn->fetchAssoc($sql, [':tableName' => $table]);
 
-        $descr = array();
+        $descr = [];
 
         foreach ($result as $val) {
             $val = array_change_key_case($val, CASE_LOWER);
             $decl = $this->conn->dataDict->getPortableDeclaration($val);
 
-            $descr[$val['column_name']] = array(
+            $descr[$val['column_name']] = [
                 'name' => $val['column_name'],
                 'notnull' => (bool) ('N' === $val['nullable']),
                 'ntype' => $val['data_type'],
@@ -142,7 +142,7 @@ QEND;
                 'length' => $val['data_length'],
                 'primary' => (bool) $val['primary'],
                 'scale' => isset($val['scale']) ? $val['scale'] : null,
-            );
+            ];
         }
 
         return $descr;
@@ -163,7 +163,7 @@ QEND;
 
         $indexes = $this->conn->fetchColumn($query);
 
-        return array_map(array($this->conn->formatter, 'fixIndexName'), $indexes);
+        return array_map([$this->conn->formatter, 'fixIndexName'], $indexes);
     }
 
     /**
@@ -171,7 +171,7 @@ QEND;
      */
     public function listTableRelations($table)
     {
-        $relations = array();
+        $relations = [];
         $sql = 'SELECT '
              .'rcc.table_name AS referenced_table_name, '
              .'lcc.column_name AS local_column_name, '
@@ -181,12 +181,12 @@ QEND;
              .'JOIN user_cons_columns lcc ON ac.constraint_name = lcc.constraint_name '
              ."WHERE ac.constraint_type = 'R' AND ac.table_name = :tableName";
 
-        $results = $this->conn->fetchAssoc($sql, array(':tableName' => $table));
+        $results = $this->conn->fetchAssoc($sql, [':tableName' => $table]);
         foreach ($results as $result) {
             $result = array_change_key_case($result, CASE_LOWER);
-            $relations[] = array('table' => $result['referenced_table_name'],
+            $relations[] = ['table' => $result['referenced_table_name'],
                 'local' => $result['local_column_name'],
-                'foreign' => $result['referenced_column_name']);
+                'foreign' => $result['referenced_column_name']];
         }
 
         return $relations;

@@ -88,7 +88,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
 
         try {
             $res = $manager->parseDsn($mysql);
-            $expectedMysqlDsn = array(
+            $expectedMysqlDsn = [
                 'scheme' => 'mysql',
                 'host' => 'localhost',
                 'user' => 'user',
@@ -98,14 +98,14 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
                 'port' => null,
                 'query' => null,
                 'fragment' => null,
-                'database' => 'dbname');
+                'database' => 'dbname'];
             $this->assertEqual($expectedMysqlDsn, $res);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
 
         try {
-            $expectedDsn = array(
+            $expectedDsn = [
                 'scheme' => 'sqlite',
                 'host' => null,
                 'user' => null,
@@ -115,7 +115,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
                 'port' => null,
                 'query' => null,
                 'fragment' => null,
-                'database' => '/full/unix/path/to/file.db');
+                'database' => '/full/unix/path/to/file.db'];
 
             $res = $manager->parseDsn($sqlite);
             $this->assertEqual($expectedDsn, $res);
@@ -124,7 +124,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
         }
 
         try {
-            $expectedDsn = array(
+            $expectedDsn = [
                 'scheme' => 'sqlite',
                 'host' => null,
                 'path' => 'c:/full/windows/path/to/file.db',
@@ -134,7 +134,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
                 'pass' => null,
                 'query' => null,
                 'fragment' => null,
-                'database' => 'c:/full/windows/path/to/file.db');
+                'database' => 'c:/full/windows/path/to/file.db'];
             $res = $manager->parseDsn($sqlitewin);
             $this->assertEqual($expectedDsn, $res);
         } catch (Exception $e) {
@@ -142,7 +142,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
         }
 
         try {
-            $expectedDsn = array(
+            $expectedDsn = [
                 'scheme' => 'sqlite',
                 'host' => null,
                 'path' => 'D:/full/windows/path/to/file.db',
@@ -152,7 +152,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
                 'pass' => null,
                 'query' => null,
                 'fragment' => null,
-                'database' => 'D:/full/windows/path/to/file.db');
+                'database' => 'D:/full/windows/path/to/file.db'];
             $res = $manager->parseDsn($sqlitewin2);
             $this->assertEqual($expectedDsn, $res);
         } catch (Exception $e) {

@@ -57,7 +57,7 @@ class Doctrine_Cli
      *
      * @var array
      */
-    private $_registeredTask = array();
+    private $_registeredTask = [];
 
     /**
      * @var object Doctrine_Task
@@ -70,7 +70,7 @@ class Doctrine_Cli
      * @param array [$config=array()]
      * @param object|null [$formatter=null] Doctrine_Cli_Formatter
      */
-    public function __construct(array $config = array(), ?Doctrine_Cli_Formatter $formatter = null)
+    public function __construct(array $config = [], ?Doctrine_Cli_Formatter $formatter = null)
     {
         $this->setConfig($config);
         $this->setFormatter($formatter ? $formatter : new Doctrine_Cli_AnsiColorFormatter());
@@ -281,7 +281,7 @@ class Doctrine_Cli
             throw new InvalidArgumentException("The directory \"{$directory}\" does not exist");
         }
 
-        $taskClassesIncluded = array();
+        $taskClassesIncluded = [];
 
         $iterator = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($directory),
@@ -517,7 +517,7 @@ class Doctrine_Cli
         $args = array_values($args);
 
         // First lets load populate an array with all the possible arguments. required and optional
-        $prepared = array();
+        $prepared = [];
 
         $requiredArguments = $taskInstance->getRequiredArguments();
         foreach ($requiredArguments as $key => $arg) {
@@ -621,7 +621,7 @@ class Doctrine_Cli
      */
     private function createOldStyleTaskList(array $registeredTask)
     {
-        $taskNames = array();
+        $taskNames = [];
 
         foreach ($registeredTask as $className => $task) {
             $taskName = $task->getTaskName();

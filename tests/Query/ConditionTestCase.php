@@ -47,9 +47,9 @@ class Doctrine_Query_Condition_TestCase extends Doctrine_UnitTestCase
     {
         $tokenizer = new Doctrine_Query_Tokenizer();
         $str = 'item OR item OR item';
-        $parts = $tokenizer->bracketExplode($str, array(' OR '), '(', ')');
+        $parts = $tokenizer->bracketExplode($str, [' OR '], '(', ')');
 
-        $this->assertEqual($parts, array('item', 'item', 'item'));
+        $this->assertEqual($parts, ['item', 'item', 'item']);
     }
 
     public function testConditionParser()

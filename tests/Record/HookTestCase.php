@@ -40,7 +40,7 @@ class Doctrine_Record_Hook_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('RecordHookTest', 'SoftDeleteTest');
+        $this->tables = ['RecordHookTest', 'SoftDeleteTest'];
 
         parent::prepareTables();
     }

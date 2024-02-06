@@ -63,16 +63,16 @@ class Doctrine_Connection_TestCase extends Doctrine_UnitTestCase
 
         $a = $this->conn->fetchAll('SELECT * FROM entity');
 
-        $this->assertEqual($a, array(
-            0 => array(
+        $this->assertEqual($a, [
+            0 => [
                 'id' => '1',
                 'name' => 'zYne',
-            ),
-            1 => array(
+            ],
+            1 => [
                 'id' => '2',
                 'name' => 'John',
-            ),
-        ));
+            ],
+        ]);
     }
 
     public function testFetchOne()
@@ -81,7 +81,7 @@ class Doctrine_Connection_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($c, 2);
 
-        $c = $this->conn->fetchOne('SELECT COUNT(1) FROM entity WHERE id = ?', array(1));
+        $c = $this->conn->fetchOne('SELECT COUNT(1) FROM entity WHERE id = ?', [1]);
 
         $this->assertEqual($c, 1);
     }
@@ -90,50 +90,50 @@ class Doctrine_Connection_TestCase extends Doctrine_UnitTestCase
     {
         $a = $this->conn->fetchColumn('SELECT * FROM entity');
 
-        $this->assertEqual($a, array(
+        $this->assertEqual($a, [
             0 => '1',
             1 => '2',
-        ));
+        ]);
 
-        $a = $this->conn->fetchColumn('SELECT * FROM entity WHERE id = ?', array(1));
+        $a = $this->conn->fetchColumn('SELECT * FROM entity WHERE id = ?', [1]);
 
-        $this->assertEqual($a, array(
+        $this->assertEqual($a, [
             0 => '1',
-        ));
+        ]);
     }
 
     public function testFetchArray()
     {
         $a = $this->conn->fetchArray('SELECT * FROM entity');
 
-        $this->assertEqual($a, array(
+        $this->assertEqual($a, [
             0 => '1',
             1 => 'zYne',
-        ));
+        ]);
 
-        $a = $this->conn->fetchArray('SELECT * FROM entity WHERE id = ?', array(1));
+        $a = $this->conn->fetchArray('SELECT * FROM entity WHERE id = ?', [1]);
 
-        $this->assertEqual($a, array(
+        $this->assertEqual($a, [
             0 => '1',
             1 => 'zYne',
-        ));
+        ]);
     }
 
     public function testFetchRow()
     {
         $c = $this->conn->fetchRow('SELECT * FROM entity');
 
-        $this->assertEqual($c, array(
+        $this->assertEqual($c, [
             'id' => '1',
             'name' => 'zYne',
-        ));
+        ]);
 
-        $c = $this->conn->fetchRow('SELECT * FROM entity WHERE id = ?', array(1));
+        $c = $this->conn->fetchRow('SELECT * FROM entity WHERE id = ?', [1]);
 
-        $this->assertEqual($c, array(
+        $this->assertEqual($c, [
             'id' => '1',
             'name' => 'zYne',
-        ));
+        ]);
     }
 
     public function testFetchPairs()

@@ -37,14 +37,14 @@ class Doctrine_Ticket_2295_TestCase extends Doctrine_UnitTestCase
     public function testMappedValueFromArray()
     {
         $test = new Doctrine_Ticket_2295_Record();
-        $test->fromArray(array('test' => 'mapped value'));
+        $test->fromArray(['test' => 'mapped value']);
         $this->assertEqual($test->test, 'mapped value');
     }
 
     public function testMappedValueSynchronizeWithArray()
     {
         $test = new Doctrine_Ticket_2295_Record();
-        $test->synchronizeWithArray(array('test' => 'mapped value'));
+        $test->synchronizeWithArray(['test' => 'mapped value']);
         $this->assertEqual($test->test, 'mapped value');
     }
 }

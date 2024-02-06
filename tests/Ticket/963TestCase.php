@@ -42,7 +42,7 @@ class Doctrine_Ticket_963_TestCase extends Doctrine_UnitTestCase
 
     public function testExportSql()
     {
-        $sql = $this->conn->export->exportClassesSql(array('Ticket_963_User', 'Ticket_963_Email'));
+        $sql = $this->conn->export->exportClassesSql(['Ticket_963_User', 'Ticket_963_Email']);
         $this->assertEqual(count($sql), 3);
         $this->assertEqual($sql[0], 'CREATE TABLE ticket_963__user (id BIGINT AUTO_INCREMENT, username VARCHAR(255), password VARCHAR(255), PRIMARY KEY(id)) ENGINE = INNODB');
         $this->assertEqual($sql[1], 'CREATE TABLE ticket_963__email (user_id INT, address2 VARCHAR(255), PRIMARY KEY(user_id)) ENGINE = INNODB');
@@ -60,8 +60,8 @@ class Ticket_963_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_963_Email as Email', array('local' => 'id',
-            'foreign' => 'user_id'));
+        $this->hasOne('Ticket_963_Email as Email', ['local' => 'id',
+            'foreign' => 'user_id']);
     }
 }
 
@@ -69,16 +69,16 @@ class Ticket_963_Email extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('user_id', 'integer', 4, array('primary' => true));
+        $this->hasColumn('user_id', 'integer', 4, ['primary' => true]);
         $this->hasColumn('address2', 'string', 255);
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_963_User as User', array(
+        $this->hasOne('Ticket_963_User as User', [
             'local' => 'user_id',
             'foreign' => 'id',
             'owningSide' => true,
-            'onDelete' => 'CASCADE'));
+            'onDelete' => 'CASCADE']);
     }
 }

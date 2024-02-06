@@ -84,7 +84,7 @@ class Ticket_DC74_Test extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array('primary', 'notnull', 'autoincrement'));
+        $this->hasColumn('id', 'integer', 4, ['primary', 'notnull', 'autoincrement']);
         $this->hasColumn('test1', 'string', 255);
         $this->hasColumn('test2', 'string', 255);
     }

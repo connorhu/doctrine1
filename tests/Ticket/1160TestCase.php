@@ -39,7 +39,7 @@ class Doctrine_Ticket_1160_TestCase extends Doctrine_UnitTestCase
         $this->dbh = new Doctrine_Adapter_Mock('mysql');
         $this->conn = $this->manager->openConnection($this->dbh);
 
-        $sql = $this->conn->export->exportClassesSql(array('Ticket_1160_Test'));
+        $sql = $this->conn->export->exportClassesSql(['Ticket_1160_Test']);
         $this->assertEqual($sql[0], 'CREATE TABLE ticket_1160__test (id BIGINT AUTO_INCREMENT, name VARCHAR(255), PRIMARY KEY(id)) COLLATE latin1_german2_ci ENGINE = MYISAM');
     }
 }

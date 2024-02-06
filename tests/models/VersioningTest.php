@@ -29,7 +29,7 @@ class VersioningTest2 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('Versionable', array('auditLog' => false));
+        $this->actAs('Versionable', ['auditLog' => false]);
     }
 }
 
@@ -43,7 +43,7 @@ class VersioningTest3 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('Versionable', array('tableName' => 'tbl_prefix_comments_version',
-            'className' => 'VersioningTestClass'));
+        $this->actAs('Versionable', ['tableName' => 'tbl_prefix_comments_version',
+            'className' => 'VersioningTestClass']);
     }
 }

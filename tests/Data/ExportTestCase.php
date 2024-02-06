@@ -50,7 +50,7 @@ class Doctrine_Data_Export_TestCase extends Doctrine_UnitTestCase
             $i->save();
 
             $data = new Doctrine_Data();
-            $data->exportData('test.yml', 'yml', array('I18nTestExport', 'I18nTestExportTranslation'));
+            $data->exportData('test.yml', 'yml', ['I18nTestExport', 'I18nTestExportTranslation']);
 
             $array = Doctrine_Parser::load('test.yml', 'yml');
 
@@ -94,6 +94,6 @@ class I18nTestExport extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('I18n', array('fields' => array('name', 'title')));
+        $this->actAs('I18n', ['fields' => ['name', 'title']]);
     }
 }

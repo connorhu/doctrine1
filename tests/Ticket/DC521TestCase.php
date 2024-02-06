@@ -24,14 +24,14 @@ class DC521TestModel extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('dc521_test_model');
-        $this->hasColumn('id', 'integer', null, array(
+        $this->hasColumn('id', 'integer', null, [
             'type' => 'integer',
             'primary' => true,
             'autoincrement' => true,
-        ));
-        $this->hasColumn('data', 'string', null, array(
+        ]);
+        $this->hasColumn('data', 'string', null, [
             'type' => 'string',
-        ));
+        ]);
     }
 
     public function setUp()
@@ -45,11 +45,11 @@ class DC521IdOnlyTestModel extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('dc521_idonly_test_model');
-        $this->hasColumn('id', 'integer', null, array(
+        $this->hasColumn('id', 'integer', null, [
             'type' => 'integer',
             'primary' => true,
             'autoincrement' => true,
-        ));
+        ]);
     }
 
     public function setUp()
@@ -130,7 +130,7 @@ class Doctrine_Ticket_DC521_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array('DC521TestModel', 'DC521IdOnlyTestModel');
+        $this->tables = ['DC521TestModel', 'DC521IdOnlyTestModel'];
         parent::prepareTables();
     }
 

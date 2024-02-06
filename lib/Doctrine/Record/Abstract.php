@@ -98,7 +98,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * @param string $name       the name of the index
      * @param array  $definition the definition array
      */
-    public function index($name, array $definition = array())
+    public function index($name, array $definition = [])
     {
         if (!$definition) {
             return $this->_table->getIndex($name);
@@ -118,7 +118,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * @param array $options           array of options for unique validator
      * @param bool  $createUniqueIndex Whether or not to create a unique index in the database
      */
-    public function unique($fields, $options = array(), $createUniqueIndex = true)
+    public function unique($fields, $options = [], $createUniqueIndex = true)
     {
         return $this->_table->unique($fields, $options, $createUniqueIndex);
     }
@@ -145,7 +145,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
         if (isset($map[$class])) {
             // fix for #1621
             $mapFieldNames = $map[$class];
-            $mapColumnNames = array();
+            $mapColumnNames = [];
 
             foreach ($mapFieldNames as $fieldName => $val) {
                 $mapColumnNames[$this->getTable()->getColumnName($fieldName)] = $val;
@@ -157,7 +157,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
         }
         // Put an index on the key column
         $mapFieldName = array_keys(end($map));
-        $this->index($this->getTable()->getTableName().'_'.$mapFieldName[0], array('fields' => array($mapFieldName[0])));
+        $this->index($this->getTable()->getTableName().'_'.$mapFieldName[0], ['fields' => [$mapFieldName[0]]]);
 
         // Set the subclasses array for the parent class
         $this->_table->setOption('subclasses', array_keys($map));
@@ -243,7 +243,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * @param string $type
      * @param int    $length
      */
-    public function hasColumn($name, $type = null, $length = null, $options = array())
+    public function hasColumn($name, $type = null, $length = null, $options = [])
     {
         $this->_table->setColumn($name, $type, $length, $options);
     }
@@ -324,7 +324,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * @return Doctrine_Record           this object; provides a fluent interface
      * @throws Doctrine_Record_Exception if $tpl is neither an instance of Doctrine_Template subclass or a valid class name, that could be instantiated
      */
-    public function actAs($tpl, array $options = array())
+    public function actAs($tpl, array $options = [])
     {
         if (!is_object($tpl)) {
             $className = 'Doctrine_Template_'.$tpl;

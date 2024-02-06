@@ -29,7 +29,7 @@ class Doctrine_ValueHolder_TestCase extends Doctrine_UnitTestCase
     {
         $q = new Doctrine_Query($this->connection);
         $q->from('User');
-        $users = $q->execute(array(), Doctrine_Core::FETCH_VHOLDER);
+        $users = $q->execute([], Doctrine_Core::FETCH_VHOLDER);
         $this->assertEqual($users->count(), 8);
     }
 
@@ -37,7 +37,7 @@ class Doctrine_ValueHolder_TestCase extends Doctrine_UnitTestCase
     {
         $q = new Doctrine_Query($this->connection);
         $q->from('User.Phonenumber');
-        $users = $q->execute(array(), Doctrine_Core::FETCH_VHOLDER);
+        $users = $q->execute([], Doctrine_Core::FETCH_VHOLDER);
         $this->assertEqual($users->count(), 8);
         $this->assertTrue($users[0] instanceof Doctrine_ValueHolder);
         $this->assertTrue($users[3] instanceof Doctrine_ValueHolder);

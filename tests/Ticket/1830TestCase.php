@@ -33,7 +33,7 @@ class Doctrine_Ticket_1830_TestCase extends Doctrine_UnitTestCase
             $this->conn->exec('DROP TABLE ticket_1830__article_translation');
         } catch (Doctrine_Connection_Exception $e) {
         }
-        $this->tables = array('Ticket_1830_Article');
+        $this->tables = ['Ticket_1830_Article'];
         parent::prepareTables();
     }
 
@@ -62,7 +62,7 @@ class Doctrine_Ticket_1830_TestCase extends Doctrine_UnitTestCase
                 ->createQuery('a')
                 ->select('a.*, t.*')
                 ->leftJoin('a.Translation t')
-                ->addWhere('a.id = ? OR a.id = ?', array(2, 3))
+                ->addWhere('a.id = ? OR a.id = ?', [2, 3])
                 ->orderBy('a.id DESC')
                 ->limit(1)
             ;
@@ -82,7 +82,7 @@ class Ticket_1830_Article extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('ticket_1830_article');
-        $this->hasColumn('title', 'string', 255, array('type' => 'string', 'length' => '255'));
+        $this->hasColumn('title', 'string', 255, ['type' => 'string', 'length' => '255']);
 
         $this->option('type', 'InnoDB');
         $this->option('collate', 'utf8_unicode_ci');
@@ -91,7 +91,7 @@ class Ticket_1830_Article extends Doctrine_Record
 
     public function setUp()
     {
-        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'title')));
+        $i18n0 = new Doctrine_Template_I18n(['fields' => [0 => 'title']]);
         $this->actAs($i18n0);
     }
 }

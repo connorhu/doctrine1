@@ -52,36 +52,36 @@ class Ticket_2007_Faq extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('faq');
-        $this->hasColumn('id_faq', 'integer', 4, array(
+        $this->hasColumn('id_faq', 'integer', 4, [
             'primary' => true,
             'type' => 'integer',
             'length' => '4',
-        ));
-        $this->hasColumn('n_clicks', 'integer', 4, array(
+        ]);
+        $this->hasColumn('n_clicks', 'integer', 4, [
             'unsigned' => '1',
             'notnull' => true,
             'default' => 0,
             'type' => 'integer',
             'length' => '4',
-        ));
-        $this->hasColumn('title', 'string', 255, array(
+        ]);
+        $this->hasColumn('title', 'string', 255, [
             'type' => 'string',
             'length' => '255',
-        ));
-        $this->hasColumn('description', 'string', null, array(
+        ]);
+        $this->hasColumn('description', 'string', null, [
             'type' => 'string',
-        ));
+        ]);
     }
 
     public function setUp()
     {
-        $searchable0 = new Doctrine_Template_Searchable(array(
-            'fields' => array(
+        $searchable0 = new Doctrine_Template_Searchable([
+            'fields' => [
                 0 => 'title',
                 1 => 'description',
-            ),
+            ],
             'batchUpdates' => true,
-        ));
+        ]);
         $this->actAs($searchable0);
     }
 }

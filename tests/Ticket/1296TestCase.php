@@ -41,10 +41,10 @@ class Doctrine_Ticket_1296_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array(
+        $this->tables = [
             'NewTicket_Organization',
             'NewTicket_Role',
-        );
+        ];
         parent::prepareTables();
     }
 
@@ -130,15 +130,15 @@ class NewTicket_Organization extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 4, [
             'autoincrement' => true,
             'notnull' => true,
             'primary' => true,
-        ));
-        $this->hasColumn('name', 'string', 255, array(
+        ]);
+        $this->hasColumn('name', 'string', 255, [
             'notnull' => true,
             'unique' => true,
-        ));
+        ]);
     }
 }
 
@@ -146,15 +146,15 @@ class NewTicket_Role extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 4, [
             'autoincrement' => true,
             'notnull' => true,
             'primary' => true,
-        ));
-        $this->hasColumn('name', 'string', 30, array(
+        ]);
+        $this->hasColumn('name', 'string', 30, [
             'notnull' => true,
             'unique' => true,
-        ));
+        ]);
     }
 }
 

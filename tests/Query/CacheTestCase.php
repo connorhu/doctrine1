@@ -125,17 +125,17 @@ class Doctrine_Query_Cache_TestCase extends Doctrine_UnitTestCase
             ->where('u.id = ?')
         ;
 
-        $coll = $q->execute(array(5));
+        $coll = $q->execute([5]);
 
         $this->assertTrue($coll instanceof Doctrine_Collection);
         $this->assertEqual(5, $coll[0]->id);
         $this->assertTrue($coll[0] instanceof Doctrine_Record);
         $this->assertTrue($coll[0]->Phonenumber[0] instanceof Doctrine_Record);
-        $this->assertTrue($cache->contains($q->calculateResultCacheHash(array(5))));
+        $this->assertTrue($cache->contains($q->calculateResultCacheHash([5])));
         $this->assertEqual(count($coll), 1);
         $coll->free(true);
 
-        $coll = $q->execute(array(5));
+        $coll = $q->execute([5]);
 
         $this->assertTrue($coll instanceof Doctrine_Collection);
         $this->assertEqual(5, $coll[0]->id);
@@ -145,7 +145,7 @@ class Doctrine_Query_Cache_TestCase extends Doctrine_UnitTestCase
         // echo $this->conn->count() . "<br/>";
         // $this->assertTrue($coll[0]->Phonenumber[0] instanceof Doctrine_Record);
         // echo $this->conn->count() . "<br/>"; // count is increased => lazy load
-        $this->assertTrue($cache->contains($q->calculateResultCacheHash(array(5))));
+        $this->assertTrue($cache->contains($q->calculateResultCacheHash([5])));
         $this->assertEqual(count($coll), 1);
     }
 
@@ -161,14 +161,14 @@ class Doctrine_Query_Cache_TestCase extends Doctrine_UnitTestCase
             ->where('u.id = ?')
         ;
 
-        $coll = $q->execute(array(5));
+        $coll = $q->execute([5]);
 
-        $this->assertTrue($cache->contains($q->calculateResultCacheHash(array(5))));
+        $this->assertTrue($cache->contains($q->calculateResultCacheHash([5])));
         $this->assertEqual(count($coll), 1);
 
-        $coll = $q->execute(array(5));
+        $coll = $q->execute([5]);
 
-        $this->assertTrue($cache->contains($q->calculateResultCacheHash(array(5))));
+        $this->assertTrue($cache->contains($q->calculateResultCacheHash([5])));
         $this->assertEqual(count($coll), 1);
 
         $this->conn->setAttribute(Doctrine_Core::ATTR_CACHE, null);

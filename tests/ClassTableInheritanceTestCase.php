@@ -48,12 +48,12 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
 
         $table = $class->getTable();
 
-        $this->assertEqual($table->getOption('joinedParents'), array('CTITestParent2', 'CTITestParent3'));
+        $this->assertEqual($table->getOption('joinedParents'), ['CTITestParent2', 'CTITestParent3']);
     }
 
     public function testExportGeneratesAllInheritedTables()
     {
-        $sql = $this->conn->export->exportClassesSql(array('CTITest', 'CTITestOneToManyRelated', 'NoIdTestParent', 'NoIdTestChild'));
+        $sql = $this->conn->export->exportClassesSql(['CTITest', 'CTITestOneToManyRelated', 'NoIdTestParent', 'NoIdTestChild']);
 
         $this->assertEqual($sql[0], 'CREATE TABLE no_id_test_parent (myid INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)');
         $this->assertEqual($sql[1], 'CREATE TABLE no_id_test_child (myid INTEGER, child_column TEXT, PRIMARY KEY(myid))');
@@ -87,11 +87,11 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
 
         $record = new CTITest();
 
-        $this->assertEqual($record->toArray(), array('id' => null,
+        $this->assertEqual($record->toArray(), ['id' => null,
             'age' => null,
             'name' => null,
             'verified' => null,
-            'added' => null));
+            'added' => null]);
 
         $record->age = 13;
         $record->name = 'Jack Daniels';
@@ -309,7 +309,7 @@ class CTITestOneToManyRelated extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('CTITest', array('local' => 'cti_id', 'foreign' => 'id'));
+        $this->hasMany('CTITest', ['local' => 'cti_id', 'foreign' => 'id']);
     }
 }
 
@@ -317,7 +317,7 @@ class NoIdTestParent extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('myid', 'integer', null, array('autoincrement' => true, 'primary' => true));
+        $this->hasColumn('myid', 'integer', null, ['autoincrement' => true, 'primary' => true]);
         $this->hasColumn('name', 'string');
     }
 }

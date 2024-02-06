@@ -37,7 +37,7 @@ class Doctrine_Export_TestCase extends Doctrine_UnitTestCase
     public function testCreateTableThrowsExceptionWithoutValidTableName()
     {
         try {
-            $this->export->createTable(0, array(), array());
+            $this->export->createTable(0, [], []);
 
             $this->fail();
         } catch (Doctrine_Export_Exception $e) {
@@ -48,7 +48,7 @@ class Doctrine_Export_TestCase extends Doctrine_UnitTestCase
     public function testCreateTableThrowsExceptionWithEmptyFieldsArray()
     {
         try {
-            $this->export->createTable('sometable', array(), array());
+            $this->export->createTable('sometable', [], []);
 
             $this->fail();
         } catch (Doctrine_Export_Exception $e) {
@@ -65,7 +65,7 @@ class Doctrine_Export_TestCase extends Doctrine_UnitTestCase
 
     public function testCreateIndexExecutesSql()
     {
-        $this->export->createIndex('sometable', 'relevancy', array('fields' => array('title' => array(), 'content' => array())));
+        $this->export->createIndex('sometable', 'relevancy', ['fields' => ['title' => [], 'content' => []]]);
 
         $this->assertEqual($this->adapter->pop(), 'CREATE INDEX relevancy_idx ON sometable (title, content)');
     }

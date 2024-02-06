@@ -86,7 +86,7 @@ class Doctrine_Query_Check
         $parts = $this->_tokenizer->sqlExplode($dql, ' AND ');
 
         if (count($parts) > 1) {
-            $ret = array();
+            $ret = [];
             foreach ($parts as $part) {
                 $ret[] = $this->parseSingle($part);
             }
@@ -95,7 +95,7 @@ class Doctrine_Query_Check
         } else {
             $parts = $this->_tokenizer->quoteExplode($dql, ' OR ');
             if (count($parts) > 1) {
-                $ret = array();
+                $ret = [];
                 foreach ($parts as $part) {
                     $ret[] = $this->parseClause($part);
                 }

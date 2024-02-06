@@ -54,7 +54,7 @@ class Doctrine_Ticket_1658_TestCase extends Doctrine_UnitTestCase
 
         try {
             $user = new Ticket_1658_User();
-            $user->fromArray(array('password' => 'test'));
+            $user->fromArray(['password' => 'test']);
             $this->fail();
         } catch (Doctrine_Exception $e) {
             $this->pass();

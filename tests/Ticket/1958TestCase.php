@@ -59,6 +59,6 @@ class Ticket_1958_User extends Doctrine_Record
     {
         $this->hasColumn('username', 'string', 255);
         $this->hasColumn('password', 'string', 255);
-        $this->hasColumn('foo', 'integer', 4, array('notnull' => true, 'default' => '0', 'unsigned' => 1));
+        $this->hasColumn('foo', 'integer', 4, ['notnull' => true, 'default' => '0', 'unsigned' => 1]);
     }
 }
