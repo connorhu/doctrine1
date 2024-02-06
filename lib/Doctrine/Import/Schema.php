@@ -416,7 +416,7 @@ class Doctrine_Import_Schema
                 if (isset($table[$key]) && !isset($build[$className][$key])) {
                     $build[$className][$key] = $table[$key];
                 } else {
-                    $build[$className][$key] = $build[$className][$key] ?? $defaultValue;
+                    $build[$className][$key] ??= $defaultValue;
                 }
             }
 
@@ -587,15 +587,15 @@ class Doctrine_Import_Schema
                     continue;
                 }
                 $relation['class'] = $class;
-                $relation['alias'] = $relation['alias'] ?? $alias;
+                $relation['alias'] ??= $alias;
 
                 // Attempt to guess the local and foreign
                 if (isset($relation['refClass'])) {
-                    $relation['local'] = $relation['local'] ?? Doctrine_Inflector::tableize($name).'_id';
-                    $relation['foreign'] = $relation['foreign'] ?? Doctrine_Inflector::tableize($class).'_id';
+                    $relation['local'] ??= Doctrine_Inflector::tableize($name).'_id';
+                    $relation['foreign'] ??= Doctrine_Inflector::tableize($class).'_id';
                 } else {
-                    $relation['local'] = $relation['local'] ?? Doctrine_Inflector::tableize($relation['class']).'_id';
-                    $relation['foreign'] = $relation['foreign'] ?? 'id';
+                    $relation['local'] ??= Doctrine_Inflector::tableize($relation['class']).'_id';
+                    $relation['foreign'] ??= 'id';
                 }
 
                 if (isset($relation['refClass'])) {
