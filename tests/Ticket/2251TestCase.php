@@ -63,7 +63,7 @@ class Doctrine_Ticket_2251_TestCase extends Doctrine_UnitTestCase
 
             $conn = Doctrine_Manager::getInstance()->connection($dbh, $driver);
 
-            list($sql) = $conn->export->exportSortedClassesSql(['Ticket_2251_TestStringLength'], false);
+            [$sql] = $conn->export->exportSortedClassesSql(['Ticket_2251_TestStringLength'], false);
 
             $this->assertEqual($sql, $expected[$driver]);
 

@@ -46,7 +46,7 @@ class Doctrine_Ticket_2334_TestCase extends Doctrine_UnitTestCase
 
         $conn = Doctrine_Manager::getInstance()->connection($dbh, 'mssql');
 
-        list($sql) = $conn->export->exportSortedClassesSql(['Ticket_2334_TestMSSQLUnsignedInt'], false);
+        [$sql] = $conn->export->exportSortedClassesSql(['Ticket_2334_TestMSSQLUnsignedInt'], false);
 
         $this->assertEqual($sql, 'CREATE TABLE test_string_length (id INT NOT NULL identity, test_int BIGINT NULL, PRIMARY KEY([id]))');
 

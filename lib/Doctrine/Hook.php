@@ -138,7 +138,7 @@ class Doctrine_Hook
             $e = explode('.', $name);
 
             if (2 == count($e)) {
-                list($alias, $column) = $e;
+                [$alias, $column] = $e;
 
                 $map = $this->query->getQueryComponent($alias);
                 $table = $map['table'];
@@ -189,7 +189,7 @@ class Doctrine_Hook
             $e = explode('.', $e[0]);
 
             if (2 == count($e)) {
-                list($alias, $column) = $e;
+                [$alias, $column] = $e;
 
                 $map = $this->query->getQueryComponent($alias);
                 $table = $map['table'];
