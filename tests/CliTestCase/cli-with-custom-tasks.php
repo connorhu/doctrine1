@@ -5,7 +5,7 @@
  * @author Dan Bettles <danbettles@yahoo.co.uk>
  */
 
-require_once dirname(dirname(dirname(__FILE__))).'/lib/Doctrine/Core.php';
+require_once dirname(__FILE__, 3).'/lib/Doctrine/Core.php';
 spl_autoload_register(['Doctrine_Core', 'autoload']);
 
 $cli = new Doctrine_Cli();

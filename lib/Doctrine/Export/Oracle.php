@@ -507,7 +507,7 @@ END;';
             if ('unique' == strtolower($definition['type'])) {
                 $type = strtoupper($definition['type']);
             } else {
-                throw new Doctrine_Export_Exception('Unknown type '.$definition['type'].' for index '.$name);
+                throw new Doctrine_Export_Exception('Unknown type '.$definition['type']."\u{a0}for index ".$name);
             }
         } else {
             // only unique indexes should be defined in create table statement
