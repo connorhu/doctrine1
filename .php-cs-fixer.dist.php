@@ -17,6 +17,7 @@ $config->setRules([
     '@PHP70Migration:risky' => true,
     '@PHP71Migration' => true,
     '@PHP74Migration' => true,
+    '@PHP74Migration:risky' => true,
     'heredoc_indentation' => false,
     'declare_strict_types' => false,
     'void_return' => false,
