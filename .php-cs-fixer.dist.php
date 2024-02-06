@@ -13,6 +13,7 @@ $config = new PhpCsFixer\Config();
 $config->setRules([
     '@PhpCsFixer' => true,
     '@Symfony' => true,
+    '@PHP70Migration' => true,
     'array_syntax' => [
         'syntax' => 'short',
     ],
@@ -40,6 +41,7 @@ $config->setRules([
         ],
     ],
 ])
+    ->setRiskyAllowed(true)
     ->setCacheFile('.php-cs-fixer.cache')
     ->setFinder($finder)
 ;
