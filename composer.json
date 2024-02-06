@@ -35,9 +35,25 @@
             "Doctrine_": "lib/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Doctrine\\Test\\": "tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.4-dev"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    },
+    "scripts": {
+        "tests": [
+            "@tests:phpunit",
+            "@tests:doctrine"
+        ],
+        "tests:phpunit": "phpunit",
+        "tests:doctrine": "cd tests && php run.php"
     }
 }
