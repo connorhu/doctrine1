@@ -177,7 +177,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
         $tokens = preg_split('/,/', $parsed);
 
         for ($i = 0, $iMax = count($tokens); $i < $iMax; ++$i) {
-            $tokens[$i] = trim(preg_replace_callback('/##(\d+)##/', function ($m) { return $chunks[$m[1]]; }, $tokens[$i]));
+            $tokens[$i] = trim(preg_replace_callback('/##(\d+)##/', fn ($m) => $chunks[$m[1]], $tokens[$i]));
         }
 
         return $tokens;
@@ -323,9 +323,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
 
         $self = $this;
 
-        return preg_replace_callback('/##(\d+)##/', function ($m) use ($params, $self) {
-            return (null === $params[$m[1]]) ? 'NULL' : $self->quote($params[$m[1]]);
-        }, $query);
+        return preg_replace_callback('/##(\d+)##/', fn ($m) => (null === $params[$m[1]]) ? 'NULL' : $self->quote($params[$m[1]]), $query);
     }
 
     /**

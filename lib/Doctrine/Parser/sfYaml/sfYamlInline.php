@@ -120,7 +120,7 @@ class sfYamlInline
         $keys = array_keys($value);
         if (
             (1 == count($keys) && '0' == $keys[0])
-            || (count($keys) > 1 && array_reduce($keys, function ($v, $w) { return (int) ($v + $w); }, 0) == count($keys) * (count($keys) - 1) / 2)) {
+            || (count($keys) > 1 && array_reduce($keys, fn ($v, $w) => (int) ($v + $w), 0) == count($keys) * (count($keys) - 1) / 2)) {
             $output = [];
             foreach ($value as $val) {
                 $output[] = self::dump($val);

@@ -48,8 +48,8 @@ class Doctrine_Ticket_2375_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(2, count($models1));
 
         // make sure the right models were loaded
-        $this->assertTrue(key_exists('Ticket_2375_Model1', $models1));
-        $this->assertTrue(key_exists('Ticket_2375_Model2', $models1));
+        $this->assertTrue(array_key_exists('Ticket_2375_Model1', $models1));
+        $this->assertTrue(array_key_exists('Ticket_2375_Model2', $models1));
 
         // get a list of all models that have been loaded
         $loadedModels = Doctrine_Core::getLoadedModelFiles();
@@ -63,10 +63,10 @@ class Doctrine_Ticket_2375_TestCase extends Doctrine_UnitTestCase
         $models2 = Doctrine_Core::loadModels($models2Dir);
 
         // make sure the right models were loaded
-        $this->assertTrue(key_exists('Ticket_2375_Model3', $models2));
-        $this->assertTrue(key_exists('Ticket_2375_Model4', $models2));
-        $this->assertTrue(key_exists('Ticket_2375_Model5', $models2));
-        $this->assertTrue(key_exists('Ticket_2375_Model6', $models2));
+        $this->assertTrue(array_key_exists('Ticket_2375_Model3', $models2));
+        $this->assertTrue(array_key_exists('Ticket_2375_Model4', $models2));
+        $this->assertTrue(array_key_exists('Ticket_2375_Model5', $models2));
+        $this->assertTrue(array_key_exists('Ticket_2375_Model6', $models2));
 
         // get a list of all models that have been loaded
         $loadedModels = Doctrine_Core::getLoadedModelFiles();
@@ -84,8 +84,8 @@ class Doctrine_Ticket_2375_TestCase extends Doctrine_UnitTestCase
         $models1 = Doctrine_Core::loadModels($models1Dir);
 
         // make sure the right models were loaded
-        $this->assertTrue(key_exists('Ticket_2375_Model1', $models1));
-        $this->assertTrue(key_exists('Ticket_2375_Model2', $models1));
+        $this->assertTrue(array_key_exists('Ticket_2375_Model1', $models1));
+        $this->assertTrue(array_key_exists('Ticket_2375_Model2', $models1));
 
         // get a list of all models that have been loaded
         $loadedModels = Doctrine_Core::getLoadedModelFiles();

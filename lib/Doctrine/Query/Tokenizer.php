@@ -358,7 +358,7 @@ class Doctrine_Query_Tokenizer
                 }
 
                 $terms = array_merge($terms, $subterms);
-                $i += sizeof($subterms);
+                $i += count($subterms);
             }
         }
 

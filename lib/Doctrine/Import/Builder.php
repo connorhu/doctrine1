@@ -739,12 +739,12 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                 if (isset($phpCommentMap[$column['type']])) {
                     $comment = $phpCommentMap[$column['type']];
                     if ('enum' == $column['type']) {
-                        $comment = sprintf($comment, strtoupper(join(', ', $column['values'])));
+                        $comment = sprintf($comment, strtoupper(implode(', ', $column['values'])));
                     }
                     $commentOptions[] = $comment;
                 }
 
-                $comment = join(', ', $commentOptions);
+                $comment = implode(', ', $commentOptions);
 
                 $fieldName = trim($fieldName);
 

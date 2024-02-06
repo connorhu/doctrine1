@@ -79,11 +79,11 @@ class Doctrine_Ticket_1195_TestCase extends Doctrine_UnitTestCase
         ;
 
         $res = $q->execute([], Doctrine_Core::HYDRATE_ARRAY);
-        $this->assertEqual(sizeof($res), 2);
+        $this->assertEqual(count($res), 2);
 
         $q->distinct();
         $res = $q->execute([], Doctrine_Core::HYDRATE_ARRAY);
-        $this->assertEqual(sizeof($res), 1);
+        $this->assertEqual(count($res), 1);
     }
 
     public function testRawSQLCount()

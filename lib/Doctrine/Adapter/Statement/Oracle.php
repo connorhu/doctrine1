@@ -152,7 +152,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
                 break;
         }
 
-        if (is_integer($column)) {
+        if (is_int($column)) {
             $variable_name = ":oci_b_var_{$column}";
         } else {
             $variable_name = $column;
@@ -381,7 +381,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function fetchColumn($columnIndex = 0)
     {
-        if (!is_integer($columnIndex)) {
+        if (!is_int($columnIndex)) {
             $this->handleError(['message' => 'columnIndex parameter should be numeric']);
 
             return false;
@@ -452,7 +452,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function getColumnMeta($column)
     {
-        if (is_integer($column)) {
+        if (is_int($column)) {
             $internal_column = $column + 1;
         } else {
             $internal_column = $column;
