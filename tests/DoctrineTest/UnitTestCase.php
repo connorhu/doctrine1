@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * PHPUnit testCase equivalent class.
+ *
+ * @deprecated
+ */
 class UnitTestCase
 {
     protected $_passed = 0;
