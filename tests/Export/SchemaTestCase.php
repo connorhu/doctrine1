@@ -55,8 +55,13 @@ class Doctrine_Export_Schema_TestCase extends Doctrine_UnitTestCase
     
     public function testYmlExport()
     {
+        $pathParts = [
+            dirname(dirname(__FILE__)),
+            'Fixtures',
+            'models',
+        ];
         $export = new Doctrine_Export_Schema();
-        $export->exportSchema('schema-export.yml', 'yml', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'models', $this->tables);
+        $export->exportSchema('schema-export.yml', 'yml', implode(DIRECTORY_SEPARATOR, $pathParts), $this->tables);
         unlink('schema-export.yml');
     }
 }
