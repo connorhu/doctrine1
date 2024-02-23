@@ -1070,6 +1070,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     /**
      * rethrowException
      *
+     * @param Doctrine_Adapter_Exception|PDOException $e
      * @throws Doctrine_Connection_Exception
      */
     public function rethrowException(Exception $e, $invoker, $query = null)
