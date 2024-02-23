@@ -31,7 +31,9 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Exception extends Exception
-{ 
+{
+    public ?array $errorInfo = null;
+
     /**
      * @var array $_errorMessages       an array of error messages
      */
