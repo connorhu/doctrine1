@@ -1079,6 +1079,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
         $this->getListener()->preError($event);
 
+        /** @var class-string<Doctrine_Connection_Mssql_Exception|Doctrine_Connection_Mysql_Exception> $name */
         $name = 'Doctrine_Connection_' . $this->driverName . '_Exception';
 
         $message = $e->getMessage();
