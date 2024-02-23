@@ -932,10 +932,9 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
             $this->getAttribute(Doctrine_Core::ATTR_LISTENER)->postPrepare($event);
 
             return new Doctrine_Connection_Statement($this, $stmt);
-        } catch(Doctrine_Adapter_Exception $e) {
-        } catch(PDOException $e) { }
-
-        $this->rethrowException($e, $this, $statement);
+        } catch(Doctrine_Adapter_Exception|PDOException $e) {
+            $this->rethrowException($e, $this, $statement);
+        }
     }
 
     /**
@@ -1028,10 +1027,9 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
                 return $stmt;
             }
-        } catch (Doctrine_Adapter_Exception $e) {
-        } catch (PDOException $e) { }
-
-        $this->rethrowException($e, $this, $query);
+        } catch (Doctrine_Adapter_Exception|PDOException $e) {
+            $this->rethrowException($e, $this, $query);
+        }
     }
 
     /**
@@ -1064,10 +1062,9 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
                 return $count;
             }
-        } catch (Doctrine_Adapter_Exception $e) {
-        } catch (PDOException $e) { }
-
-        $this->rethrowException($e, $this, $query);
+        } catch (Doctrine_Adapter_Exception|PDOException $e) {
+            $this->rethrowException($e, $this, $query);
+        }
     }
 
     /**

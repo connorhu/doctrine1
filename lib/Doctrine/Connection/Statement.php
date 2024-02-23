@@ -279,11 +279,9 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
             }
 
             return $result;
-        } catch (PDOException $e) {
-        } catch (Doctrine_Adapter_Exception $e) {
+        } catch (Doctrine_Adapter_Exception|PDOException $e) {
+            $this->_conn->rethrowException($e, $this);
         }
-
-        $this->_conn->rethrowException($e, $this);
 
         return false;
     }
