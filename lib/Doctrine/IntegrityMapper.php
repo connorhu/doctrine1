@@ -70,7 +70,7 @@ class Doctrine_IntegrityMapper
                         if ($deleteActions[$componentName] === 'SET NULL') {
                             $record->set($relation->getForeign(), null);
                         } elseif ($deleteActions[$componentName] === 'CASCADE') {
-                            $this->conn->transaction->addDelete($record);
+                            $this->conn->transaction->addDelete($record); // @TODO BUG! this case is broken too
                         }
                     }
 
