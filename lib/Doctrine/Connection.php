@@ -431,6 +431,15 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         return $this->modules[$name];
     }
 
+    public function getProperty($name): mixed
+    {
+        if (isset($this->properties[$name])) {
+            return $this->properties[$name];
+        }
+
+        throw new Doctrine_Connection_Exception(sprintf('Unknown property: "%s"', $name));
+    }
+
     /**
      * returns the manager that created this connection
      *

@@ -952,7 +952,7 @@ class Doctrine_Core
 
         $build = '';
         foreach ($sql as $query) {
-            $build .= $query.$conn->sql_file_delimiter;
+            $build .= $query.$conn->getProperty('sql_file_delimiter');
         }
 
         return $build;

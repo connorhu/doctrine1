@@ -167,13 +167,13 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
             case 'gzip':
                 if ( ! isset($field['length'])) {
                     if (array_key_exists('default', $field)) {
-                        $field['length'] = $this->conn->varchar_max_length;
+                        $field['length'] = $this->conn->getProperty('varchar_max_length');
                     } else {
                         $field['length'] = false;
                     }
                 }
 
-                $length = ($field['length'] <= $this->conn->varchar_max_length) ? $field['length'] : false;
+                $length = ($field['length'] <= $this->conn->getProperty('varchar_max_length')) ? $field['length'] : false;
                 $fixed  = (isset($field['fixed'])) ? $field['fixed'] : false;
 
                 return $fixed ? ($length ? 'CHAR(' . $length . ')' : 'CHAR(255)')

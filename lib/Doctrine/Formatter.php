@@ -46,10 +46,10 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      */
     public function escapePattern($text)
     {
-        if ( ! $this->string_quoting['escape_pattern']) {
+        if ( ! $this->getProperty('string_quoting')['escape_pattern']) {
             return $text;
         }
-        $tmp = $this->conn->string_quoting;
+        $tmp = $this->conn->getProperty('string_quoting');
 
         $text = str_replace($tmp['escape_pattern'], 
             $tmp['escape_pattern'] .
@@ -124,7 +124,7 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
         if ($checkOption && ! $this->conn->getAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER)) {
             return $str;
         }
-        $tmp = $this->conn->identifier_quoting;
+        $tmp = $this->conn->getProperty('identifier_quoting');
         $str = str_replace($tmp['end'],
             $tmp['escape'] .
             $tmp['end'], $str);

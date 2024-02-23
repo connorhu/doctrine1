@@ -83,7 +83,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
             case 'integer':
             case 'int':
             	$length = (!empty($field['length'])) ? $field['length'] : false;
-            	if ( $length && $length <= $this->conn->number_max_precision)  {
+            	if ( $length && $length <= $this->conn->getProperty('number_max_precision'))  {
             		if ($length <= 1) {
             			return 'NUMBER(3)'; // TINYINT, unsigned max. 256
             		} elseif ($length == 2) {
