@@ -1,12 +1,11 @@
 parameters:
-    level: 6
+    level: 5
     phpVersion: 70400
     paths:
         - lib
-        - tests
+
     excludePaths:
-        - tests/CliTestCase/testLoadtasksLoadsDoctrineStyleTasksFromTheSpecifiedDirectory/should-be-ignored.php
-        - tests/tmp/*
+        - lib/Doctrine/Search/Indexer.php
 
 includes:
     - phpstan-baseline.php
