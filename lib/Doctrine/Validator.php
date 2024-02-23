@@ -136,10 +136,13 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
      * Whether or not errors exist on this validator
      *
      * @return boolean True/false for whether or not this validate instance has error
+     *
+     * @deprecated
      */
     public function hasErrors()
     {
-        return (count($this->stack) > 0);
+        @\trigger_error(sprintf('%s::%s method is broken. Don\'t use it.', __CLASS__, __METHOD__), \E_USER_DEPRECATED);
+        return false; // return (count($this->stack) > 0);
     }
 
     /**
