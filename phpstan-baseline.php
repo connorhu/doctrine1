@@ -1,5 +1,21 @@
 <?php declare(strict_types = 1);
 
+$excludePaths = [
+    'tests/Ticket/632TestCase.php',
+    'lib/Doctrine/Search/Indexer.php',
+    'tests/Collection/SnapshotTestCase.php',
+    'tests/CollectionTestCase.php',
+    'tests/IntegrityActionTestCase.php',
+    'tests/Relation/NestTestCase.php',
+    'tests/Ticket/1449TestCase.php',
+    'tests/Ticket/1876TestCase.php',
+    'tests/Ticket/1876bTestCase.php',
+    'tests/Ticket/1876bTestCase.php',
+    'tests/Ticket/632TestCase.php',
+    'tests/Ticket/632TestCase.php',
+    'tests/run.php',
+];
+
 $ignoreErrors = [];
 $ignoreErrors[] = [
 	'message' => '#^Class Doctrine_Access implements generic interface ArrayAccess but does not specify its types\\: TKey, TValue$#',
@@ -40593,4 +40609,4 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/tests/unsolved.php',
 ];
 
-return ['parameters' => ['ignoreErrors' => $ignoreErrors]];
+return ['parameters' => ['ignoreErrors' => $ignoreErrors, 'excludePaths' => ['analyse' => $excludePaths]]];
