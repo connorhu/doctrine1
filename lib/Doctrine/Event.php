@@ -248,6 +248,11 @@ class Doctrine_Event
         return $this;
     }
 
+    public function isSkipOperation(): ?bool
+    {
+        return $this->_options['skipOperation'] ?? null;
+    }
+
     /**
      * setOption
      * sets the value of an option

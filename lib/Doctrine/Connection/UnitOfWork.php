@@ -69,7 +69,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
 
             $isValid = true;
 
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
                 $this->saveRelatedLocalKeys($record);
 
                 switch ($state) {
@@ -477,7 +477,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
         $record->preDelete($event);
         $record->getTable()->getRecordListener()->preDelete($event);
 
-        return $event->skipOperation;
+        return $event->isSkipOperation();
     }
 
     /**
@@ -523,7 +523,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
 
         if ($record->isValid(false, false)) {
             $table = $record->getTable();
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
                 $identifier = $record->identifier();
                 if ($table->getOption('joinedParents')) {
                     // currrently just for bc!
@@ -562,7 +562,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
         if ($record->isValid(false, false)) {
             $table = $record->getTable();
 
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
                 if ($table->getOption('joinedParents')) {
                     // just for bc!
                     $this->_insertCTIRecord($table, $record);

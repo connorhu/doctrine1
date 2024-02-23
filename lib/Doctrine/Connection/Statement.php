@@ -240,7 +240,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
             $this->_conn->getListener()->preStmtExecute($event);
 
             $result = true;
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
 
                 if ($this->_conn->getAttribute(Doctrine_Core::ATTR_PORTABILITY) & Doctrine_Core::PORTABILITY_EMPTY_TO_NULL) {
                     foreach ($params as $key => $value) {
@@ -330,7 +330,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
 
         $data = $this->_conn->getListener()->preFetch($event);
 
-        if ( ! $event->skipOperation) {
+        if ( ! $event->isSkipOperation()) {
             $data = $this->_stmt->fetch($fetchMode, $cursorOrientation, $cursorOffset);
         }
 
@@ -361,7 +361,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
 
         $this->_conn->getListener()->preFetchAll($event);
 
-        if ( ! $event->skipOperation) {
+        if ( ! $event->isSkipOperation()) {
             if ($columnIndex !== null) {
                 $data = $this->_stmt->fetchAll($fetchMode, $columnIndex);
             } else {

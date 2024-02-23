@@ -194,7 +194,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
 
             $listener->preSavepointCreate($event);
 
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
                 $this->createSavePoint($savepoint);
             }
 
@@ -205,7 +205,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
 
                 $listener->preTransactionBegin($event);
 
-                if ( ! $event->skipOperation) {
+                if ( ! $event->isSkipOperation()) {
                     try {
                         $this->_doBeginTransaction();
                     } catch (Exception $e) {
@@ -250,7 +250,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
 
             $listener->preSavepointCommit($event);
 
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
                 $this->releaseSavePoint($savepoint);
             }
 
@@ -275,7 +275,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
                     $event = new Doctrine_Event($this, Doctrine_Event::TX_COMMIT);
 
                     $listener->preTransactionCommit($event);
-                    if ( ! $event->skipOperation) {
+                    if ( ! $event->isSkipOperation()) {
                         $this->_doCommit();
                     }
                     $listener->postTransactionCommit($event);
@@ -339,7 +339,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
 
             $listener->preSavepointRollback($event);
             
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
                 $this->rollbackSavePoint($savepoint);
             }
 
@@ -349,7 +349,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
     
             $listener->preTransactionRollback($event);
             
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
                 $this->_nestingLevel = 0;
                 $this->_internalNestingLevel = 0;
                 try {

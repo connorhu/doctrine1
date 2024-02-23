@@ -925,7 +925,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
             $stmt = false;
 
-            if ( ! $event->skipOperation) {
+            if ( ! $event->isSkipOperation()) {
                 $stmt = $this->dbh->prepare($statement);
             }
 
@@ -1019,7 +1019,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
                 $this->getAttribute(Doctrine_Core::ATTR_LISTENER)->preQuery($event);
 
-                if ( ! $event->skipOperation) {
+                if ( ! $event->isSkipOperation()) {
                     $stmt = $this->dbh->query($query);
                     $this->_count++;
                 }
@@ -1053,7 +1053,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
                 $event = new Doctrine_Event($this, Doctrine_Event::CONN_EXEC, $query, $params);
 
                 $this->getAttribute(Doctrine_Core::ATTR_LISTENER)->preExec($event);
-                if ( ! $event->skipOperation) {
+                if ( ! $event->isSkipOperation()) {
                     $count = $this->dbh->exec($query);
 
                     $this->_count++;
