@@ -453,6 +453,11 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Adapter/Statement/Oracle.php',
 ];
 $ignoreErrors[] = [
+	'message' => '#^Function oci_fetch_object invoked with 2 parameters, 1 required\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/lib/Doctrine/Adapter/Statement/Oracle.php',
+];
+$ignoreErrors[] = [
 	'message' => '#^Method Doctrine_Adapter_Statement_Oracle\\:\\:bindParam\\(\\) has parameter \\$column with no type specified\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Adapter/Statement/Oracle.php',
@@ -1203,12 +1208,12 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Cli/AnsiColorFormatter.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$offset of function substr expects int, float given\\.$#',
+	'message' => '#^Parameter \\#2 \\$start of function substr expects int, float given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Cli/AnsiColorFormatter.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#3 \\$length of function substr expects int\\|null, float given\\.$#',
+	'message' => '#^Parameter \\#3 \\$length of function substr expects int, float given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Cli/AnsiColorFormatter.php',
 ];
@@ -1343,12 +1348,12 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Cli/Formatter.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$offset of function substr expects int, float given\\.$#',
+	'message' => '#^Parameter \\#2 \\$start of function substr expects int, float given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Cli/Formatter.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#3 \\$length of function substr expects int\\|null, float given\\.$#',
+	'message' => '#^Parameter \\#3 \\$length of function substr expects int, float given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Cli/Formatter.php',
 ];
@@ -2451,7 +2456,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Connection.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$array of function implode expects array\\|null, string given\\.$#',
+	'message' => '#^Parameter \\#2 \\$pieces of function implode expects array, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Connection.php',
 ];
@@ -3318,7 +3323,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Connection/UnitOfWork.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$string of function strtolower expects string, null given\\.$#',
+	'message' => '#^Parameter \\#1 \\$str of function strtolower expects string, null given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Connection/UnitOfWork.php',
 ];
@@ -4033,7 +4038,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Data/Import.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\.\\.\\.\\$arrays of callable \'array_merge\'\\|\'array_merge…\' expects array, null given\\.$#',
+	'message' => '#^Parameter \\#2 \\.\\.\\.\\$args of callable \'array_merge\'\\|\'array_merge…\' expects array, null given\\.$#',
 	'count' => 2,
 	'path' => __DIR__ . '/lib/Doctrine/Data/Import.php',
 ];
@@ -4138,7 +4143,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/DataDict/Mssql.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$array of function array_key_exists expects array, string given\\.$#',
+	'message' => '#^Parameter \\#2 \\$search of function array_key_exists expects array, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/DataDict/Mssql.php',
 ];
@@ -4203,7 +4208,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/DataDict/Mysql.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$array of function array_key_exists expects array, string given\\.$#',
+	'message' => '#^Parameter \\#2 \\$search of function array_key_exists expects array, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/DataDict/Mysql.php',
 ];
@@ -5527,7 +5532,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Export/Oracle.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\.\\.\\.\\$arrays of function array_merge expects array, string given\\.$#',
+	'message' => '#^Parameter \\#2 \\.\\.\\.\\$args of function array_merge expects array, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Export/Oracle.php',
 ];
@@ -8517,7 +8522,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Manager.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$string of function explode expects string, array given\\.$#',
+	'message' => '#^Parameter \\#2 \\$str of function explode expects string, array given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Manager.php',
 ];
@@ -10401,7 +10406,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Parser/Serialize.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$data of function unserialize expects string, null given\\.$#',
+	'message' => '#^Parameter \\#1 \\$variable_representation of function unserialize expects string, null given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Parser/Serialize.php',
 ];
@@ -10631,13 +10636,13 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Parser/sfYaml/sfYamlInline.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$array of function implode expects array\\|null, string given\\.$#',
-	'count' => 1,
+	'message' => '#^Parameter \\#2 \\$delimiters of static method sfYamlInline\\:\\:parseScalar\\(\\) expects string\\|null, array\\<int, string\\> given\\.$#',
+	'count' => 3,
 	'path' => __DIR__ . '/lib/Doctrine/Parser/sfYaml/sfYamlInline.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$delimiters of static method sfYamlInline\\:\\:parseScalar\\(\\) expects string\\|null, array\\<int, string\\> given\\.$#',
-	'count' => 3,
+	'message' => '#^Parameter \\#2 \\$pieces of function implode expects array, string given\\.$#',
+	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Parser/sfYaml/sfYamlInline.php',
 ];
 $ignoreErrors[] = [
@@ -10961,7 +10966,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Query.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$string of function strtolower expects string, null given\\.$#',
+	'message' => '#^Parameter \\#1 \\$str of function strtolower expects string, null given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Query.php',
 ];
@@ -10971,13 +10976,13 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Query.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$array of function implode expects array\\|null, string given\\.$#',
-	'count' => 1,
+	'message' => '#^Parameter \\#2 \\$params of method Doctrine_Connection\\:\\:fetchAll\\(\\) expects array, null given\\.$#',
+	'count' => 2,
 	'path' => __DIR__ . '/lib/Doctrine/Query.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$params of method Doctrine_Connection\\:\\:fetchAll\\(\\) expects array, null given\\.$#',
-	'count' => 2,
+	'message' => '#^Parameter \\#2 \\$pieces of function implode expects array, string given\\.$#',
+	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Query.php',
 ];
 $ignoreErrors[] = [
@@ -11996,7 +12001,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Query/Where.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$string of function strtolower expects string, null given\\.$#',
+	'message' => '#^Parameter \\#1 \\$str of function strtolower expects string, null given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Query/Where.php',
 ];
@@ -12786,11 +12791,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Record.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$array of function current expects array\\|object, int given\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/lib/Doctrine/Record.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Parameter \\#1 \\$array of method Doctrine_Record\\:\\:fromArray\\(\\) expects array, null given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Record.php',
@@ -12806,12 +12806,17 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Record.php',
 ];
 $ignoreErrors[] = [
+	'message' => '#^Parameter \\#1 \\$array_arg of function current expects array\\|object, int given\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/lib/Doctrine/Record.php',
+];
+$ignoreErrors[] = [
 	'message' => '#^Parameter \\#1 \\$deep of method Doctrine_Record\\:\\:toArray\\(\\) expects bool, string given\\.$#',
 	'count' => 2,
 	'path' => __DIR__ . '/lib/Doctrine/Record.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\.\\.\\.\\$arrays of function array_merge expects array, int given\\.$#',
+	'message' => '#^Parameter \\#2 \\.\\.\\.\\$args of function array_merge expects array, int given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Record.php',
 ];
@@ -15511,7 +15516,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Task/Dql.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$string of function explode expects string, null given\\.$#',
+	'message' => '#^Parameter \\#2 \\$str of function explode expects string, null given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Task/Dql.php',
 ];
@@ -16808,7 +16813,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/lib/Doctrine/Validator.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#2 \\$string of function explode expects string, float\\|int\\<0, max\\> given\\.$#',
+	'message' => '#^Parameter \\#2 \\$str of function explode expects string, float\\|int\\<0, max\\> given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/lib/Doctrine/Validator.php',
 ];
@@ -17889,17 +17894,17 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/tests/CliTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$callback of function spl_autoload_register expects \\(callable\\(string\\)\\: void\\)\\|null, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
+	'message' => '#^Parameter \\#1 \\$autoload_function of function spl_autoload_register expects callable\\(string\\)\\: void, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/CliTestCase/cli-default.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$callback of function spl_autoload_register expects \\(callable\\(string\\)\\: void\\)\\|null, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
+	'message' => '#^Parameter \\#1 \\$autoload_function of function spl_autoload_register expects callable\\(string\\)\\: void, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/CliTestCase/cli-with-custom-tasks.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$callback of function spl_autoload_register expects \\(callable\\(string\\)\\: void\\)\\|null, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
+	'message' => '#^Parameter \\#1 \\$autoload_function of function spl_autoload_register expects callable\\(string\\)\\: void, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/CliTestCase/cli-without-autoregistered-custom-tasks.php',
 ];
@@ -22544,7 +22549,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/tests/ExtensionTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$callback of function spl_autoload_register expects \\(callable\\(string\\)\\: void\\)\\|null, array\\{\'Doctrine_Core\', \'extensionsAutoload\'\\} given\\.$#',
+	'message' => '#^Parameter \\#1 \\$autoload_function of function spl_autoload_register expects callable\\(string\\)\\: void, array\\{\'Doctrine_Core\', \'extensionsAutoload\'\\} given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/ExtensionTestCase.php',
 ];
@@ -23004,72 +23009,72 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestClassTableInheritanceChild\\>\\|SchemaTestClassTableInheritanceChild, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestClassTableInheritanceChild\\>\\|SchemaTestClassTableInheritanceChild, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestClassTableInheritanceParent\\>\\|SchemaTestClassTableInheritanceParent, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestClassTableInheritanceParent\\>\\|SchemaTestClassTableInheritanceParent, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestColumnAggregationInheritanceChild\\>\\|SchemaTestColumnAggregationInheritanceChild, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestColumnAggregationInheritanceChild\\>\\|SchemaTestColumnAggregationInheritanceChild, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestColumnAggregationInheritanceParent\\>\\|SchemaTestColumnAggregationInheritanceParent, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestColumnAggregationInheritanceParent\\>\\|SchemaTestColumnAggregationInheritanceParent, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestConcreteInheritanceChild\\>\\|SchemaTestConcreteInheritanceChild, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestConcreteInheritanceChild\\>\\|SchemaTestConcreteInheritanceChild, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestConcreteInheritanceParent\\>\\|SchemaTestConcreteInheritanceParent, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestConcreteInheritanceParent\\>\\|SchemaTestConcreteInheritanceParent, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceChild1\\>\\|SchemaTestInheritanceChild1, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceChild1\\>\\|SchemaTestInheritanceChild1, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceChild1Table\\>\\|SchemaTestInheritanceChild1Table, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceChild1Table\\>\\|SchemaTestInheritanceChild1Table, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceChild2\\>\\|SchemaTestInheritanceChild2, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceChild2\\>\\|SchemaTestInheritanceChild2, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceChild2Table\\>\\|SchemaTestInheritanceChild2Table, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceChild2Table\\>\\|SchemaTestInheritanceChild2Table, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceParent\\>\\|SchemaTestInheritanceParent, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceParent\\>\\|SchemaTestInheritanceParent, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceParentTable\\>\\|SchemaTestInheritanceParentTable, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestInheritanceParentTable\\>\\|SchemaTestInheritanceParentTable, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestSimpleInheritanceChild\\>\\|SchemaTestSimpleInheritanceChild, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestSimpleInheritanceChild\\>\\|SchemaTestSimpleInheritanceChild, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<SchemaTestSimpleInheritanceParent\\>\\|SchemaTestSimpleInheritanceParent, string given\\.$#',
+	'message' => '#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<SchemaTestSimpleInheritanceParent\\>\\|SchemaTestSimpleInheritanceParent, string given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/Import/BuilderTestCase.php',
 ];
@@ -26979,7 +26984,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/tests/RecordTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$string of function md5 expects string, int given\\.$#',
+	'message' => '#^Parameter \\#1 \\$str of function md5 expects string, int given\\.$#',
 	'count' => 5,
 	'path' => __DIR__ . '/tests/RecordTestCase.php',
 ];
@@ -32454,7 +32459,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/tests/Ticket/1628TestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$string of function trim expects string, null given\\.$#',
+	'message' => '#^Parameter \\#1 \\$str of function trim expects string, null given\\.$#',
 	'count' => 5,
 	'path' => __DIR__ . '/tests/Ticket/1628TestCase.php',
 ];
@@ -39344,12 +39349,17 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/tests/ViewTestCase.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$callback of function spl_autoload_register expects \\(callable\\(string\\)\\: void\\)\\|null, array\\{\'DoctrineTest\', \'autoload\'\\} given\\.$#',
+	'message' => '#^Parameter \\#1 \\$autoload_function of function spl_autoload_register expects callable\\(string\\)\\: void, array\\{\'DoctrineTest\', \'autoload\'\\} given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/bootstrap.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$callback of function spl_autoload_register expects \\(callable\\(string\\)\\: void\\)\\|null, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
+	'message' => '#^Parameter \\#1 \\$autoload_function of function spl_autoload_register expects callable\\(string\\)\\: void, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/tests/bootstrap.php',
+];
+$ignoreErrors[] = [
+	'message' => '#^Parameter \\#2 \\$newvalue of function ini_set expects string, int given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/bootstrap.php',
 ];
@@ -40604,7 +40614,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/tests/unsolved.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$callback of function spl_autoload_register expects \\(callable\\(string\\)\\: void\\)\\|null, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
+	'message' => '#^Parameter \\#1 \\$autoload_function of function spl_autoload_register expects callable\\(string\\)\\: void, array\\{\'Doctrine_Core\', \'autoload\'\\} given\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/tests/unsolved.php',
 ];
