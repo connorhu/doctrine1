@@ -249,6 +249,11 @@ abstract class Doctrine_Query_Abstract
     protected $_parser;
 
     /**
+     * @var array<Doctrine_Query_Part>
+     */
+    private $_parsers = [];
+
+    /**
      * @var array $_tableAliasSeeds         A simple array keys representing table aliases and values
      *                                      table alias seeds. The seeds are used for generating short table
      *                                      aliases.
