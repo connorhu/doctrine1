@@ -33,6 +33,8 @@
  */
 class Doctrine_Sequence extends Doctrine_Connection_Module
 {
+    protected array $warnings = [];
+
     /**
      * Returns the next free id of a sequence
      *
