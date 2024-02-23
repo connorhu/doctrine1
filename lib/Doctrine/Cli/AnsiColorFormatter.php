@@ -121,15 +121,15 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
     /**
      * Truncates a line.
      *
-     * @param string  The text
-     * @param integer The maximum size of the returned string (65 by default)
+     * @param string        The text
+     * @param integer|null  The maximum size of the returned string (65 by default)
      *
-     * @return string The truncated string
+     * @return string       The truncated string
      */
     public function excerpt($text, $size = null)
     {
         if ( ! $size) {
-            $size = $this->size;
+            $size = 65;
         }
 
         if (strlen($text) < $size) {
